@@ -4,15 +4,14 @@
 #include <SoftwareSerial.h>
 
 #define MSG_INITIALIZER 0
-#define MSG_LOG 1
-#define MSG_FS20 2
+#define MSG_FS20 1
 
 #define SENDER_ALL -1
 
 #define RX_PIN 10
 #define TX_PIN 11
 
-#define TIMEOUT 500
+#define TIMEOUT 1000
 
 SoftwareSerial fs_serial(RX_PIN, TX_PIN);
 aJsonStream serial_stream(&Serial);
@@ -20,7 +19,6 @@ aJsonStream serial_stream(&Serial);
 bool initialized = false;
 
 void initialize_serial();
-void writeLog(const int sender, const char *str);
 void writeFS20(const int sender, const int bytes[4]);
 
 void setup() {
@@ -53,16 +51,10 @@ void onMessage(int sender, int message_id, aJsonObject *params)
 			aJsonObject *val = aJson.getArrayItem(params, i);
 
 			if(val == NULL)
-			{
-				writeLog(sender, "Invalid value found");
 				return;
-			}
 
 			if(val->type != aJson_Int)
-			{
-				writeLog(sender, "Value is not an integer");
 				return;
-			}
 
 			fs_serial.write(val->valueint);
 		}
@@ -71,8 +63,11 @@ void onMessage(int sender, int message_id, aJsonObject *params)
 		int readCount = 0;
 		int readBytes[4] = { 0 };
 		int startTime = millis();
-		while(((startTime + TIMEOUT) >= millis()) && readCount < 4)
+		while(readCount < 4)
 		{
+			if((startTime + TIMEOUT) < millis())
+				break;
+
 			int readByte = fs_serial.read();
 			if(readByte == -1)
 				continue;
@@ -80,8 +75,7 @@ void onMessage(int sender, int message_id, aJsonObject *params)
 			readBytes[readCount++] = readByte;
 		}
 
-		if(readCount == 4)
-			writeFS20(sender, readBytes);
+		writeFS20(sender, readBytes);
 	}
 }
 
@@ -92,16 +86,10 @@ void onJSON(aJsonObject *msg)
 	aJsonObject *params = aJson.getObjectItem(msg, "params");
 
 	if(sender == 0 || id == 0 || params == 0)
-	{
-		writeLog(SENDER_ALL, "A wrong JSON format has been sent");
 		return;
-	}
 
 	if(sender->type != aJson_Int || id->type != aJson_Int || params->type != aJson_Array)
-	{
-		writeLog(SENDER_ALL, "JSON has a wrong format");
 		return;
-	}
 
 	onMessage(sender->valueint, id->valueint, params);
 }
@@ -116,27 +104,6 @@ void initialize_serial()
 	aJson.addNumberToObject(root, "id", MSG_INITIALIZER);
 
 	aJsonObject *array = aJson.createArray();
-
-	aJson.addItemToObject(root, "params", array);
-
-	serial_stream.printObject(root);
-	Serial.println();
-
-	aJson.deleteItem(root);
-}
-
-void writeLog(const int sender, const char *str)
-{
-	aJsonObject *root = aJson.createObject();
-
-	if(root == NULL)
-		return;
-
-	aJson.addNumberToObject(root, "sender", sender);
-	aJson.addNumberToObject(root, "id", MSG_LOG);
-
-	aJsonObject *array = aJson.createArray();
-	aJson.addItemToArray(array, aJson.createItem(str));
 
 	aJson.addItemToObject(root, "params", array);
 
@@ -184,3 +151,5 @@ void serialEvent()
 		aJson.deleteItem(msg);
 	}
 }
+
+void loop() { }

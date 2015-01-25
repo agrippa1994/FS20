@@ -3,6 +3,7 @@
 var ws = require("nodejs-websocket");
 var serialport = require("serialport");
 var rwlock = require("rwlock");
+var http = require("http");
 //---------------------------------------
 var fs = require("fs");
 
@@ -27,7 +28,7 @@ function readConfiguration() {
 		console.log("Exception: " + e);
 	}
 }
-
+/*
 var connections = [];
 var server = ws.createServer(function(conn){
 	for(var i = 0;; i++) {
@@ -57,6 +58,49 @@ var server = ws.createServer(function(conn){
 		}
 	});
 }).listen(config.port);
+*/
+
+var connections = [];
+http.createServer(function(request, response){
+
+	var postData = "";
+	request.on("data", function(chunk){
+		postData += chunk;
+	});
+
+	request.on("end", function() {
+		for(var i = 0;; i++) {
+			if(typeof connections[i] == "undefined") {
+				connections[i] = response;
+				response.sender_id = i;
+				break;
+			}
+		}
+
+		response.close = function() {
+			for(var i = 0;; i++) {
+				if(typeof connections[i] == "object") {
+					if(connections[i].sender_id == this.sender_id) {
+						connections.splice(i, 1);
+						break;
+					}
+				}
+			}
+		};
+
+		consoleLog("Incomming connection with data " + postData);
+
+		try {
+			sendToArduino(response.sender_id, JSON.parse(postData));
+		} catch(e) {
+			consoleLog("Connection " + response.sender_id + " sent a wrong format " + e);
+
+			response.writeHead(404, "Failure", {'Content-Type': 'text/html'});
+			response.end();
+			response.close();
+		}
+	});
+}).listen(config.port);
 
 var arduino = new serialport.SerialPort(config.dev, {
 	baudrate: 115200,
@@ -79,23 +123,15 @@ arduino.open(function(error) {
 				sendToArduino(-1, {id: 0, params:[]});
 			}
 
-			else if(obj.id == 2 && obj.sender == -1)
-				consoleLog("Log: " + obj.params[0]);
-			else if(obj.sender == -1)
-				consoleLog("Other: " + obj.params);
+			for(var i = 0; i < connections.length; i++) {
+				if(connections[i].sender_id == obj.sender) {
+					connections[i].writeHead(200, "Success", {'Content-Type': 'text/html'});
+					connections[i].end(data);
+					connections[i].close();
+					break;
+				}
+			}
 
-			if(obj.sender == -1 && obj.sender == -1) {
-				for(var i = 0; i < connections.length; i++) {
-					connections[i].sendText(data);
-				}
-			}
-			else {
-				for(var i = 0; i < connections.length; i++) {
-					if(connections[i].sender_id == obj.sender) {
-						connections[i].sendText(data);
-					}
-				}
-			}
 		} catch(e) {
 			consoleLog("Arduino sent wrong data: " + e);
 		}
