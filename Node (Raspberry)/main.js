@@ -28,37 +28,6 @@ function readConfiguration() {
 		console.log("Exception: " + e);
 	}
 }
-/*
-var connections = [];
-var server = ws.createServer(function(conn){
-	for(var i = 0;; i++) {
-		if(typeof connections[i] == "undefined") {
-			connections[i] = conn;
-			conn.sender_id = i;
-			break;
-		}
-	}
-
-	conn.on("text", function(str) {
-		try {
-			sendToArduino(conn.sender_id, JSON.parse(str));
-		} catch(e) {
-			consoleLog("Connection " + conn.sender_id + " sent a wrong format " + e);
-		}
-	});
-
-	conn.on("close", function(code, reason) {
-		for(var i = 0;; i++) {
-			if(typeof connections[i] == "object") {
-				if(connections[i].sender_id == conn.sender_id) {
-					connections.splice(i, 1);
-					break;
-				}
-			}
-		}
-	});
-}).listen(config.port);
-*/
 
 var connections = [];
 http.createServer(function(request, response){
