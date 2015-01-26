@@ -1,0 +1,554 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3C13112A1A76D0F300B91853 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C1311291A76D0F300B91853 /* NotificationCenter.framework */; };
+		3C13112F1A76D0F300B91853 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C13112E1A76D0F300B91853 /* TodayViewController.swift */; };
+		3C1311311A76D0F300B91853 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C1311301A76D0F300B91853 /* MainInterface.storyboard */; };
+		3C1311341A76D0F300B91853 /* FS20-TodayControl.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3C1311271A76D0F300B91853 /* FS20-TodayControl.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3C13114D1A76D86400B91853 /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1311481A76D86400B91853 /* CoreData.swift */; };
+		3C13114E1A76D86400B91853 /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1311481A76D86400B91853 /* CoreData.swift */; };
+		3C13114F1A76D86400B91853 /* DeviceEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1311491A76D86400B91853 /* DeviceEntry.swift */; };
+		3C1311501A76D86400B91853 /* DeviceEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1311491A76D86400B91853 /* DeviceEntry.swift */; };
+		3C1311511A76D86400B91853 /* HouseEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C13114A1A76D86400B91853 /* HouseEntry.swift */; };
+		3C1311521A76D86400B91853 /* HouseEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C13114A1A76D86400B91853 /* HouseEntry.swift */; };
+		3C1311531A76D86400B91853 /* FS20.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3C13114B1A76D86400B91853 /* FS20.xcdatamodeld */; };
+		3C1311541A76D86400B91853 /* FS20.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3C13114B1A76D86400B91853 /* FS20.xcdatamodeld */; };
+		3C1311571A76D87F00B91853 /* FS20.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1311561A76D87F00B91853 /* FS20.swift */; };
+		3C1311581A76D87F00B91853 /* FS20.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1311561A76D87F00B91853 /* FS20.swift */; };
+		3C1311591A76D88800B91853 /* FS20.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 3C13114B1A76D86400B91853 /* FS20.xcdatamodeld */; };
+		3C13115A1A76D88F00B91853 /* FS20.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 3C13114B1A76D86400B91853 /* FS20.xcdatamodeld */; };
+		3CD38CC41A756968009DC4E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD38CC31A756968009DC4E3 /* AppDelegate.swift */; };
+		3CD38CCC1A756968009DC4E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CD38CCA1A756968009DC4E3 /* Main.storyboard */; };
+		3CD38CCE1A756968009DC4E3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CD38CCD1A756968009DC4E3 /* Images.xcassets */; };
+		3CD38CD11A756968009DC4E3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CD38CCF1A756968009DC4E3 /* LaunchScreen.xib */; };
+		3CD38CE71A756DFE009DC4E3 /* HouseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD38CE61A756DFE009DC4E3 /* HouseTableViewController.swift */; };
+		3CD38CE91A75703C009DC4E3 /* AddEditHouseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD38CE81A75703C009DC4E3 /* AddEditHouseTableViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3C1311321A76D0F300B91853 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3CD38CB61A756967009DC4E3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3C1311261A76D0F200B91853;
+			remoteInfo = "FS20-TodayControl";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3C1311381A76D0F300B91853 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				3C1311341A76D0F300B91853 /* FS20-TodayControl.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		3C1311271A76D0F300B91853 /* FS20-TodayControl.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "FS20-TodayControl.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C1311291A76D0F300B91853 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		3C13112D1A76D0F300B91853 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3C13112E1A76D0F300B91853 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		3C1311301A76D0F300B91853 /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
+		3C1311391A76D13200B91853 /* FS20.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = FS20.entitlements; sourceTree = "<group>"; };
+		3C1311481A76D86400B91853 /* CoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreData.swift; path = Shared/CoreData.swift; sourceTree = "<group>"; };
+		3C1311491A76D86400B91853 /* DeviceEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceEntry.swift; path = Shared/DeviceEntry.swift; sourceTree = "<group>"; };
+		3C13114A1A76D86400B91853 /* HouseEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HouseEntry.swift; path = Shared/HouseEntry.swift; sourceTree = "<group>"; };
+		3C13114C1A76D86400B91853 /* FS20.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FS20.xcdatamodel; sourceTree = "<group>"; };
+		3C1311561A76D87F00B91853 /* FS20.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FS20.swift; path = Shared/FS20.swift; sourceTree = "<group>"; };
+		3C13115B1A76DA5900B91853 /* FS20-TodayControl.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "FS20-TodayControl.entitlements"; sourceTree = "<group>"; };
+		3CD38CBE1A756968009DC4E3 /* FS20.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FS20.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CD38CC21A756968009DC4E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3CD38CC31A756968009DC4E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3CD38CCB1A756968009DC4E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3CD38CCD1A756968009DC4E3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		3CD38CD01A756968009DC4E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		3CD38CE61A756DFE009DC4E3 /* HouseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseTableViewController.swift; sourceTree = "<group>"; };
+		3CD38CE81A75703C009DC4E3 /* AddEditHouseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditHouseTableViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3C1311241A76D0F200B91853 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C13112A1A76D0F300B91853 /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CD38CBB1A756968009DC4E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3C1311281A76D0F300B91853 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3C1311291A76D0F300B91853 /* NotificationCenter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3C13112B1A76D0F300B91853 /* FS20-TodayControl */ = {
+			isa = PBXGroup;
+			children = (
+				3C13115B1A76DA5900B91853 /* FS20-TodayControl.entitlements */,
+				3C13112E1A76D0F300B91853 /* TodayViewController.swift */,
+				3C1311301A76D0F300B91853 /* MainInterface.storyboard */,
+				3C13112C1A76D0F300B91853 /* Supporting Files */,
+			);
+			path = "FS20-TodayControl";
+			sourceTree = "<group>";
+		};
+		3C13112C1A76D0F300B91853 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3C13112D1A76D0F300B91853 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3C13113A1A76D1B800B91853 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				3C1311551A76D87500B91853 /* FS20 */,
+				3C1311471A76D84400B91853 /* CoreData */,
+			);
+			name = Shared;
+			sourceTree = "<group>";
+		};
+		3C1311471A76D84400B91853 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				3C1311481A76D86400B91853 /* CoreData.swift */,
+				3C1311491A76D86400B91853 /* DeviceEntry.swift */,
+				3C13114A1A76D86400B91853 /* HouseEntry.swift */,
+				3C13114B1A76D86400B91853 /* FS20.xcdatamodeld */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
+		3C1311551A76D87500B91853 /* FS20 */ = {
+			isa = PBXGroup;
+			children = (
+				3C1311561A76D87F00B91853 /* FS20.swift */,
+			);
+			name = FS20;
+			sourceTree = "<group>";
+		};
+		3CD38CB51A756967009DC4E3 = {
+			isa = PBXGroup;
+			children = (
+				3C13113A1A76D1B800B91853 /* Shared */,
+				3CD38CC01A756968009DC4E3 /* FS20 */,
+				3C13112B1A76D0F300B91853 /* FS20-TodayControl */,
+				3C1311281A76D0F300B91853 /* Frameworks */,
+				3CD38CBF1A756968009DC4E3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3CD38CBF1A756968009DC4E3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3CD38CBE1A756968009DC4E3 /* FS20.app */,
+				3C1311271A76D0F300B91853 /* FS20-TodayControl.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3CD38CC01A756968009DC4E3 /* FS20 */ = {
+			isa = PBXGroup;
+			children = (
+				3C1311391A76D13200B91853 /* FS20.entitlements */,
+				3CD38CC31A756968009DC4E3 /* AppDelegate.swift */,
+				3CD38CCA1A756968009DC4E3 /* Main.storyboard */,
+				3CD38CCF1A756968009DC4E3 /* LaunchScreen.xib */,
+				3CD38CCD1A756968009DC4E3 /* Images.xcassets */,
+				3CD38CE61A756DFE009DC4E3 /* HouseTableViewController.swift */,
+				3CD38CE81A75703C009DC4E3 /* AddEditHouseTableViewController.swift */,
+				3CD38CC11A756968009DC4E3 /* Supporting Files */,
+			);
+			path = FS20;
+			sourceTree = "<group>";
+		};
+		3CD38CC11A756968009DC4E3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3CD38CC21A756968009DC4E3 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3C1311261A76D0F200B91853 /* FS20-TodayControl */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3C1311351A76D0F300B91853 /* Build configuration list for PBXNativeTarget "FS20-TodayControl" */;
+			buildPhases = (
+				3C1311231A76D0F200B91853 /* Sources */,
+				3C1311241A76D0F200B91853 /* Frameworks */,
+				3C1311251A76D0F200B91853 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "FS20-TodayControl";
+			productName = "FS20-TodayControl";
+			productReference = 3C1311271A76D0F300B91853 /* FS20-TodayControl.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		3CD38CBD1A756968009DC4E3 /* FS20 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3CD38CE01A756968009DC4E3 /* Build configuration list for PBXNativeTarget "FS20" */;
+			buildPhases = (
+				3CD38CBA1A756968009DC4E3 /* Sources */,
+				3CD38CBB1A756968009DC4E3 /* Frameworks */,
+				3CD38CBC1A756968009DC4E3 /* Resources */,
+				3C1311381A76D0F300B91853 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3C1311331A76D0F300B91853 /* PBXTargetDependency */,
+			);
+			name = FS20;
+			productName = FS20;
+			productReference = 3CD38CBE1A756968009DC4E3 /* FS20.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3CD38CB61A756967009DC4E3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0620;
+				ORGANIZATIONNAME = Mani;
+				TargetAttributes = {
+					3C1311261A76D0F200B91853 = {
+						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = PZP46GS9KE;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+					3CD38CBD1A756968009DC4E3 = {
+						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = PZP46GS9KE;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 3CD38CB91A756967009DC4E3 /* Build configuration list for PBXProject "FS20" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3CD38CB51A756967009DC4E3;
+			productRefGroup = 3CD38CBF1A756968009DC4E3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3CD38CBD1A756968009DC4E3 /* FS20 */,
+				3C1311261A76D0F200B91853 /* FS20-TodayControl */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3C1311251A76D0F200B91853 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C13115A1A76D88F00B91853 /* FS20.xcdatamodeld in Resources */,
+				3C1311311A76D0F300B91853 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CD38CBC1A756968009DC4E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C1311591A76D88800B91853 /* FS20.xcdatamodeld in Resources */,
+				3CD38CCC1A756968009DC4E3 /* Main.storyboard in Resources */,
+				3CD38CD11A756968009DC4E3 /* LaunchScreen.xib in Resources */,
+				3CD38CCE1A756968009DC4E3 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3C1311231A76D0F200B91853 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C13114E1A76D86400B91853 /* CoreData.swift in Sources */,
+				3C1311541A76D86400B91853 /* FS20.xcdatamodeld in Sources */,
+				3C1311581A76D87F00B91853 /* FS20.swift in Sources */,
+				3C1311521A76D86400B91853 /* HouseEntry.swift in Sources */,
+				3C13112F1A76D0F300B91853 /* TodayViewController.swift in Sources */,
+				3C1311501A76D86400B91853 /* DeviceEntry.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CD38CBA1A756968009DC4E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C1311511A76D86400B91853 /* HouseEntry.swift in Sources */,
+				3CD38CE71A756DFE009DC4E3 /* HouseTableViewController.swift in Sources */,
+				3C13114F1A76D86400B91853 /* DeviceEntry.swift in Sources */,
+				3C1311531A76D86400B91853 /* FS20.xcdatamodeld in Sources */,
+				3CD38CE91A75703C009DC4E3 /* AddEditHouseTableViewController.swift in Sources */,
+				3CD38CC41A756968009DC4E3 /* AppDelegate.swift in Sources */,
+				3C13114D1A76D86400B91853 /* CoreData.swift in Sources */,
+				3C1311571A76D87F00B91853 /* FS20.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3C1311331A76D0F300B91853 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3C1311261A76D0F200B91853 /* FS20-TodayControl */;
+			targetProxy = 3C1311321A76D0F300B91853 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3CD38CCA1A756968009DC4E3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3CD38CCB1A756968009DC4E3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3CD38CCF1A756968009DC4E3 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3CD38CD01A756968009DC4E3 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3C1311361A76D0F300B91853 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "FS20-TodayControl/FS20-TodayControl.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "FS20-TodayControl/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		3C1311371A76D0F300B91853 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "FS20-TodayControl/FS20-TodayControl.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "FS20-TodayControl/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		3CD38CDE1A756968009DC4E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3CD38CDF1A756968009DC4E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3CD38CE11A756968009DC4E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FS20/FS20.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = FS20/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Debug;
+		};
+		3CD38CE21A756968009DC4E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FS20/FS20.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				INFOPLIST_FILE = FS20/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3C1311351A76D0F300B91853 /* Build configuration list for PBXNativeTarget "FS20-TodayControl" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3C1311361A76D0F300B91853 /* Debug */,
+				3C1311371A76D0F300B91853 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3CD38CB91A756967009DC4E3 /* Build configuration list for PBXProject "FS20" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3CD38CDE1A756968009DC4E3 /* Debug */,
+				3CD38CDF1A756968009DC4E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3CD38CE01A756968009DC4E3 /* Build configuration list for PBXNativeTarget "FS20" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3CD38CE11A756968009DC4E3 /* Debug */,
+				3CD38CE21A756968009DC4E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3C13114B1A76D86400B91853 /* FS20.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3C13114C1A76D86400B91853 /* FS20.xcdatamodel */,
+			);
+			currentVersion = 3C13114C1A76D86400B91853 /* FS20.xcdatamodel */;
+			name = FS20.xcdatamodeld;
+			path = Shared/FS20.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 3CD38CB61A756967009DC4E3 /* Project object */;
+}
