@@ -1,11 +1,12 @@
 // -------------------------------------
-// These libraries can be downloaded via npm ("npm install nodejs-websocket serialport rwlock")
-var ws = require("nodejs-websocket");
+// These libraries can be downloaded via npm ("npm install serialport rwlock")
 var serialport = require("serialport");
 var rwlock = require("rwlock");
-var http = require("http");
 //---------------------------------------
+var http = require("http");
 var fs = require("fs");
+
+var MSG_FS20 = 1;
 
 var config = readConfiguration();
 
@@ -60,7 +61,13 @@ http.createServer(function(request, response){
 		consoleLog("Incomming connection with data " + postData);
 
 		try {
-			sendToArduino(response.sender_id, JSON.parse(postData));
+			var params = JSON.parse(postData);
+			if(!Array.isArray(params))
+				throw "Received data is not a JSON array";
+
+			// Create a JSON object which conforms to the communication protocol
+			// and send it directly to the Arduino
+			sendToArduino({sender: response.sender_id, id: MSG_FS20, params: params});
 		} catch(e) {
 			consoleLog("Connection " + response.sender_id + " sent a wrong format " + e);
 
@@ -78,7 +85,7 @@ var arduino = new serialport.SerialPort(config.dev, {
 
 arduino.open(function(error) {
 	if(error) {
-		consoleLog("Error while opening arduino: " + error);
+		consoleLog("Error while opening Arduino: " + error);
 		process.exit(0);
 	}
 
@@ -89,13 +96,13 @@ arduino.open(function(error) {
 			if(obj.id === 0)
 			{
 				consoleLog("Authentication success");
-				sendToArduino(-1, {id: 0, params:[]});
+				sendToArduino({sender: -1, id: 0, params:[]});
 			}
 
 			for(var i = 0; i < connections.length; i++) {
 				if(connections[i].sender_id == obj.sender) {
-					connections[i].writeHead(200, "Success", {'Content-Type': 'text/html'});
-					connections[i].end(data);
+					connections[i].writeHead(200, "Success", {'Content-Type': 'application/json'});
+					connections[i].end(JSON.stringify(JSON.parse(data).params));
 					connections[i].close();
 					break;
 				}
@@ -107,7 +114,7 @@ arduino.open(function(error) {
 	});
 });
 
-function sendToArduino(sender, obj) {
+function sendToArduino(obj) {
 
 	if(typeof sendToArduino.lock == "undefined")
 		sendToArduino.lock = new rwlock();
@@ -118,10 +125,7 @@ function sendToArduino(sender, obj) {
 	setTimeout(function() {
 		sendToArduino.lock.writeLock(function(release) {
 			try {
-				obj.sender = sender;
-				var str = JSON.stringify(obj);
-
-				arduino.write(str, function(error) {
+				arduino.write(JSON.stringify(obj), function(error) {
 					if(error) {
 						consoleLog("Error while writing data " + error);
 					}

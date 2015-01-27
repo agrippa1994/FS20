@@ -61,8 +61,11 @@ void onMessage(int sender, int message_id, aJsonObject *params)
 
 		// Read fs20 data
 		int readCount = 0;
-		int readBytes[4] = { 0 };
+		int readBytes[4];
 		int startTime = millis();
+
+		memset(readBytes, -1, sizeof(readBytes));
+
 		while(readCount < 4)
 		{
 			if((startTime + TIMEOUT) < millis())
@@ -70,6 +73,10 @@ void onMessage(int sender, int message_id, aJsonObject *params)
 
 			int readByte = fs_serial.read();
 			if(readByte == -1)
+				continue;
+
+			// Check if the FS20 module is sending unreadable data
+			if(readByte != 0x2 && (readCount == 0 || readCount == 1))
 				continue;
 
 			readBytes[readCount++] = readByte;
@@ -113,8 +120,11 @@ void initialize_serial()
 	aJson.deleteItem(root);
 }
 
-void writeFS20(const int sender, const int bytes[4])
+void writeFS20(const int sender, const int *bytes)
 {
+	if(bytes == NULL)
+		return;
+
 	aJsonObject *root = aJson.createObject();
 
 	if(root == NULL)
