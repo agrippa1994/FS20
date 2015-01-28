@@ -23,6 +23,8 @@
 		3C1311581A76D87F00B91853 /* FS20.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1311561A76D87F00B91853 /* FS20.swift */; };
 		3C1311591A76D88800B91853 /* FS20.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 3C13114B1A76D86400B91853 /* FS20.xcdatamodeld */; };
 		3C13115A1A76D88F00B91853 /* FS20.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 3C13114B1A76D86400B91853 /* FS20.xcdatamodeld */; };
+		3CA82AED1A79789300AD0716 /* ChannelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA82AEC1A79789300AD0716 /* ChannelTableViewController.swift */; };
+		3CA82AEF1A7978A600AD0716 /* AddEditChannelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA82AEE1A7978A600AD0716 /* AddEditChannelTableViewController.swift */; };
 		3CD38CC41A756968009DC4E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD38CC31A756968009DC4E3 /* AppDelegate.swift */; };
 		3CD38CCC1A756968009DC4E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CD38CCA1A756968009DC4E3 /* Main.storyboard */; };
 		3CD38CCE1A756968009DC4E3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CD38CCD1A756968009DC4E3 /* Images.xcassets */; };
@@ -68,6 +70,8 @@
 		3C13114C1A76D86400B91853 /* FS20.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FS20.xcdatamodel; sourceTree = "<group>"; };
 		3C1311561A76D87F00B91853 /* FS20.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FS20.swift; path = Shared/FS20.swift; sourceTree = "<group>"; };
 		3C13115B1A76DA5900B91853 /* FS20-TodayControl.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "FS20-TodayControl.entitlements"; sourceTree = "<group>"; };
+		3CA82AEC1A79789300AD0716 /* ChannelTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelTableViewController.swift; sourceTree = "<group>"; };
+		3CA82AEE1A7978A600AD0716 /* AddEditChannelTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditChannelTableViewController.swift; sourceTree = "<group>"; };
 		3CD38CBE1A756968009DC4E3 /* FS20.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FS20.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CD38CC21A756968009DC4E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3CD38CC31A756968009DC4E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -176,12 +180,14 @@
 			isa = PBXGroup;
 			children = (
 				3C1311391A76D13200B91853 /* FS20.entitlements */,
-				3CD38CC31A756968009DC4E3 /* AppDelegate.swift */,
 				3CD38CCA1A756968009DC4E3 /* Main.storyboard */,
 				3CD38CCF1A756968009DC4E3 /* LaunchScreen.xib */,
 				3CD38CCD1A756968009DC4E3 /* Images.xcassets */,
+				3CD38CC31A756968009DC4E3 /* AppDelegate.swift */,
 				3CD38CE61A756DFE009DC4E3 /* HouseTableViewController.swift */,
 				3CD38CE81A75703C009DC4E3 /* AddEditHouseTableViewController.swift */,
+				3CA82AEC1A79789300AD0716 /* ChannelTableViewController.swift */,
+				3CA82AEE1A7978A600AD0716 /* AddEditChannelTableViewController.swift */,
 				3CD38CC11A756968009DC4E3 /* Supporting Files */,
 			);
 			path = FS20;
@@ -330,7 +336,9 @@
 				3CD38CE91A75703C009DC4E3 /* AddEditHouseTableViewController.swift in Sources */,
 				3CD38CC41A756968009DC4E3 /* AppDelegate.swift in Sources */,
 				3C13114D1A76D86400B91853 /* CoreData.swift in Sources */,
+				3CA82AEF1A7978A600AD0716 /* AddEditChannelTableViewController.swift in Sources */,
 				3C1311571A76D87F00B91853 /* FS20.swift in Sources */,
+				3CA82AED1A79789300AD0716 /* ChannelTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,6 +523,7 @@
 				3C1311371A76D0F300B91853 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3CD38CB91A756967009DC4E3 /* Build configuration list for PBXProject "FS20" */ = {
 			isa = XCConfigurationList;

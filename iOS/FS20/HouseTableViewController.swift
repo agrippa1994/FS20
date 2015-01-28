@@ -106,10 +106,11 @@ class HouseTableViewController: UITableViewController, AddEditHouseTableViewCont
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
+        let sender = tableView.cellForRowAtIndexPath(indexPath)!
         if tableView.editing {
-            self.performSegueWithIdentifier("AddEditHouse", sender: tableView.cellForRowAtIndexPath(indexPath)!)
+            self.performSegueWithIdentifier("AddEditHouse", sender: sender)
         } else {
-            
+            self.performSegueWithIdentifier("EnterHouse", sender: sender)
         }
     }
  
@@ -129,19 +130,25 @@ class HouseTableViewController: UITableViewController, AddEditHouseTableViewCont
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if let vc = (segue.destinationViewController as UINavigationController).topViewController as? AddEditHouseTableViewController {
-            vc.delegate = self
-            vc.sender = sender
-            
-            if let cell = sender as? UITableViewCell { // Editing
-                let idx = self.tableView.indexPathForCell(cell)!.row
-                
-                let house = houses[idx]
-                vc.houseName = house.name
-                vc.houseHost = house.host
-                vc.houseCode1 = Int16(house.hc1.shortValue)
-                vc.houseCode2 = Int16(house.hc2.shortValue)
+        if segue.identifier == "AddEditHouse" {
+            if let navigationVC = segue.destinationViewController as? UINavigationController {
+                if let vc = navigationVC.topViewController as? AddEditHouseTableViewController {
+                    vc.delegate = self
+                    vc.sender = sender
+                    
+                    if let cell = sender as? UITableViewCell { // Editing
+                        let idx = self.tableView.indexPathForCell(cell)!.row
+                        
+                        let house = houses[idx]
+                        vc.houseName = house.name
+                        vc.houseHost = house.host
+                        vc.houseCode1 = Int16(house.hc1.shortValue)
+                        vc.houseCode2 = Int16(house.hc2.shortValue)
+                    }
+                }
             }
+        } else if segue.identifier == "EnterHouse" {
+            
         }
     }
 }

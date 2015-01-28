@@ -19,12 +19,12 @@ class CoreData
     
     lazy var applicationDocumentsDirectory: NSURL = {
         return NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier("group.FS20")!
-        }()
+    }()
     
     lazy var managedObjectModel: NSManagedObjectModel = {
         let modelURL = NSBundle.mainBundle().URLForResource("FS20", withExtension: "momd")!
         return NSManagedObjectModel(contentsOfURL: modelURL)!
-        }()
+    }()
     
     lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
         var coordinator: NSPersistentStoreCoordinator? = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
@@ -44,7 +44,7 @@ class CoreData
         }
         
         return coordinator
-        }()
+    }()
     
     lazy var managedObjectContext: NSManagedObjectContext? = {
 
@@ -55,7 +55,7 @@ class CoreData
         var managedObjectContext = NSManagedObjectContext()
         managedObjectContext.persistentStoreCoordinator = coordinator
         return managedObjectContext
-        }()
+    }()
     
     func saveContext () {
         if let moc = self.managedObjectContext {
