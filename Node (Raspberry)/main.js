@@ -6,8 +6,6 @@ var rwlock = require("rwlock");
 var http = require("http");
 var fs = require("fs");
 
-var MSG_FS20 = 1;
-
 var config = readConfiguration();
 
 function consoleLog(str) {
@@ -30,102 +28,38 @@ function readConfiguration() {
 	}
 }
 
-var connections = [];
 http.createServer(function(request, response){
-
-	var postData = "";
 	request.on("data", function(chunk){
-		postData += chunk;
-	});
+		sendToArduino(chunk);
 
-	request.on("end", function() {
-		for(var i = 0;; i++) {
-			if(typeof connections[i] == "undefined") {
-				connections[i] = response;
-				response.sender_id = i;
-				break;
-			}
-		}
-
-		response.close = function() {
-			for(var i = 0;; i++) {
-				if(typeof connections[i] == "object") {
-					if(connections[i].sender_id == this.sender_id) {
-						connections.splice(i, 1);
-						break;
-					}
-				}
-			}
-		};
-
-		consoleLog("Incomming connection with data " + postData);
-
-		try {
-			var params = JSON.parse(postData);
-			if(!Array.isArray(params))
-				throw "Received data is not a JSON array";
-
-			// Create a JSON object which conforms to the communication protocol
-			// and send it directly to the Arduino
-			sendToArduino({sender: response.sender_id, id: MSG_FS20, params: params});
-		} catch(e) {
-			consoleLog("Connection " + response.sender_id + " sent a wrong format " + e);
-
-			response.writeHead(404, "Failure", {'Content-Type': 'text/html'});
-			response.end();
-			response.close();
-		}
+		response.writeHead(200, "Success", {'Content-Type': 'application/json'});
+		response.end();
 	});
 }).listen(config.port);
 
 var arduino = new serialport.SerialPort(config.dev, {
-	baudrate: 115200,
-	parser: serialport.parsers.readline("\r\n")
+	baudrate: 38400,
+	parser: serialport.parsers.raw,
+	buffersize: 1
 }, false);
 
 arduino.open(function(error) {
+
 	if(error) {
 		consoleLog("Error while opening Arduino: " + error);
 		process.exit(0);
 	}
-
-	arduino.on("data", function(data) {
-		try {
-			var obj = JSON.parse(data);
-
-			if(obj.id === 0)
-			{
-				consoleLog("Authentication success");
-				sendToArduino({sender: -1, id: 0, params:[]});
-			}
-
-			for(var i = 0; i < connections.length; i++) {
-				if(connections[i].sender_id == obj.sender) {
-					connections[i].writeHead(200, "Success", {'Content-Type': 'application/json'});
-					connections[i].end(JSON.stringify(JSON.parse(data).params));
-					connections[i].close();
-					break;
-				}
-			}
-
-		} catch(e) {
-			consoleLog("Arduino sent wrong data: " + e);
-		}
-	});
 });
 
-function sendToArduino(obj) {
+function sendToArduino(buffer) {
 
 	if(typeof sendToArduino.lock == "undefined")
 		sendToArduino.lock = new rwlock();
 
-	if(typeof obj != "object")
-		return false;
-
 	setTimeout(function() {
 		sendToArduino.lock.writeLock(function(release) {
 			try {
-				arduino.write(JSON.stringify(obj), function(error) {
+				arduino.write(buffer, function(error) {
 					if(error) {
 						consoleLog("Error while writing data " + error);
 					}

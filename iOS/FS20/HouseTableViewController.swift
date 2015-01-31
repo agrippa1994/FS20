@@ -119,8 +119,8 @@ class HouseTableViewController: UITableViewController, AddEditHouseTableViewCont
     }
 
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
         if editingStyle == .Delete {
-            
             CoreData.sharedCoreData.managedObjectContext!.deleteObject(houses[indexPath.row])
             CoreData.sharedCoreData.saveContext()
             
@@ -148,7 +148,13 @@ class HouseTableViewController: UITableViewController, AddEditHouseTableViewCont
                 }
             }
         } else if segue.identifier == "EnterHouse" {
+            let tableViewCell = sender as UITableViewCell
+            let index = self.tableView.indexPathForCell(tableViewCell)!.row
             
+            let house = houses[index]
+            
+            let vc = segue.destinationViewController as ChannelTableViewController
+            vc.parentHouse = house
         }
     }
 }
