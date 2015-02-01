@@ -17,6 +17,11 @@ class ChannelTableViewController: UITableViewController, AddEditChannelTableView
         return parentHouse.devices.allObjects as [DeviceEntry]
     }
     
+    /*
+        ===========================================================
+        AddEditChannelTableViewControllerDelegate methods
+        ===========================================================
+    */
     func addEditChannelTableViewControllerDidCancel(view: AddEditChannelTableViewController) {
         view.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -60,82 +65,67 @@ class ChannelTableViewController: UITableViewController, AddEditChannelTableView
         view.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func channelTableViewDidEnableButtonClicked(cell: ChannelTableViewCell) {
-        
+    /*
+        ===========================================================
+        ChannelTableViewCellDelegate methods
+        ===========================================================
+    */
+    func channelTableView(cell: ChannelTableViewCell, withAction action: Int) {
+        let actionType = ChannelTableViewActionType(rawValue: action)!
         let device = devices[self.tableView.indexPathForCell(cell)!.row]
+        let host = parentHouse.host
+        let hc1 = parentHouse.hc1.integerValue
+        let hc2 = parentHouse.hc2.integerValue
+        let adr = device.adr.integerValue
+        var bef: Byte
         
-        executeFS20CommandOnce(
-            parentHouse.host,
-            parentHouse.hc1.integerValue,
-            parentHouse.hc2.integerValue,
-            device.adr.integerValue,
-            0x11,
-            0x00
-        ) {
-            if $0 != nil {
-                NSLog("Success")
-            } else {
-                NSLog("Error")
+        switch actionType {
+        case .Enable: bef = 0x11
+        case .Disable: bef = 0x00
+        case .Toggle: bef = 0x12
+        }
+        
+        
+        executeFS20CommandOnce(host, hc1, hc2, adr, bef, 0x00) { (error: NSError?) -> Void in
+            if error != nil {
+                
+                // Show the alert view in the gui's main thread
+                dispatch_async(dispatch_get_main_queue()) {
+                    UIAlertView(title: "Error", message: error!.localizedDescription, delegate: nil, cancelButtonTitle: "OK").show()
+                }
             }
         }
     }
-    
-    func channelTableViewDidDisableButtonClicked(cell: ChannelTableViewCell) {
-        let device = devices[self.tableView.indexPathForCell(cell)!.row]
-        
-        executeFS20CommandOnce(
-            parentHouse.host,
-            parentHouse.hc1.integerValue,
-            parentHouse.hc2.integerValue,
-            device.adr.integerValue,
-            0x00,
-            0x00
-            ) {
-                if $0 != nil {
-                    NSLog("Success")
-                } else {
-                    NSLog("Error")
-                }
-        }
 
-    }
-    
-    func channelTableViewDidToggleButtonClicked(cell: ChannelTableViewCell) {
-        let device = devices[self.tableView.indexPathForCell(cell)!.row]
-        
-        executeFS20CommandOnce(
-            parentHouse.host,
-            parentHouse.hc1.integerValue,
-            parentHouse.hc2.integerValue,
-            device.adr.integerValue,
-            0x12,
-            0x00
-            ) {
-                if $0 != nil {
-                    NSLog("Success")
-                } else {
-                    NSLog("Error")
-                }
-        }
-
-    }
-    
+    /*
+        ===========================================================
+        Custom selectors
+        ===========================================================
+    */
     func onAdd(sender: AnyObject) {
         self.performSegueWithIdentifier("AddEditChannel", sender: sender)
     }
     
+    /*
+        ===========================================================
+        Overrided base methods
+        ===========================================================
+    */
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Add navigation items
-        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: Selector("onAdd:"))
-        self.navigationItem.rightBarButtonItems = [self.editButtonItem(), addButton]
-        
         // Allow the selection of cells during editing
         self.tableView.allowsSelectionDuringEditing = true
+        self.tableView.allowsSelection = false
         
         // Set the title
         self.navigationItem.title = parentHouse.name
+        
+        // Set toolbar items
+        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: Selector("onAdd:"))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
+        self.setToolbarItems([addButton, spaceButton, self.editButtonItem()], animated: false)
+        self.navigationController?.toolbarHidden = false
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -183,7 +173,7 @@ class ChannelTableViewController: UITableViewController, AddEditChannelTableView
         }
     }
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 61.0
+        return 100.0
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

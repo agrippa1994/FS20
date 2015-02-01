@@ -43,7 +43,7 @@ func convertToHouseCodeHex(hc: Int) -> UInt8? {
     return nil
 }
 
-func executeFS20CommandOnce(url: String, hc1: Int, hc2: Int, adr: Int, bef: Byte, erw: Byte, completionHandler: ([Byte]? -> Void)) -> Bool {
+func executeFS20CommandOnce(url: String, hc1: Int, hc2: Int, adr: Int, bef: Byte, erw: Byte, completionHandler: (NSError? -> Void)) -> Bool {
     var request = NSMutableURLRequest(URL: NSURL(string: url)!)
     var session = NSURLSession.sharedSession()
     
@@ -72,28 +72,8 @@ func executeFS20CommandOnce(url: String, hc1: Int, hc2: Int, adr: Int, bef: Byte
     
     request.HTTPBody = NSData(bytes: postData, length: postData.count)
     
-    var task = session.dataTaskWithRequest(request) { data, response, error -> Void in
-        if error != nil {
-            NSLog("Error in %@ (%@)", __FUNCTION__, error)
-            return completionHandler(nil)
-        }
-        
-        if let response = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: nil) as? [NSNumber] {
-   
-            var typeSafeResponse = Array<UInt8>()
-            for i in response {
-                let intValue = i.intValue
-                if intValue < 0 || intValue > 0xFF {
-                    return completionHandler(nil)
-                } else {
-                    typeSafeResponse.append(UInt8(intValue))
-                }
-            }
-
-            return completionHandler(typeSafeResponse)
-        }
-        
-        return completionHandler(nil)
+    var task = session.dataTaskWithRequest(request) {
+        completionHandler($2 as NSError?)
     }
     
     task.resume()

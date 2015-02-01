@@ -16,10 +16,20 @@ class HouseTableViewController: UITableViewController, AddEditHouseTableViewCont
         return fetchHouseEntries()
     }
     
+    /*
+        ===========================================================
+        Selectors
+        ===========================================================
+    */
     @IBAction func onAdd(sender: AnyObject) {
         self.performSegueWithIdentifier("AddEditHouse", sender: sender)
     }
     
+    /*
+        ===========================================================
+        AddEditHouseTableViewControllerDelegate methods
+        ===========================================================
+    */
     func addEditHouseTableViewControllerDidCancel(view: AddEditHouseTableViewController) {
         view.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -78,11 +88,21 @@ class HouseTableViewController: UITableViewController, AddEditHouseTableViewCont
         view.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    /*
+        ===========================================================
+        Overrided base methods
+        ===========================================================
+    */
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.leftBarButtonItem = self.editButtonItem()
         self.tableView.allowsSelectionDuringEditing = true
+        
+        // Set toolbar items
+        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: Selector("onAdd:"))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
+        self.setToolbarItems([addButton, spaceButton, self.editButtonItem()], animated: false)
+        self.navigationController?.toolbarHidden = false
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

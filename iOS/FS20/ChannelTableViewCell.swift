@@ -8,10 +8,14 @@
 
 import UIKit
 
+enum ChannelTableViewActionType: Int {
+    case Enable
+    case Disable
+    case Toggle
+}
+
 @objc protocol ChannelTableViewCellDelegate {
-    func channelTableViewDidEnableButtonClicked(cell: ChannelTableViewCell)
-    func channelTableViewDidDisableButtonClicked(cell: ChannelTableViewCell)
-    func channelTableViewDidToggleButtonClicked(cell: ChannelTableViewCell)
+    func channelTableView(cell: ChannelTableViewCell, withAction action: Int)
 }
 
 class ChannelTableViewCell: UITableViewCell {
@@ -25,15 +29,18 @@ class ChannelTableViewCell: UITableViewCell {
     @IBOutlet var toggleButton: UIButton!
     
     @IBAction func onButtonClicked(sender: UIButton) {
+        var type: ChannelTableViewActionType?
+        
         switch sender {
-        case enableButton:
-            delegate?.channelTableViewDidEnableButtonClicked(self)
-        case disableButton:
-            delegate?.channelTableViewDidDisableButtonClicked(self)
-        case toggleButton:
-            delegate?.channelTableViewDidToggleButtonClicked(self)
+        case enableButton:  type = .Enable
+        case disableButton: type = .Disable
+        case toggleButton:  type = .Toggle
         default:
             break
+        }
+        
+        if type != nil {
+            delegate?.channelTableView(self, withAction: type!.rawValue)
         }
     }
 }
