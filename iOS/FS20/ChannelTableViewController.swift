@@ -156,8 +156,10 @@ class ChannelTableViewController: UITableViewController, AddEditChannelTableView
         
         if editingStyle == .Delete {
             let objectToDelete = devices[indexPath.row]
-        
+            
+            // Delete the device
             parentHouse.removeDevicesObject(objectToDelete)
+            CoreData.sharedCoreData.managedObjectContext!.deleteObject(objectToDelete)
             CoreData.sharedCoreData.saveContext()
             
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)

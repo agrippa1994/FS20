@@ -13,7 +13,6 @@
 		3C12EE881A7D380A007B6AF9 /* DeviceEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C12EE861A7D380A007B6AF9 /* DeviceEntry.m */; };
 		3C12EE8D1A7D3EBA007B6AF9 /* ChannelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C12EE8C1A7D3EBA007B6AF9 /* ChannelTableViewCell.swift */; };
 		3C13112A1A76D0F300B91853 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C1311291A76D0F300B91853 /* NotificationCenter.framework */; };
-		3C13112F1A76D0F300B91853 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C13112E1A76D0F300B91853 /* TodayViewController.swift */; };
 		3C1311311A76D0F300B91853 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C1311301A76D0F300B91853 /* MainInterface.storyboard */; };
 		3C1311341A76D0F300B91853 /* FS20-TodayControl.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3C1311271A76D0F300B91853 /* FS20-TodayControl.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3C13114D1A76D86400B91853 /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1311481A76D86400B91853 /* CoreData.swift */; };
@@ -26,6 +25,8 @@
 		3C13115A1A76D88F00B91853 /* FS20.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 3C13114B1A76D86400B91853 /* FS20.xcdatamodeld */; };
 		3C9E406D1A7CFB39002B45E2 /* AddEditChannelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9E406C1A7CFB39002B45E2 /* AddEditChannelTableViewController.swift */; };
 		3CA82AED1A79789300AD0716 /* ChannelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA82AEC1A79789300AD0716 /* ChannelTableViewController.swift */; };
+		3CCB80091A7FE04000C14C51 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB80081A7FE04000C14C51 /* MainTableViewController.swift */; };
+		3CCB800B1A80004600C14C51 /* DeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB800A1A80004600C14C51 /* DeviceTableViewCell.swift */; };
 		3CD38CC41A756968009DC4E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD38CC31A756968009DC4E3 /* AppDelegate.swift */; };
 		3CD38CCC1A756968009DC4E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CD38CCA1A756968009DC4E3 /* Main.storyboard */; };
 		3CD38CCE1A756968009DC4E3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CD38CCD1A756968009DC4E3 /* Images.xcassets */; };
@@ -68,7 +69,6 @@
 		3C1311271A76D0F300B91853 /* FS20-TodayControl.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "FS20-TodayControl.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C1311291A76D0F300B91853 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		3C13112D1A76D0F300B91853 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3C13112E1A76D0F300B91853 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		3C1311301A76D0F300B91853 /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		3C1311391A76D13200B91853 /* FS20.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = FS20.entitlements; sourceTree = "<group>"; };
 		3C1311481A76D86400B91853 /* CoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreData.swift; path = Shared/CoreData.swift; sourceTree = "<group>"; };
@@ -77,6 +77,8 @@
 		3C13115B1A76DA5900B91853 /* FS20-TodayControl.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "FS20-TodayControl.entitlements"; sourceTree = "<group>"; };
 		3C9E406C1A7CFB39002B45E2 /* AddEditChannelTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditChannelTableViewController.swift; sourceTree = "<group>"; };
 		3CA82AEC1A79789300AD0716 /* ChannelTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelTableViewController.swift; sourceTree = "<group>"; };
+		3CCB80081A7FE04000C14C51 /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
+		3CCB800A1A80004600C14C51 /* DeviceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceTableViewCell.swift; sourceTree = "<group>"; };
 		3CD38CBE1A756968009DC4E3 /* FS20.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FS20.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CD38CC21A756968009DC4E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3CD38CC31A756968009DC4E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -118,8 +120,9 @@
 			isa = PBXGroup;
 			children = (
 				3C13115B1A76DA5900B91853 /* FS20-TodayControl.entitlements */,
-				3C13112E1A76D0F300B91853 /* TodayViewController.swift */,
 				3C1311301A76D0F300B91853 /* MainInterface.storyboard */,
+				3CCB80081A7FE04000C14C51 /* MainTableViewController.swift */,
+				3CCB800A1A80004600C14C51 /* DeviceTableViewCell.swift */,
 				3C13112C1A76D0F300B91853 /* Supporting Files */,
 			);
 			path = "FS20-TodayControl";
@@ -328,9 +331,10 @@
 				3C13114E1A76D86400B91853 /* CoreData.swift in Sources */,
 				3C1311541A76D86400B91853 /* FS20.xcdatamodeld in Sources */,
 				3C12EE881A7D380A007B6AF9 /* DeviceEntry.m in Sources */,
+				3CCB800B1A80004600C14C51 /* DeviceTableViewCell.swift in Sources */,
 				3C12EE841A7D3809007B6AF9 /* HouseEntry.m in Sources */,
+				3CCB80091A7FE04000C14C51 /* MainTableViewController.swift in Sources */,
 				3C1311581A76D87F00B91853 /* FS20.swift in Sources */,
-				3C13112F1A76D0F300B91853 /* TodayViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
