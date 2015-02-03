@@ -77,6 +77,8 @@
 		3C13115B1A76DA5900B91853 /* FS20-TodayControl.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "FS20-TodayControl.entitlements"; sourceTree = "<group>"; };
 		3C9E406C1A7CFB39002B45E2 /* AddEditChannelTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditChannelTableViewController.swift; sourceTree = "<group>"; };
 		3CA82AEC1A79789300AD0716 /* ChannelTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelTableViewController.swift; sourceTree = "<group>"; };
+		3CC924131A81713800D70ACB /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		3CC924151A81716D00D70ACB /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		3CCB80081A7FE04000C14C51 /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		3CCB800A1A80004600C14C51 /* DeviceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceTableViewCell.swift; sourceTree = "<group>"; };
 		3CD38CBE1A756968009DC4E3 /* FS20.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FS20.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -371,6 +373,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				3CD38CCB1A756968009DC4E3 /* Base */,
+				3CC924131A81713800D70ACB /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				3CD38CD01A756968009DC4E3 /* Base */,
+				3CC924151A81716D00D70ACB /* de */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
