@@ -18,7 +18,7 @@ enum ChannelTableViewActionType: Int {
     func channelTableView(cell: ChannelTableViewCell, withAction action: Int)
 }
 
-class ChannelTableViewCell: UITableViewCell {
+class ChannelTableViewCell: StyledTableViewCell {
     weak var delegate: ChannelTableViewCellDelegate?
     
     @IBOutlet var title: UILabel!

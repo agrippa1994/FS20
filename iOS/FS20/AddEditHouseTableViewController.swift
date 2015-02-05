@@ -31,7 +31,7 @@ import UIKit
     )
 }
 
-class AddEditHouseTableViewController: UITableViewController {
+class AddEditHouseTableViewController: UITableViewController, UITextFieldDelegate {
     weak var delegate: AddEditHouseTableViewControllerDelegate?
     weak var sender: AnyObject?
     
@@ -81,5 +81,20 @@ class AddEditHouseTableViewController: UITableViewController {
         if houseCode2 != nil {
             textFields[3].text = "\(houseCode2!)"
         }
+        
+        for textField in textFields {
+            textField.delegate = self
+        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        textFields[0].becomeFirstResponder()
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

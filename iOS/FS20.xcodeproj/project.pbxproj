@@ -33,6 +33,8 @@
 		3CD38CD11A756968009DC4E3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CD38CCF1A756968009DC4E3 /* LaunchScreen.xib */; };
 		3CD38CE71A756DFE009DC4E3 /* HouseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD38CE61A756DFE009DC4E3 /* HouseTableViewController.swift */; };
 		3CD38CE91A75703C009DC4E3 /* AddEditHouseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD38CE81A75703C009DC4E3 /* AddEditHouseTableViewController.swift */; };
+		3CEDEB2C1A83E09A00EEB832 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEDEB2B1A83E09A00EEB832 /* Style.swift */; };
+		3CEDEB2E1A83E19400EEB832 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEDEB2D1A83E19400EEB832 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +91,8 @@
 		3CD38CD01A756968009DC4E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		3CD38CE61A756DFE009DC4E3 /* HouseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseTableViewController.swift; sourceTree = "<group>"; };
 		3CD38CE81A75703C009DC4E3 /* AddEditHouseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditHouseTableViewController.swift; sourceTree = "<group>"; };
+		3CEDEB2B1A83E09A00EEB832 /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		3CEDEB2D1A83E19400EEB832 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +206,8 @@
 				3CA82AEC1A79789300AD0716 /* ChannelTableViewController.swift */,
 				3C12EE8C1A7D3EBA007B6AF9 /* ChannelTableViewCell.swift */,
 				3C9E406C1A7CFB39002B45E2 /* AddEditChannelTableViewController.swift */,
+				3CEDEB2B1A83E09A00EEB832 /* Style.swift */,
+				3CEDEB2D1A83E19400EEB832 /* Extensions.swift */,
 				3CD38CC11A756968009DC4E3 /* Supporting Files */,
 			);
 			path = FS20;
@@ -351,6 +357,8 @@
 				3C12EE8D1A7D3EBA007B6AF9 /* ChannelTableViewCell.swift in Sources */,
 				3CD38CE91A75703C009DC4E3 /* AddEditHouseTableViewController.swift in Sources */,
 				3CD38CC41A756968009DC4E3 /* AppDelegate.swift in Sources */,
+				3CEDEB2C1A83E09A00EEB832 /* Style.swift in Sources */,
+				3CEDEB2E1A83E19400EEB832 /* Extensions.swift in Sources */,
 				3C13114D1A76D86400B91853 /* CoreData.swift in Sources */,
 				3C9E406D1A7CFB39002B45E2 /* AddEditChannelTableViewController.swift in Sources */,
 				3C1311571A76D87F00B91853 /* FS20.swift in Sources */,

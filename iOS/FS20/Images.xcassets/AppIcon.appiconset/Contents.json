@@ -115,10 +115,9 @@
       "scale" : "1x"
     },
     {
-      "size" : "22x22",
+      "size" : "24x24",
       "idiom" : "watch",
       "scale" : "2x",
-      "filename" : "Icon-Small.png",
       "role" : "notificationCenter",
       "subtype" : "38mm"
     },
@@ -137,7 +136,7 @@
       "scale" : "2x"
     },
     {
-      "size" : "29.3x29.3",
+      "size" : "29x29",
       "idiom" : "watch",
       "role" : "companionSettings",
       "scale" : "3x"
@@ -176,9 +175,8 @@
       "scale" : "1x"
     },
     {
-      "size" : "512x512",
       "idiom" : "mac",
-      "filename" : "iTunesArtwork@2x.png",
+      "size" : "512x512",
       "scale" : "2x"
     }
   ],

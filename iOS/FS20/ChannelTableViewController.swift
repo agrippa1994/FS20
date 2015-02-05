@@ -14,7 +14,9 @@ class ChannelTableViewController: UITableViewController, AddEditChannelTableView
     var parentHouse: HouseEntry!
     
     var devices: [DeviceEntry] {
-        return parentHouse.devices.allObjects as [DeviceEntry]
+        return (parentHouse.devices.allObjects as [DeviceEntry]).sorted {
+            ($0.adr as Int) < ($1.adr as Int)
+        }
     }
     
     /*
@@ -139,7 +141,7 @@ class ChannelTableViewController: UITableViewController, AddEditChannelTableView
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ChannelCell", forIndexPath: indexPath) as ChannelTableViewCell
 
-        let device = parentHouse.devices.allObjects[indexPath.row] as DeviceEntry
+        let device = self.devices[indexPath.row]
         
         cell.delegate = self
         cell.title.text = device.name
@@ -155,7 +157,7 @@ class ChannelTableViewController: UITableViewController, AddEditChannelTableView
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
         if editingStyle == .Delete {
-            let objectToDelete = devices[indexPath.row]
+            let objectToDelete = self.devices[indexPath.row]
             
             // Delete the device
             parentHouse.removeDevicesObject(objectToDelete)

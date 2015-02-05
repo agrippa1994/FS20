@@ -29,7 +29,7 @@ import UIKit
     )
 }
 
-class AddEditChannelTableViewController: UITableViewController {
+class AddEditChannelTableViewController: UITableViewController, UITextFieldDelegate {
     weak var delegate: AddEditChannelTableViewControllerDelegate?
     weak var sender: AnyObject?
     
@@ -74,5 +74,20 @@ class AddEditChannelTableViewController: UITableViewController {
         if showInNotificationCenter != nil {
             showInNotificationCenterSwitch.setOn(showInNotificationCenter!, animated: false)
         }
+        
+        for textField in textFields {
+            textField.delegate = self
+        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        textFields[0].becomeFirstResponder()
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
