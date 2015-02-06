@@ -11,7 +11,6 @@ import UIKit
 enum ChannelTableViewActionType: Int {
     case Enable
     case Disable
-    case Toggle
 }
 
 @objc protocol ChannelTableViewCellDelegate {
@@ -19,22 +18,23 @@ enum ChannelTableViewActionType: Int {
 }
 
 class ChannelTableViewCell: StyledTableViewCell {
+    // MARK: - Variables
     weak var delegate: ChannelTableViewCellDelegate?
     
+    // MARK: - Storyboard outlets
     @IBOutlet var title: UILabel!
     @IBOutlet var subtitle: UILabel!
     
     @IBOutlet var enableButton: UIButton!
     @IBOutlet var disableButton: UIButton!
-    @IBOutlet var toggleButton: UIButton!
     
+    // MARK: - Storyboard actions
     @IBAction func onButtonClicked(sender: UIButton) {
         var type: ChannelTableViewActionType?
         
         switch sender {
         case enableButton:  type = .Enable
         case disableButton: type = .Disable
-        case toggleButton:  type = .Toggle
         default:
             break
         }

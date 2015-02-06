@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  FS20
+
+  Created by Mani on 06.02.15.
+  Copyright (c) 2015 Mani. All rights reserved.
+*/
+
+"ERROR_TITLE" = "Schwerer Fehler";
+
+"ERROR_EMPTY" = "Eines oder mehrere Felder wurden nicht ausgefüllt!";
+
+"ERROR_NO_HC_OR_ADR" = "Eines oder mehrere der eingegebene Haus- oder Adressencodes ist ungültig. Ein Code besteht aus 4 Zahlen, welche einen nummerischen Wert zwischen 1 und 4 haben!";

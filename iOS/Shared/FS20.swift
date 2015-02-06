@@ -72,10 +72,9 @@ func executeFS20CommandOnce(url: String, hc1: Int, hc2: Int, adr: Int, bef: Byte
     
     request.HTTPBody = NSData(bytes: postData, length: postData.count)
     
-    var task = session.dataTaskWithRequest(request) {
+    session.dataTaskWithRequest(request) {
         completionHandler($2 as NSError?)
-    }
-    
-    task.resume()
+    }.resume()
+
     return true
 }

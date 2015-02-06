@@ -14,22 +14,18 @@ import UIKit
         view: AddEditChannelTableViewController
     )
     
-    func addEditChannelTableViewController(
-        view: AddEditChannelTableViewController,
-        isValidChannelWithChannelName channelName: String,
-        withChannelCode channelCode: String,
-        withShowInNotificationCenter showInNotificationCenter: Bool
-    ) -> Bool
-    
+    // Return a valid string object if an error occured
+    // This string will be shown inside a message
     func addEditChannelTableViewController(
         view: AddEditChannelTableViewController,
         withChannelName channelName: String,
         withChannelCode channelCode: String,
         withShowInNotificationCenter showInNotificationCenter: Bool
-    )
+    ) -> String?
 }
 
 class AddEditChannelTableViewController: UITableViewController, UITextFieldDelegate {
+    // MARK: - Variables
     weak var delegate: AddEditChannelTableViewControllerDelegate?
     weak var sender: AnyObject?
     
@@ -37,9 +33,11 @@ class AddEditChannelTableViewController: UITableViewController, UITextFieldDeleg
     var channelCode: Int16?
     var showInNotificationCenter: Bool?
     
+    // MARK: - Storyboard outlets
     @IBOutlet var textFields: [UITextField]!
     @IBOutlet var showInNotificationCenterSwitch: UISwitch!
     
+    // MARK: - Storyboard actions
     @IBAction func onCancel(sender: AnyObject) {
         delegate?.addEditChannelTableViewControllerDidCancel(self)
     }
@@ -53,13 +51,12 @@ class AddEditChannelTableViewController: UITableViewController, UITextFieldDeleg
         let code = textFields[1].text
         let showInNC = showInNotificationCenterSwitch.on
         
-        if delegate!.addEditChannelTableViewController(self, isValidChannelWithChannelName: name, withChannelCode: code, withShowInNotificationCenter: showInNC) {
-            delegate!.addEditChannelTableViewController(self, withChannelName: name, withChannelCode: code, withShowInNotificationCenter: showInNC)
-        } else {
-            UIAlertView(title: "Error", message: "Invalid data", delegate: nil, cancelButtonTitle: "OK").show()
+        if let message =  delegate!.addEditChannelTableViewController(self, withChannelName: name, withChannelCode: code, withShowInNotificationCenter: showInNC){
+            UIAlertView(title: localizedString("ERROR_TITLE"), message: message, delegate: nil, cancelButtonTitle: "OK").show()
         }
     }
     
+    // MARK: - Overrided base methods
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -82,10 +79,10 @@ class AddEditChannelTableViewController: UITableViewController, UITextFieldDeleg
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
         textFields[0].becomeFirstResponder()
     }
     
+    // MARK: - UITextFieldDelegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true

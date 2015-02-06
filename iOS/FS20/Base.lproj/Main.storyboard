@@ -83,7 +83,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NsJ-DK-HUq">
-                                            <rect key="frame" x="200" y="60" width="200" height="35"/>
+                                            <rect key="frame" x="300" y="60" width="300" height="35"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <state key="normal" title="O">
                                                 <color key="titleColor" red="1" green="0.01085100634" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -94,7 +94,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HH1-kH-909">
-                                            <rect key="frame" x="0.0" y="60" width="200" height="35"/>
+                                            <rect key="frame" x="0.0" y="60" width="300" height="35"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <state key="normal" title="I">
                                                 <color key="titleColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -104,38 +104,21 @@
                                                 <action selector="onButtonClicked:" destination="ZrJ-d2-RrW" eventType="touchUpInside" id="0kl-PS-rZW"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nr6-VZ-fOO">
-                                            <rect key="frame" x="400" y="60" width="200" height="35"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            <state key="normal" title="~">
-                                                <color key="titleColor" red="0.89411771299999998" green="0.74509805439999999" blue="0.25490197539999998" alpha="1" colorSpace="deviceRGB"/>
-                                                <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="onButtonClicked:" destination="ZrJ-d2-RrW" eventType="touchUpInside" id="er4-lM-dt5"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="NsJ-DK-HUq" firstAttribute="leading" secondItem="HH1-kH-909" secondAttribute="trailing" id="2FD-sg-SrA"/>
-                                        <constraint firstAttribute="trailing" secondItem="Nr6-VZ-fOO" secondAttribute="trailing" id="5VN-9Z-7ho"/>
                                         <constraint firstItem="qGH-i8-GpW" firstAttribute="leading" secondItem="Hnh-RH-VnU" secondAttribute="leading" id="6T8-Wk-zUV"/>
                                         <constraint firstItem="NsJ-DK-HUq" firstAttribute="top" secondItem="HH1-kH-909" secondAttribute="top" id="8rf-50-4l8"/>
+                                        <constraint firstAttribute="trailing" secondItem="NsJ-DK-HUq" secondAttribute="trailing" id="Ctc-Oi-Tco"/>
                                         <constraint firstItem="NsJ-DK-HUq" firstAttribute="baseline" secondItem="HH1-kH-909" secondAttribute="firstBaseline" id="E7g-h7-Gqz"/>
                                         <constraint firstItem="qGH-i8-GpW" firstAttribute="top" secondItem="Hnh-RH-VnU" secondAttribute="bottom" constant="8" symbolic="YES" id="Eev-UE-5Y9"/>
                                         <constraint firstItem="HH1-kH-909" firstAttribute="top" secondItem="qGH-i8-GpW" secondAttribute="bottom" constant="8" symbolic="YES" id="Ewy-dp-FAy"/>
-                                        <constraint firstItem="NsJ-DK-HUq" firstAttribute="baseline" secondItem="Nr6-VZ-fOO" secondAttribute="baseline" id="Gu4-3e-lrl"/>
-                                        <constraint firstItem="HH1-kH-909" firstAttribute="width" secondItem="NsJ-DK-HUq" secondAttribute="width" id="JfC-SL-F0t"/>
-                                        <constraint firstItem="NsJ-DK-HUq" firstAttribute="width" secondItem="Nr6-VZ-fOO" secondAttribute="width" id="Odh-bd-DWI"/>
-                                        <constraint firstItem="NsJ-DK-HUq" firstAttribute="top" secondItem="Nr6-VZ-fOO" secondAttribute="top" id="cCe-e5-Q0T"/>
-                                        <constraint firstItem="NsJ-DK-HUq" firstAttribute="baseline" secondItem="Nr6-VZ-fOO" secondAttribute="firstBaseline" id="dBB-5W-OwM"/>
+                                        <constraint firstItem="NsJ-DK-HUq" firstAttribute="width" secondItem="HH1-kH-909" secondAttribute="width" id="bg8-Fe-KBn"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="HH1-kH-909" secondAttribute="bottom" constant="-4" id="fuK-gk-fjY"/>
                                         <constraint firstItem="Hnh-RH-VnU" firstAttribute="leading" secondItem="Wns-Xj-1gT" secondAttribute="leadingMargin" constant="10" id="h0H-QM-veY"/>
-                                        <constraint firstItem="NsJ-DK-HUq" firstAttribute="centerX" secondItem="Wns-Xj-1gT" secondAttribute="centerX" id="kgt-Xp-8FP"/>
                                         <constraint firstItem="HH1-kH-909" firstAttribute="baseline" secondItem="NsJ-DK-HUq" secondAttribute="firstBaseline" id="qFl-xT-f5B"/>
                                         <constraint firstItem="HH1-kH-909" firstAttribute="leading" secondItem="Wns-Xj-1gT" secondAttribute="leading" id="qzh-T6-s2G"/>
                                         <constraint firstItem="NsJ-DK-HUq" firstAttribute="top" secondItem="Wns-Xj-1gT" secondAttribute="topMargin" constant="52" id="toM-Bf-0ue"/>
-                                        <constraint firstItem="Nr6-VZ-fOO" firstAttribute="leading" secondItem="NsJ-DK-HUq" secondAttribute="trailing" id="zXg-pD-rhl"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -143,7 +126,6 @@
                                     <outlet property="enableButton" destination="HH1-kH-909" id="8kb-Ff-o9D"/>
                                     <outlet property="subtitle" destination="qGH-i8-GpW" id="GB7-Ej-quc"/>
                                     <outlet property="title" destination="Hnh-RH-VnU" id="JZP-cY-NBs"/>
-                                    <outlet property="toggleButton" destination="Nr6-VZ-fOO" id="xiI-KR-J3X"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

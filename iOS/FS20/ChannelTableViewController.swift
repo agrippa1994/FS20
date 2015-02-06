@@ -10,42 +10,37 @@ import UIKit
 import CoreData
 
 class ChannelTableViewController: UITableViewController, AddEditChannelTableViewControllerDelegate, ChannelTableViewCellDelegate {
-
+    // MARK: - Variables
     var parentHouse: HouseEntry!
     
+    // MARK: - Computed variables
     var devices: [DeviceEntry] {
         return (parentHouse.devices.allObjects as [DeviceEntry]).sorted {
             ($0.adr as Int) < ($1.adr as Int)
         }
     }
     
-    /*
-        ===========================================================
-        AddEditChannelTableViewControllerDelegate methods
-        ===========================================================
-    */
+    // MARK: - AddEditChannelTableViewControllerDelegate
     func addEditChannelTableViewControllerDidCancel(view: AddEditChannelTableViewController) {
         view.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func addEditChannelTableViewController(view: AddEditChannelTableViewController, isValidChannelWithChannelName channelName:String, withChannelCode channelCode: String, withShowInNotificationCenter showInNotificationCenter: Bool) -> Bool {
+    func addEditChannelTableViewController(view: AddEditChannelTableViewController, withChannelName channelName: String, withChannelCode channelCode: String, withShowInNotificationCenter showInNotificationCenter: Bool) -> String? {
+        
         if channelName.isEmpty || channelCode.isEmpty {
-            return false
+            return localizedString("ERROR_EMPTY")
         }
         
         let channelCodeInt = channelCode.toInt()
         if channelCodeInt == nil {
-            return false
+            return localizedString("ERROR_NO_HC_OR_ADR")
         }
         
         if !isHouseCode(channelCodeInt!) {
-            return false
+            return localizedString("ERROR_NO_HC_OR_ADR")
         }
+
         
-        return true
-    }
-    
-    func addEditChannelTableViewController(view: AddEditChannelTableViewController, withChannelName channelName: String, withChannelCode channelCode: String, withShowInNotificationCenter showInNotificationCenter: Bool) {
         let context = CoreData.sharedCoreData.managedObjectContext!
         
         var device: DeviceEntry!
@@ -65,13 +60,10 @@ class ChannelTableViewController: UITableViewController, AddEditChannelTableView
         self.tableView.reloadData()
         
         view.dismissViewControllerAnimated(true, completion: nil)
+        return nil
     }
     
-    /*
-        ===========================================================
-        ChannelTableViewCellDelegate methods
-        ===========================================================
-    */
+    // MARK: - ChannelTableViewCellDelegate
     func channelTableView(cell: ChannelTableViewCell, withAction action: Int) {
         let actionType = ChannelTableViewActionType(rawValue: action)!
         let device = devices[self.tableView.indexPathForCell(cell)!.row]
@@ -84,9 +76,7 @@ class ChannelTableViewController: UITableViewController, AddEditChannelTableView
         switch actionType {
         case .Enable: bef = 0x11
         case .Disable: bef = 0x00
-        case .Toggle: bef = 0x12
         }
-        
         
         executeFS20CommandOnce(host, hc1, hc2, adr, bef, 0x00) { (error: NSError?) -> Void in
             if error != nil {
@@ -99,20 +89,12 @@ class ChannelTableViewController: UITableViewController, AddEditChannelTableView
         }
     }
 
-    /*
-        ===========================================================
-        Custom selectors
-        ===========================================================
-    */
+    // MARK: - Custom selectors
     func onAdd(sender: AnyObject) {
         self.performSegueWithIdentifier("AddEditChannel", sender: sender)
     }
     
-    /*
-        ===========================================================
-        Overrided base methods
-        ===========================================================
-    */
+    // MARK: - Overrided base methods
     override func viewDidLoad() {
         super.viewDidLoad()
 

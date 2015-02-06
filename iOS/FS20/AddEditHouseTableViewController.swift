@@ -14,24 +14,19 @@ import UIKit
         view : AddEditHouseTableViewController
     )
     
-    func addEditHouseTableViewController(
-        view: AddEditHouseTableViewController,
-        isValidDataWithHouseName houseName: String,
-        withHouseHost houseHost: String,
-        withHouseCode1 houseCode1: String,
-        withHouseCode2 houseCode2: String
-    ) -> Bool
-    
+    // Return a valid string object if an error occured
+    // This string will be shown inside a message
     func addEditHouseTableViewController(
         view: AddEditHouseTableViewController,
         withHouseName houseName: String,
         withHouseHost houseHost: String,
         withHouseCode1 houseCode1: String,
         withHouseCode2 houseCode2: String
-    )
+    ) -> String?
 }
 
 class AddEditHouseTableViewController: UITableViewController, UITextFieldDelegate {
+    // MARK: - Variables
     weak var delegate: AddEditHouseTableViewControllerDelegate?
     weak var sender: AnyObject?
     
@@ -40,8 +35,10 @@ class AddEditHouseTableViewController: UITableViewController, UITextFieldDelegat
     var houseCode1: Int16?
     var houseCode2: Int16?
     
+    // MARK: - Storyboard outlets
     @IBOutlet var textFields: [UITextField]!
     
+    // MARK: - Storyboard actions
     @IBAction func onClose(sender: AnyObject) {
         delegate?.addEditHouseTableViewControllerDidCancel(self)
     }
@@ -56,13 +53,12 @@ class AddEditHouseTableViewController: UITableViewController, UITextFieldDelegat
         let hc1 = textFields[2].text
         let hc2 = textFields[3].text
         
-        if delegate!.addEditHouseTableViewController(self, isValidDataWithHouseName: name, withHouseHost: host, withHouseCode1: hc1, withHouseCode2: hc2) {
-            delegate!.addEditHouseTableViewController(self, withHouseName: name, withHouseHost: host, withHouseCode1: hc1, withHouseCode2: hc2)
-        } else {
-            UIAlertView(title: "Error", message: "Invalid data", delegate: nil, cancelButtonTitle: "OK").show()
+        if let message = delegate!.addEditHouseTableViewController(self, withHouseName: name, withHouseHost: host, withHouseCode1: hc1, withHouseCode2: hc2) {
+            UIAlertView(title: localizedString("ERROR_TITLE"), message: message, delegate: nil, cancelButtonTitle: "OK").show()
         }
     }
     
+    // MARK: - Overrided base methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -92,7 +88,8 @@ class AddEditHouseTableViewController: UITableViewController, UITextFieldDelegat
         
         textFields[0].becomeFirstResponder()
     }
-    
+
+    // MARK: - UITextFieldDelegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true

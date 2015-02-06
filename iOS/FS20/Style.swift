@@ -10,11 +10,10 @@ import UIKit
 
 
 class StyledTableView: UITableView {
- 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundColor = UIColor(fromHex: 0xFF1F1F1F)
-        self.separatorColor = UIColor(fromHex: 0xFF272727)
+        self.backgroundColor = UIColor(fromRGB: 0x1F1F1F)
+        self.separatorColor = UIColor(fromRGB: 0x272727)
     }
 }
 
@@ -22,7 +21,7 @@ class StyledTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.backgroundColor = UIColor(fromHex: 0xFF181818)
+        self.backgroundColor = UIColor(fromRGB: 0x181818)
         self.textLabel?.textColor = UIColor.whiteColor()
         self.detailTextLabel?.textColor? = UIColor.whiteColor()
         self.selectionStyle = .None
@@ -30,8 +29,6 @@ class StyledTableViewCell: UITableViewCell {
 }
 
 class StyledTextField: UITextField {
-    
-
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -40,7 +37,7 @@ class StyledTextField: UITextField {
         self.keyboardAppearance = .Dark
         
         let attribute = self.attributedPlaceholder?.mutableCopy() as NSMutableAttributedString
-        let placeholderColor = UIColor(fromHex: 0xFF878787)
+        let placeholderColor = UIColor(fromRGB: 0x878787)
         attribute.setAttributes([NSForegroundColorAttributeName: placeholderColor], range: NSMakeRange(0, attribute.length))
         self.attributedPlaceholder = attribute
         
