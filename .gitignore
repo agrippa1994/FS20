@@ -98,3 +98,6 @@ DerivedData
 # Pods/
 
 .DS_Store
+
+# Qt
+build-
