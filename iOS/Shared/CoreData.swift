@@ -75,7 +75,7 @@ func fetchHouseEntries() -> [HouseEntry] {
     var error: NSError?
     let fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error)
     if fetchedResults != nil {
-        return fetchedResults! as [HouseEntry]
+        return fetchedResults! as! [HouseEntry]
     }
     
     return []

@@ -60,7 +60,7 @@ class HouseTableViewController: UITableViewController, AddEditHouseTableViewCont
         
         // Add a new entry
         else {
-            var entry = NSEntityDescription.insertNewObjectForEntityForName("HouseEntry", inManagedObjectContext: managedContext) as HouseEntry
+            var entry = NSEntityDescription.insertNewObjectForEntityForName("HouseEntry", inManagedObjectContext: managedContext) as! HouseEntry
             entry.name = houseName
             entry.host = houseHost
             entry.hc1 = NSNumber(short: (Int16(iHc1!)))
@@ -96,7 +96,7 @@ class HouseTableViewController: UITableViewController, AddEditHouseTableViewCont
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("HouseCell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("HouseCell", forIndexPath: indexPath) as! UITableViewCell
 
         let house = houses[indexPath.row]
         cell.textLabel?.text = house.name
@@ -150,12 +150,12 @@ class HouseTableViewController: UITableViewController, AddEditHouseTableViewCont
                 }
             }
         } else if segue.identifier == "EnterHouse" {
-            let tableViewCell = sender as UITableViewCell
+            let tableViewCell = sender as! UITableViewCell
             let index = self.tableView.indexPathForCell(tableViewCell)!.row
             
             let house = houses[index]
             
-            let vc = segue.destinationViewController as ChannelTableViewController
+            let vc = segue.destinationViewController as! ChannelTableViewController
             vc.parentHouse = house
         }
     }

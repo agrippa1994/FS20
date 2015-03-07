@@ -43,7 +43,7 @@ func convertToHouseCodeHex(hc: Int) -> UInt8? {
     return nil
 }
 
-func executeFS20CommandOnce(url: String, hc1: Int, hc2: Int, adr: Int, bef: Byte, erw: Byte, completionHandler: (NSError? -> Void)) -> Bool {
+func executeFS20CommandOnce(url: String, hc1: Int, hc2: Int, adr: Int, bef: UInt8, erw: UInt8, completionHandler: (NSError? -> Void)) -> Bool {
     var request = NSMutableURLRequest(URL: NSURL(string: url)!)
     var session = NSURLSession.sharedSession()
     
@@ -58,14 +58,14 @@ func executeFS20CommandOnce(url: String, hc1: Int, hc2: Int, adr: Int, bef: Byte
         return false
     }
     
-    let postData: [Byte] =
+    let postData: [UInt8] =
     [
         0x2,
         0x6,
         0xF1,
-        Byte(houseCode1Hex!),
-        Byte(houseCode2Hex!),
-        Byte(channelCodeHex!),
+        UInt8(houseCode1Hex!),
+        UInt8(houseCode2Hex!),
+        UInt8(channelCodeHex!),
         bef,
         erw
     ]

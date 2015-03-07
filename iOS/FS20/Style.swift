@@ -36,7 +36,7 @@ class StyledTextField: UITextField {
         self.backgroundColor = UIColor.clearColor()
         self.keyboardAppearance = .Dark
         
-        let attribute = self.attributedPlaceholder?.mutableCopy() as NSMutableAttributedString
+        let attribute = self.attributedPlaceholder?.mutableCopy() as! NSMutableAttributedString
         let placeholderColor = UIColor(fromRGB: 0x878787)
         attribute.setAttributes([NSForegroundColorAttributeName: placeholderColor], range: NSMakeRange(0, attribute.length))
         self.attributedPlaceholder = attribute

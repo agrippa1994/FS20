@@ -19,7 +19,7 @@ class MainTableViewController: UITableViewController, NCWidgetProviding, DeviceT
         var fetchedDevices = [DeviceEntry]()
         let fetchedResults = ctx.executeFetchRequest(fetchRequest, error: nil)
         if fetchedResults != nil {
-            fetchedDevices = fetchedResults as [DeviceEntry]
+            fetchedDevices = fetchedResults as! [DeviceEntry]
         }
         
         var devicesForNC = [DeviceEntry]()
@@ -41,7 +41,7 @@ class MainTableViewController: UITableViewController, NCWidgetProviding, DeviceT
         let hc1 = parentHouse.hc1.integerValue
         let hc2 = parentHouse.hc2.integerValue
         let adr = device.adr.integerValue
-        var bef: Byte
+        var bef: UInt8
         
         switch actionType {
         case .Enable:
@@ -62,8 +62,8 @@ class MainTableViewController: UITableViewController, NCWidgetProviding, DeviceT
     func widgetMarginInsetsForProposedMarginInsets(defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
     }
+    
     // MARK: - Table view data source
-
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -73,7 +73,7 @@ class MainTableViewController: UITableViewController, NCWidgetProviding, DeviceT
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("DeviceCell", forIndexPath: indexPath) as DeviceTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("DeviceCell", forIndexPath: indexPath) as! DeviceTableViewCell
 
         let device = self.devices[indexPath.row]
         cell.delegate = self
@@ -84,5 +84,9 @@ class MainTableViewController: UITableViewController, NCWidgetProviding, DeviceT
         self.preferredContentSize = self.tableView.contentSize
         
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 137.0
     }
 }

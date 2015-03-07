@@ -15,8 +15,15 @@ class ChannelTableViewController: UITableViewController, AddEditChannelTableView
     
     // MARK: - Computed variables
     var devices: [DeviceEntry] {
-        return (parentHouse.devices.allObjects as [DeviceEntry]).sorted {
-            ($0.adr as Int) < ($1.adr as Int)
+        let data = parentHouse.devices as! Set<DeviceEntry>
+        var array: [DeviceEntry] = []
+        
+        for i in data {
+            array.append(i)
+        }
+        
+        return array.sorted {
+            ($0.adr as! Int) < ($1.adr as! Int)
         }
     }
     
@@ -43,11 +50,11 @@ class ChannelTableViewController: UITableViewController, AddEditChannelTableView
         
         let context = CoreData.sharedCoreData.managedObjectContext!
         
-        var device: DeviceEntry!
+        let device: DeviceEntry
         if let cell = view.sender as? UITableViewCell {
             device = devices[self.tableView.indexPathForCell(cell)!.row]
         } else {
-            device =  NSEntityDescription.insertNewObjectForEntityForName("DeviceEntry", inManagedObjectContext: context) as? DeviceEntry
+            device =  NSEntityDescription.insertNewObjectForEntityForName("DeviceEntry", inManagedObjectContext: context) as! DeviceEntry
             parentHouse.addDevicesObject(device)
         }
        
@@ -71,7 +78,7 @@ class ChannelTableViewController: UITableViewController, AddEditChannelTableView
         let hc1 = parentHouse.hc1.integerValue
         let hc2 = parentHouse.hc2.integerValue
         let adr = device.adr.integerValue
-        var bef: Byte
+        var bef: UInt8
         
         switch actionType {
         case .Enable: bef = 0x11
@@ -121,7 +128,7 @@ class ChannelTableViewController: UITableViewController, AddEditChannelTableView
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ChannelCell", forIndexPath: indexPath) as ChannelTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("ChannelCell", forIndexPath: indexPath) as! ChannelTableViewCell
 
         let device = self.devices[indexPath.row]
         
