@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7515.2" systemVersion="14D87h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fbR-XG-Xev">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="15A178w" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fbR-XG-Xev">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7512"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -14,7 +14,8 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="CcM-rx-qWc" customClass="StyledTableView" customModule="FS20" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <animations/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="HouseCell" textLabel="9Kc-En-TJp" detailTextLabel="xdJ-Nc-Gf5" style="IBUITableViewCellStyleSubtitle" id="xmy-cP-Fc8" customClass="StyledTableViewCell" customModule="FS20" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -23,18 +24,22 @@
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9Kc-En-TJp">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xdJ-Nc-Gf5">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <animations/>
                                 </tableViewCellContentView>
+                                <animations/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -60,6 +65,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="96" sectionHeaderHeight="10" sectionFooterHeight="10" id="PG1-Ph-LDa" customClass="StyledTableView" customModule="FS20" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChannelCell" rowHeight="100" id="ZrJ-d2-RrW" customClass="ChannelTableViewCell" customModule="FS20" customModuleProvider="target">
@@ -69,12 +75,14 @@
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" tag="1" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hnh-RH-VnU" customClass="StyledLabel" customModule="FS20" customModuleProvider="target">
                                             <rect key="frame" x="18" y="8" width="31" height="20"/>
+                                            <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" tag="2" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qGH-i8-GpW" customClass="StyledLabel" customModule="FS20" customModuleProvider="target">
                                             <rect key="frame" x="18" y="36" width="40" height="16"/>
+                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="16" id="fNq-DW-n5H"/>
                                             </constraints>
@@ -84,6 +92,7 @@
                                         </label>
                                         <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NsJ-DK-HUq">
                                             <rect key="frame" x="300" y="60" width="300" height="35"/>
+                                            <animations/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <state key="normal" title="O">
                                                 <color key="titleColor" red="1" green="0.01085100634" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -95,6 +104,7 @@
                                         </button>
                                         <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HH1-kH-909">
                                             <rect key="frame" x="0.0" y="60" width="300" height="35"/>
+                                            <animations/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <state key="normal" title="I">
                                                 <color key="titleColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -105,6 +115,7 @@
                                             </connections>
                                         </button>
                                     </subviews>
+                                    <animations/>
                                     <constraints>
                                         <constraint firstItem="NsJ-DK-HUq" firstAttribute="leading" secondItem="HH1-kH-909" secondAttribute="trailing" id="2FD-sg-SrA"/>
                                         <constraint firstItem="qGH-i8-GpW" firstAttribute="leading" secondItem="Hnh-RH-VnU" secondAttribute="leading" id="6T8-Wk-zUV"/>
@@ -121,6 +132,7 @@
                                         <constraint firstItem="NsJ-DK-HUq" firstAttribute="top" secondItem="Wns-Xj-1gT" secondAttribute="topMargin" constant="52" id="toM-Bf-0ue"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <animations/>
                                 <connections>
                                     <outlet property="disableButton" destination="NsJ-DK-HUq" id="w3o-62-CwL"/>
                                     <outlet property="enableButton" destination="HH1-kH-909" id="8kb-Ff-o9D"/>
@@ -151,6 +163,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Tbr-bi-4fs" customClass="StyledTableView" customModule="FS20" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection id="a4M-Z3-AVM">
@@ -162,10 +175,12 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="House name" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vUV-Nv-hBH" customClass="StyledTextField" customModule="FS20" customModuleProvider="target">
                                                     <rect key="frame" x="28" y="9" width="564" height="25"/>
+                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
+                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="vUV-Nv-hBH" firstAttribute="top" secondItem="ERW-HJ-T8L" secondAttribute="topMargin" constant="1" id="3h7-20-VXX"/>
                                                 <constraint firstItem="vUV-Nv-hBH" firstAttribute="centerY" secondItem="ERW-HJ-T8L" secondAttribute="centerY" id="IBW-Sv-Mck"/>
@@ -173,6 +188,7 @@
                                                 <constraint firstItem="vUV-Nv-hBH" firstAttribute="leading" secondItem="ERW-HJ-T8L" secondAttribute="leadingMargin" constant="20" id="SyY-FD-Btv"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="pPH-IE-A0j" customClass="StyledTableViewCell" customModule="FS20" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -181,10 +197,12 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="House host" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4YH-J5-NpQ" customClass="StyledTextField" customModule="FS20" customModuleProvider="target">
                                                     <rect key="frame" x="28" y="8" width="564" height="27"/>
+                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
+                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="4YH-J5-NpQ" firstAttribute="top" secondItem="usP-83-BeM" secondAttribute="topMargin" id="Oe6-KE-o18"/>
                                                 <constraint firstItem="4YH-J5-NpQ" firstAttribute="centerY" secondItem="usP-83-BeM" secondAttribute="centerY" id="gmt-vQ-EuQ"/>
@@ -192,6 +210,7 @@
                                                 <constraint firstItem="4YH-J5-NpQ" firstAttribute="trailing" secondItem="usP-83-BeM" secondAttribute="trailingMargin" id="xaL-c6-YC1"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="tCG-Gz-xRe" customClass="StyledTableViewCell" customModule="FS20" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -200,10 +219,12 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="House Code 1" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rai-u9-dP2" customClass="StyledTextField" customModule="FS20" customModuleProvider="target">
                                                     <rect key="frame" x="28" y="8" width="564" height="27"/>
+                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
                                             </subviews>
+                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="rai-u9-dP2" firstAttribute="leading" secondItem="bKA-B4-5J2" secondAttribute="leadingMargin" constant="20" id="5h3-FH-8wa"/>
                                                 <constraint firstItem="rai-u9-dP2" firstAttribute="trailing" secondItem="bKA-B4-5J2" secondAttribute="trailingMargin" id="6Gq-eu-gVx"/>
@@ -211,6 +232,7 @@
                                                 <constraint firstItem="rai-u9-dP2" firstAttribute="centerY" secondItem="bKA-B4-5J2" secondAttribute="centerY" id="yq2-FE-cNC"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="0ad-pM-f1S" customClass="StyledTableViewCell" customModule="FS20" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -219,10 +241,12 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="House Code 2" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ODP-aB-Wgm" customClass="StyledTextField" customModule="FS20" customModuleProvider="target">
                                                     <rect key="frame" x="28" y="8" width="564" height="27"/>
+                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
                                             </subviews>
+                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="ODP-aB-Wgm" firstAttribute="top" secondItem="jfQ-I9-lcd" secondAttribute="topMargin" id="JUR-xJ-U9p"/>
                                                 <constraint firstItem="ODP-aB-Wgm" firstAttribute="centerY" secondItem="jfQ-I9-lcd" secondAttribute="centerY" id="V5X-hG-nyc"/>
@@ -230,6 +254,7 @@
                                                 <constraint firstItem="ODP-aB-Wgm" firstAttribute="trailing" secondItem="jfQ-I9-lcd" secondAttribute="trailingMargin" id="ngz-Ht-yab"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <animations/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -271,6 +296,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="cVZ-G9-PGK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" red="0.99607849120000003" green="0.99215692280000001" blue="0.99215692280000001" alpha="1" colorSpace="deviceRGB"/>
                         </textAttributes>
@@ -278,6 +304,7 @@
                     <nil name="viewControllers"/>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" id="0T4-IC-I7w">
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </toolbar>
                     <connections>
                         <segue destination="1yJ-7i-bda" kind="relationship" relationship="rootViewController" id="NdO-H0-6cj"/>
@@ -295,6 +322,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="UnV-7x-7uC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" red="0.99607849120000003" green="0.99215692280000001" blue="0.99215692280000001" alpha="1" colorSpace="deviceRGB"/>
                         </textAttributes>
@@ -315,6 +343,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="rN4-Nb-cqJ" customClass="StyledTableView" customModule="FS20" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection id="zCc-SQ-0fr">
@@ -326,10 +355,12 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Channel name" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aw9-b8-J54" customClass="StyledTextField" customModule="FS20" customModuleProvider="target">
                                                     <rect key="frame" x="28" y="9" width="564" height="25"/>
+                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
+                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="aw9-b8-J54" firstAttribute="top" secondItem="lYD-cM-5pC" secondAttribute="topMargin" constant="1" id="9dc-Mx-px4"/>
                                                 <constraint firstItem="aw9-b8-J54" firstAttribute="centerY" secondItem="lYD-cM-5pC" secondAttribute="centerY" id="AXm-Yq-MFz"/>
@@ -337,6 +368,7 @@
                                                 <constraint firstItem="aw9-b8-J54" firstAttribute="trailing" secondItem="lYD-cM-5pC" secondAttribute="trailingMargin" id="feb-UO-N2F"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="T8r-N7-bQc" customClass="StyledTableViewCell" customModule="FS20" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -345,10 +377,12 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Channel code" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hSs-A7-A5q" customClass="StyledTextField" customModule="FS20" customModuleProvider="target">
                                                     <rect key="frame" x="28" y="8" width="564" height="27"/>
+                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
                                             </subviews>
+                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="hSs-A7-A5q" firstAttribute="centerY" secondItem="tlI-JL-IFv" secondAttribute="centerY" id="ANf-Mg-HiG"/>
                                                 <constraint firstItem="hSs-A7-A5q" firstAttribute="trailing" secondItem="tlI-JL-IFv" secondAttribute="trailingMargin" id="Cn7-Ge-pWD"/>
@@ -356,6 +390,7 @@
                                                 <constraint firstItem="hSs-A7-A5q" firstAttribute="top" secondItem="tlI-JL-IFv" secondAttribute="topMargin" id="U9K-mX-2E7"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="ZtH-tu-mvH" customClass="StyledTableViewCell" customModule="FS20" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -364,14 +399,17 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show in Notification Center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NoS-u7-0DB" customClass="StyledLabel" customModule="FS20" customModuleProvider="target">
                                                     <rect key="frame" x="28" y="11" width="497" height="21"/>
+                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2gO-1D-OFP">
                                                     <rect key="frame" x="533" y="6" width="51" height="31"/>
+                                                    <animations/>
                                                 </switch>
                                             </subviews>
+                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="2gO-1D-OFP" firstAttribute="trailing" secondItem="qcA-Wa-RXx" secondAttribute="trailingMargin" constant="-10" id="1pq-bC-k7b"/>
                                                 <constraint firstItem="NoS-u7-0DB" firstAttribute="leading" secondItem="qcA-Wa-RXx" secondAttribute="leadingMargin" constant="20" id="CD1-Qv-t44"/>
@@ -380,6 +418,7 @@
                                                 <constraint firstItem="NoS-u7-0DB" firstAttribute="centerY" secondItem="2gO-1D-OFP" secondAttribute="centerY" id="iBy-r9-Cwb"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <animations/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -421,6 +460,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="1wq-Vn-fgd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" red="0.99607849120000003" green="0.99215692280000001" blue="0.99215692280000001" alpha="1" colorSpace="deviceRGB"/>
                         </textAttributes>
