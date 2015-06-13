@@ -1,0 +1,20 @@
+{
+	"mysqlData" : {
+		"host"     : "localhost",
+		"user"     : "fs20",
+		"password" : "fs20",
+		"database" : "fs20",
+		"port": 8889
+	},
+
+	"fs20MainServer" : {
+		"port" : 25000
+	},
+
+	"fs20Servers" : {
+		"ports" : {
+			"from": 25001,
+			"to" : 25020
+		}
+	}
+}
