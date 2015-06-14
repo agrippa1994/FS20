@@ -1,5 +1,13 @@
 {
 	"dev": "/dev/tty.usbmodem1421",
 	"port": "8001",
-	"log": true
+	"log": true,
+
+	"mysqlData" : {
+		"host"     : "localhost",
+		"user"     : "fs20",
+		"password" : "fs20",
+		"database" : "fs20",
+		"port": 8889
+	}
 }
