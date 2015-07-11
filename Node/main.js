@@ -1,94 +1,23 @@
-/*
-// -------------------------------------
-// These libraries can be downloaded via npm ("npm install serialport rwlock")
-var serialport = require("serialport");
-var rwlock = require("rwlock");
-//---------------------------------------
-var http = require("http");
-var fs = require("fs");
-
-var config = readConfiguration();
-
-function consoleLog(str) {
-	if(config.log)
-		console.log(str);
-}
-
-function readConfiguration() {
-	try {
-		var f = fs.readFileSync("config.json");
-		var conf = JSON.parse(f);
-
-		if(!("port" in conf && "dev" in conf && "log" in conf))
-			throw "Configuration is invalid";
-
-		return conf;
-	}
-	catch(e) {
-		console.log("Exception: " + e);
-	}
-}
-
-http.createServer(function(request, response){
-	request.on("data", function(chunk){
-		sendToArduino(chunk);
-
-		response.writeHead(200, "Success", {'Content-Type': 'application/json'});
-		response.end();
-	});
-}).listen(config.port);
-
-var arduino = new serialport.SerialPort(config.dev, {
-	baudrate: 38400,
-	parser: serialport.parsers.raw,
-	buffersize: 1
-}, false);
-
-arduino.open(function(error) {
-
-	if(error) {
-		consoleLog("Error while opening Arduino: " + error);
-		process.exit(0);
-	}
-});
-
-function sendToArduino(buffer) {
-
-	if(typeof sendToArduino.lock == "undefined")
-		sendToArduino.lock = new rwlock();
-
-	setTimeout(function() {
-		sendToArduino.lock.writeLock(function(release) {
-			try {
-				arduino.write(buffer, function(error) {
-					if(error) {
-						consoleLog("Error while writing data " + error);
-					}
-					release();
-				});
-			}
-			catch(e) {
-				consoleLog(e);
-			}
-		});
-	}, 1);
-}
-*/
-
+//--------------------------------------------------------------------------------------
+// These libraries can be downloaded via npm ("npm install express mysql rwlock serialport body-parser")
 var express = require("express"),
 	mysql = require("mysql"),
-	fs = require("fs"),
+	rwlock = require("rwlock"),
+	serialPort = require("serialport")
 	bodyParser = require("body-parser"),
-	util = require("util"),
-	fs20Codes = require("./fs20Codes.js")
+	fs = require("fs"),
+	util = require("util")
 ;
 
+//--------------------------------------------------------------------------------------
 // Constants
 var ERROR_CODE_INVALID_JSON = 1000;
 var ERROR_MYSQL_ERROR = 1001;
 var ERROR_BAD_FS20_CODE = 1002;
 var ERROR_NO_HOUSE_FOR_ID = 1003;
+var ERROR_INVALID_DEVICE = 1004;
 
+//--------------------------------------------------------------------------------------
 // Read and parse configuration file
 var config = {};
 try {
@@ -98,6 +27,7 @@ try {
 	process.exit(1);
 }
 
+//--------------------------------------------------------------------------------------
 // Create MySQL connection
 var mysqlConnection = mysql.createConnection(config.mysqlData);
 
@@ -109,6 +39,66 @@ mysqlConnection.connect(function(error){
 	console.log("Connection to the database was successfull");
 });
 
+//--------------------------------------------------------------------------------------
+// Connection to the FS20 serial interface
+function fs20(data, callback) {
+	if(typeof fs20.device === "undefined")
+		return false;
+
+	if(!fs20.device.isOpen())
+		return false;
+
+	if(typeof fs20.mutex === "undefined")
+		fs20.mutex = new rwlock();
+
+	fs20.mutex.writeLock(function(release) {
+		fs20.device.write(data, function(err) {
+			if(err) {
+				release();
+				return callback(err, null); 
+			}
+
+			fs20.device.on("data", function(recvData) {
+				release();
+				callback(null, recvData);
+				fs20.device.removeAllListeners("data");
+			});
+		});
+	});
+
+	return true;
+}
+
+fs20.device = new serialPort.SerialPort(config.serialInterface.dev, {
+	baudrate: config.serialInterface.baud,
+	parser: serialPort.parsers.byteLength(4)
+}, false);
+
+fs20.isValidCode = function(code) {
+	var c = parseInt(code);
+	if(isNaN(c))
+		return false;
+
+	if(c < 1111 || c > 4444)
+		return false;
+
+	for(var i = 1; i <= 4; i++, c = Math.floor(c / 10))
+		if(c % 10 < 1 || c % 10 > 4)
+			return false;
+
+	return true;
+}
+
+fs20.device.open(function(error) {
+	if(error) {
+		console.log("Error while opening the serial interface: " + error);
+		process.exit(1);
+	}
+
+	console.log("Serial interface opened!");
+});
+
+//--------------------------------------------------------------------------------------
 // Create express server
 var app = express();
 
@@ -167,7 +157,7 @@ app.post("/house", function(req, res) {
 	if(req.validateJSONAndSendError({ "name": "string", "house_code_1": "number", "house_code_2": "number" }))
 		return;
 
-	if(!fs20Codes.isValid(req.body.house_code_1) || !fs20Codes.isValid(req.body.house_code_2))
+	if(!fs20.isValidCode(req.body.house_code_1) || !fs20.isValidCode(req.body.house_code_2))
 		return res.sendError(ERROR_BAD_FS20_CODE, "Bad FS20 code!");
 
 	var insertValues = [req.body.name, req.body.house_code_1, req.body.house_code_2];
@@ -178,7 +168,7 @@ app.post("/house", function(req, res) {
 	});
 });
 
-app.get("/device/:house_id", function(req, res) {
+app.get("/house/:house_id/device", function(req, res) {
 	mysqlConnection.query("SELECT * FROM device WHERE house_id = ?", [req.params.house_id], function(err, rows){
 		if(err)
 			return res.sendError(ERROR_MYSQL_ERROR, "Database error!");
@@ -186,11 +176,11 @@ app.get("/device/:house_id", function(req, res) {
 	});
 });
 
-app.post("/device/:house_id", function(req, res) {
+app.post("/house/:house_id/device", function(req, res) {
 	if(req.validateJSONAndSendError({ "name": "string", "device_code": "number" }))
 		return;
 
-	if(!fs20Codes.isValid(req.body.device_code))
+	if(!fs20.isValidCode(req.body.device_code))
 		return res.sendError(ERROR_BAD_FS20_CODE, "Bad FS20 code!");
 
 	mysqlConnection.query("SELECT * FROM house WHERE id = ?", [req.params.house_id], function(err, rows) {
@@ -208,4 +198,44 @@ app.post("/device/:house_id", function(req, res) {
 		});
 	});
 });
-app.listen(3000);
+
+app.get("/house/:house_id/device/:device_id/enable", function(req, res) {
+
+	var sqlArgs = [req.params.house_id, req.params.device_id];
+	mysqlConnection.query("SELECT * FROM house INNER JOIN device WHERE house.id = ? AND device.id = ?", sqlArgs, function(err, rows) {
+		if(err)
+			return res.sendError(ERROR_MYSQL_ERROR, "Database error!");
+
+		if(rows.length === 0)
+			return res.sendError(ERROR_INVALID_DEVICE, "No device found!");
+
+		// TODO: Send FS20 commands here
+		res.sendObject({test: "success"});
+	});
+});
+
+app.get("/house/:house_id/device/:device_id/disable", function(req, res) {
+
+	var sqlArgs = [req.params.house_id, req.params.device_id];
+	mysqlConnection.query("SELECT * FROM house INNER JOIN device WHERE house.id = ? AND device.id = ?", sqlArgs, function(err, rows) {
+		if(err)
+			return res.sendError(ERROR_MYSQL_ERROR, "Database error!");
+
+		if(rows.length === 0)
+			return res.sendError(ERROR_INVALID_DEVICE, "No device found!");
+
+		// TODO: Send FS20 commands here
+		res.sendObject({test: "success"});
+	});
+});
+
+app.get(["/web/:file", "/web"], function(req, res) {
+	var file = req.params.file || "index.html";
+	res.sendFile(__dirname + "/web/" + file, function(err) {
+		if(err) {
+			res.sendStatus(err.status);
+		}
+	});
+});
+
+app.listen(config.web.port);

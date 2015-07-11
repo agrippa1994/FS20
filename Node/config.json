@@ -1,20 +1,20 @@
 {
+	"port": "3000",
+
 	"mysqlData" : {
 		"host"     : "localhost",
 		"user"     : "fs20",
 		"password" : "fs20",
 		"database" : "fs20",
-		"port": 8889
+		"port": 3306
 	},
 
-	"fs20MainServer" : {
-		"port" : 25000
+	"serialInterface" :  {
+		"dev" : "COM3",
+		"baud": 38400
 	},
 
-	"fs20Servers" : {
-		"ports" : {
-			"from": 25001,
-			"to" : 25020
-		}
+	"web": {
+		"port": 3000
 	}
 }
