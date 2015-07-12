@@ -137,11 +137,13 @@ app.use(bodyParser.json());
 
 // Middleware function for all requests
 app.use(function(req, res, next) {
-	res.setHeader("Content-Type", "application/json");
 	res.sendObject = function(obj) {
+		res.setHeader("Content-Type", "application/json");
 		this.end(JSON.stringify(obj));
 	};
+
 	res.sendError = function(code, msg) {
+		res.setHeader("Content-Type", "application/json");
 		this.sendObject({ error: {code: code, msg: msg }});
 	};
 
@@ -284,9 +286,8 @@ app.get("/house/:house_id/device/:device_id/:command", function(req, res) {
 	});
 });
 
-app.get(["/web/:file", "/web"], function(req, res) {
-	var file = req.params.file || "index.html";
-	res.sendFile(__dirname + "/web/" + file, function(err) {
+app.get("/web/*", function(req, res) {
+	res.sendFile(__dirname + "/web/" + (req.params["0"] || "index.html"), function(err) {
 		if(err) {
 			res.sendStatus(err.status);
 		}

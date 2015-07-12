@@ -1,0 +1,22 @@
+<div ng-controller="HouseViewController" ng-show="currentHouse != null">
+	<h4>Hauscode {{ currentHouse.house_code_1}} {{currentHouse.house_code_2}}</h4>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Code</th>
+				<th>Aktion</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="device in devices">
+				<td>{{device.name}}</td>
+				<td>{{device.device_code}}</td>
+				<td>
+					<button class="btn btn-primary btn-xs" ng-click="enable(device)">Aktivieren</button>
+					<button class="btn btn-primary btn-xs" ng-click="disable(device)">Deaktivieren</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

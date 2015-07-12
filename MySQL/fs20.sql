@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 12. Jul 2015 um 12:25
+-- Erstellungszeit: 12. Jul 2015 um 14:49
 -- Server Version: 5.6.17
 -- PHP-Version: 5.5.12
 
@@ -33,14 +33,15 @@ CREATE TABLE IF NOT EXISTS `device` (
   `device_code` smallint(6) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Daten für Tabelle `device`
 --
 
 INSERT INTO `device` (`id`, `house_id`, `name`, `device_code`) VALUES
-(1, 1, 'Licht', 1121);
+(1, 1, 'Licht', 1121),
+(2, 1, 'Ventilator', 1122);
 
 -- --------------------------------------------------------
 
