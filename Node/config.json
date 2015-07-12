@@ -1,6 +1,4 @@
 {
-	"port": "3000",
-
 	"mysqlData" : {
 		"host"     : "localhost",
 		"user"     : "fs20",

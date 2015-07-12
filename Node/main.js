@@ -16,7 +16,21 @@ var ERROR_MYSQL_ERROR = 1001;
 var ERROR_BAD_FS20_CODE = 1002;
 var ERROR_NO_HOUSE_FOR_ID = 1003;
 var ERROR_INVALID_DEVICE = 1004;
+var ERROR_BAD_FS20_EXECUTION = 1005;
+var ERROR_INVALID_COMMAND = 1006;
 
+var FS20_EXIT_CODES_TEXT = [
+	/* 0x00 */ "Standby",
+	/* 0x01 */ "Send Active",
+	/* 0x02 */ "Invalid Command ID",
+	/* 0x03 */ "Invalid Command Length",
+	/* 0x04 */ "Invalid Parameters",
+	/* 0x05 */ "Duty Cycle Active",
+	/* 0x06 */ "Invalid Start Sign",
+	/* 0x07 */ "Invalid FS20 Command",
+	/* 0x08 */ "Too Slow Data Transmission",
+	/* 0x09 */ "Pause was < 10ms"
+];
 //--------------------------------------------------------------------------------------
 // Read and parse configuration file
 var config = {};
@@ -36,7 +50,7 @@ mysqlConnection.connect(function(error){
 		console.log("Error while connecting to the main database: " + error);
 		process.exit(1);
 	}
-	console.log("Connection to the database was successfull");
+	console.log("Connection to the database was successfull!");
 });
 
 //--------------------------------------------------------------------------------------
@@ -89,6 +103,22 @@ fs20.isValidCode = function(code) {
 	return true;
 }
 
+fs20.convertCode = function(code) {
+	if(!fs20.isValidCode(code))
+		return -1;
+
+	for(var i = 1111, hex = 0x00; i<=4444; i++) {
+		if(!fs20.isValidCode(i))
+			continue;
+
+		if(code == i)
+			return hex;
+
+		hex++;
+	}
+
+	return -1;
+}
 fs20.device.open(function(error) {
 	if(error) {
 		console.log("Error while opening the serial interface: " + error);
@@ -199,33 +229,58 @@ app.post("/house/:house_id/device", function(req, res) {
 	});
 });
 
-app.get("/house/:house_id/device/:device_id/enable", function(req, res) {
+app.get("/house/:house_id/device/:device_id/:command", function(req, res) {
+	var command = req.params.command;
+
+	// Check, if :command is valid
+	if(command != "enable" && command != "disable")
+		return res.sendError(ERROR_INVALID_COMMAND, "Invalid command. Valid commands: enable | disable");
 
 	var sqlArgs = [req.params.house_id, req.params.device_id];
 	mysqlConnection.query("SELECT * FROM house INNER JOIN device WHERE house.id = ? AND device.id = ?", sqlArgs, function(err, rows) {
 		if(err)
 			return res.sendError(ERROR_MYSQL_ERROR, "Database error!");
 
+		// Check if the requested device exists
 		if(rows.length === 0)
 			return res.sendError(ERROR_INVALID_DEVICE, "No device found!");
 
-		// TODO: Send FS20 commands here
-		res.sendObject({test: "success"});
-	});
-});
+		// Convert the codes into FS20 codes, e.g. 1111 --> 0x00, 1112 --> 0x01
+		var hc1 = fs20.convertCode(rows[0].house_code_1),
+			hc2 = fs20.convertCode(rows[0].house_code_2),
+			dc = fs20.convertCode(rows[0].device_code)
+		;
 
-app.get("/house/:house_id/device/:device_id/disable", function(req, res) {
+		// Map the command to the fs20 appropriate BEF byte
+		var commandByte = {
+			"enable": 0x11,
+			"disable": 0x00
+		} [command];
 
-	var sqlArgs = [req.params.house_id, req.params.device_id];
-	mysqlConnection.query("SELECT * FROM house INNER JOIN device WHERE house.id = ? AND device.id = ?", sqlArgs, function(err, rows) {
-		if(err)
-			return res.sendError(ERROR_MYSQL_ERROR, "Database error!");
+		// Check if the codes are valid
+		if(hc1 == -1 || hc2 == -1 || dc == -1)
+			return res.sendError(ERROR_BAD_FS20_CODE, "Bad FS20 code!");
 
-		if(rows.length === 0)
-			return res.sendError(ERROR_INVALID_DEVICE, "No device found!");
+		// Execute the command on the FS20 module
+		fs20([0x02, 0x06, 0xF1, hc1, hc2, dc, commandByte, 0x00], function(err, data) {
+			/*
+				The FS20's response should be 4 bytes long
+				0: 0x2 (start opcode)
+				1: 0x2 (length)
+				2: exitcode (should be between 0x00 and 0x09)
+				3: baudrate (should be between 0x00 and 0x04)
+			*/
+			// Check if an error occured and the response's length
+			if(err || data.length != 4)
+				return res.sendObject(ERROR_BAD_FS20_EXECUTION, "Bad FS20 command execution!");
 
-		// TODO: Send FS20 commands here
-		res.sendObject({test: "success"});
+			// Check if the exitcode is valid
+			if(data[2] < 0x00 || data[2] > 0x09)
+				return res.sendObject(ERROR_BAD_FS20_EXECUTION, "Bad FS20 command execution!");
+			
+			// Send the exitcode and its appropriate exitcode text
+			res.sendObject({ exitCode: data[2], exitText: FS20_EXIT_CODES_TEXT[data[2]] });
+		});
 	});
 });
 
@@ -238,4 +293,11 @@ app.get(["/web/:file", "/web"], function(req, res) {
 	});
 });
 
-app.listen(config.web.port);
+try {
+	app.listen(config.web.port);
+	console.log("HTTP server has been successfully started!");
+}
+catch(e) {
+	console.log("Error while starting HTTP server: " + e);
+	process.exit(1);
+}
