@@ -7,47 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3C12EE831A7D3809007B6AF9 /* HouseEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C12EE821A7D3809007B6AF9 /* HouseEntry.m */; };
-		3C12EE841A7D3809007B6AF9 /* HouseEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C12EE821A7D3809007B6AF9 /* HouseEntry.m */; };
-		3C12EE871A7D380A007B6AF9 /* DeviceEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C12EE861A7D380A007B6AF9 /* DeviceEntry.m */; };
-		3C12EE881A7D380A007B6AF9 /* DeviceEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C12EE861A7D380A007B6AF9 /* DeviceEntry.m */; };
-		3C12EE8D1A7D3EBA007B6AF9 /* ChannelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C12EE8C1A7D3EBA007B6AF9 /* ChannelTableViewCell.swift */; };
-		3C13112A1A76D0F300B91853 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C1311291A76D0F300B91853 /* NotificationCenter.framework */; };
-		3C1311311A76D0F300B91853 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C1311301A76D0F300B91853 /* MainInterface.storyboard */; };
-		3C1311341A76D0F300B91853 /* FS20-TodayControl.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3C1311271A76D0F300B91853 /* FS20-TodayControl.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		3C13114D1A76D86400B91853 /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1311481A76D86400B91853 /* CoreData.swift */; };
-		3C13114E1A76D86400B91853 /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1311481A76D86400B91853 /* CoreData.swift */; };
-		3C1311531A76D86400B91853 /* FS20.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3C13114B1A76D86400B91853 /* FS20.xcdatamodeld */; };
-		3C1311541A76D86400B91853 /* FS20.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3C13114B1A76D86400B91853 /* FS20.xcdatamodeld */; };
-		3C1311571A76D87F00B91853 /* FS20.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1311561A76D87F00B91853 /* FS20.swift */; };
-		3C1311581A76D87F00B91853 /* FS20.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1311561A76D87F00B91853 /* FS20.swift */; };
-		3C1311591A76D88800B91853 /* FS20.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 3C13114B1A76D86400B91853 /* FS20.xcdatamodeld */; };
-		3C13115A1A76D88F00B91853 /* FS20.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 3C13114B1A76D86400B91853 /* FS20.xcdatamodeld */; };
-		3C2B0E491A853529001CC986 /* Localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2B0E481A853529001CC986 /* Localize.swift */; };
 		3C2B0E4C1A853756001CC986 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3C2B0E4E1A853756001CC986 /* Localizable.strings */; };
-		3C9E406D1A7CFB39002B45E2 /* AddEditChannelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9E406C1A7CFB39002B45E2 /* AddEditChannelTableViewController.swift */; };
-		3CA82AED1A79789300AD0716 /* ChannelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA82AEC1A79789300AD0716 /* ChannelTableViewController.swift */; };
-		3CCB80091A7FE04000C14C51 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB80081A7FE04000C14C51 /* MainTableViewController.swift */; };
-		3CCB800B1A80004600C14C51 /* DeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCB800A1A80004600C14C51 /* DeviceTableViewCell.swift */; };
 		3CD38CC41A756968009DC4E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD38CC31A756968009DC4E3 /* AppDelegate.swift */; };
 		3CD38CCC1A756968009DC4E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CD38CCA1A756968009DC4E3 /* Main.storyboard */; };
 		3CD38CCE1A756968009DC4E3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CD38CCD1A756968009DC4E3 /* Images.xcassets */; };
 		3CD38CD11A756968009DC4E3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CD38CCF1A756968009DC4E3 /* LaunchScreen.xib */; };
-		3CD38CE71A756DFE009DC4E3 /* HouseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD38CE61A756DFE009DC4E3 /* HouseTableViewController.swift */; };
-		3CD38CE91A75703C009DC4E3 /* AddEditHouseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD38CE81A75703C009DC4E3 /* AddEditHouseTableViewController.swift */; };
-		3CEDEB2C1A83E09A00EEB832 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEDEB2B1A83E09A00EEB832 /* Style.swift */; };
-		3CEDEB2E1A83E19400EEB832 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEDEB2D1A83E19400EEB832 /* Extensions.swift */; };
+		3CF69C421B669F6C009EB33D /* FS20.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF69C401B669F6C009EB33D /* FS20.swift */; };
+		3CF69C431B669F6C009EB33D /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF69C411B669F6C009EB33D /* String+Localization.swift */; };
+		3CF69C451B66A412009EB33D /* Dictionary+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF69C441B66A412009EB33D /* Dictionary+JSON.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		3C1311321A76D0F300B91853 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3CD38CB61A756967009DC4E3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3C1311261A76D0F200B91853;
-			remoteInfo = "FS20-TodayControl";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		3C1311381A76D0F300B91853 /* Embed App Extensions */ = {
@@ -56,7 +24,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				3C1311341A76D0F300B91853 /* FS20-TodayControl.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -64,50 +31,23 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3C12EE811A7D3809007B6AF9 /* HouseEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HouseEntry.h; path = Shared/HouseEntry.h; sourceTree = "<group>"; };
-		3C12EE821A7D3809007B6AF9 /* HouseEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HouseEntry.m; path = Shared/HouseEntry.m; sourceTree = "<group>"; };
-		3C12EE851A7D380A007B6AF9 /* DeviceEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeviceEntry.h; path = Shared/DeviceEntry.h; sourceTree = "<group>"; };
-		3C12EE861A7D380A007B6AF9 /* DeviceEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeviceEntry.m; path = Shared/DeviceEntry.m; sourceTree = "<group>"; };
-		3C12EE891A7D3864007B6AF9 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "Shared/Bridging-Header.h"; sourceTree = "<group>"; };
-		3C12EE8C1A7D3EBA007B6AF9 /* ChannelTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelTableViewCell.swift; sourceTree = "<group>"; };
-		3C1311271A76D0F300B91853 /* FS20-TodayControl.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "FS20-TodayControl.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C1311291A76D0F300B91853 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
-		3C13112D1A76D0F300B91853 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3C1311301A76D0F300B91853 /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		3C1311391A76D13200B91853 /* FS20.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = FS20.entitlements; sourceTree = "<group>"; };
-		3C1311481A76D86400B91853 /* CoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreData.swift; path = Shared/CoreData.swift; sourceTree = "<group>"; };
-		3C13114C1A76D86400B91853 /* FS20.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FS20.xcdatamodel; sourceTree = "<group>"; };
-		3C1311561A76D87F00B91853 /* FS20.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FS20.swift; path = Shared/FS20.swift; sourceTree = "<group>"; };
-		3C13115B1A76DA5900B91853 /* FS20-TodayControl.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "FS20-TodayControl.entitlements"; sourceTree = "<group>"; };
-		3C2B0E481A853529001CC986 /* Localize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localize.swift; sourceTree = "<group>"; };
 		3C2B0E4D1A853756001CC986 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3C2B0E4F1A85375A001CC986 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		3C9E406C1A7CFB39002B45E2 /* AddEditChannelTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditChannelTableViewController.swift; sourceTree = "<group>"; };
-		3CA82AEC1A79789300AD0716 /* ChannelTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelTableViewController.swift; sourceTree = "<group>"; };
 		3CC924131A81713800D70ACB /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
-		3CCB80081A7FE04000C14C51 /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
-		3CCB800A1A80004600C14C51 /* DeviceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceTableViewCell.swift; sourceTree = "<group>"; };
 		3CD38CBE1A756968009DC4E3 /* FS20.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FS20.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CD38CC21A756968009DC4E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3CD38CC31A756968009DC4E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3CD38CCB1A756968009DC4E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3CD38CCD1A756968009DC4E3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3CD38CD01A756968009DC4E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		3CD38CE61A756DFE009DC4E3 /* HouseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseTableViewController.swift; sourceTree = "<group>"; };
-		3CD38CE81A75703C009DC4E3 /* AddEditHouseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEditHouseTableViewController.swift; sourceTree = "<group>"; };
-		3CEDEB2B1A83E09A00EEB832 /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
-		3CEDEB2D1A83E19400EEB832 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		3CF69C401B669F6C009EB33D /* FS20.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FS20.swift; sourceTree = "<group>"; };
+		3CF69C411B669F6C009EB33D /* String+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
+		3CF69C441B66A412009EB33D /* Dictionary+JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+JSON.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		3C1311241A76D0F200B91853 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3C13112A1A76D0F300B91853 /* NotificationCenter.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3CD38CBB1A756968009DC4E3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -126,63 +66,11 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		3C13112B1A76D0F300B91853 /* FS20-TodayControl */ = {
-			isa = PBXGroup;
-			children = (
-				3C13115B1A76DA5900B91853 /* FS20-TodayControl.entitlements */,
-				3C1311301A76D0F300B91853 /* MainInterface.storyboard */,
-				3CCB80081A7FE04000C14C51 /* MainTableViewController.swift */,
-				3CCB800A1A80004600C14C51 /* DeviceTableViewCell.swift */,
-				3C13112C1A76D0F300B91853 /* Supporting Files */,
-			);
-			path = "FS20-TodayControl";
-			sourceTree = "<group>";
-		};
-		3C13112C1A76D0F300B91853 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				3C13112D1A76D0F300B91853 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		3C13113A1A76D1B800B91853 /* Shared */ = {
-			isa = PBXGroup;
-			children = (
-				3C1311551A76D87500B91853 /* FS20 */,
-				3C1311471A76D84400B91853 /* CoreData */,
-				3C12EE891A7D3864007B6AF9 /* Bridging-Header.h */,
-			);
-			name = Shared;
-			sourceTree = "<group>";
-		};
-		3C1311471A76D84400B91853 /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-				3C1311481A76D86400B91853 /* CoreData.swift */,
-				3C12EE851A7D380A007B6AF9 /* DeviceEntry.h */,
-				3C12EE861A7D380A007B6AF9 /* DeviceEntry.m */,
-				3C12EE811A7D3809007B6AF9 /* HouseEntry.h */,
-				3C12EE821A7D3809007B6AF9 /* HouseEntry.m */,
-				3C13114B1A76D86400B91853 /* FS20.xcdatamodeld */,
-			);
-			name = CoreData;
-			sourceTree = "<group>";
-		};
-		3C1311551A76D87500B91853 /* FS20 */ = {
-			isa = PBXGroup;
-			children = (
-				3C1311561A76D87F00B91853 /* FS20.swift */,
-			);
-			name = FS20;
-			sourceTree = "<group>";
-		};
 		3CD38CB51A756967009DC4E3 = {
 			isa = PBXGroup;
 			children = (
-				3C13113A1A76D1B800B91853 /* Shared */,
+				3CF69C3F1B669F6C009EB33D /* Shared */,
 				3CD38CC01A756968009DC4E3 /* FS20 */,
-				3C13112B1A76D0F300B91853 /* FS20-TodayControl */,
 				3C1311281A76D0F300B91853 /* Frameworks */,
 				3CD38CBF1A756968009DC4E3 /* Products */,
 			);
@@ -192,7 +80,6 @@
 			isa = PBXGroup;
 			children = (
 				3CD38CBE1A756968009DC4E3 /* FS20.app */,
-				3C1311271A76D0F300B91853 /* FS20-TodayControl.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -205,15 +92,7 @@
 				3CD38CCF1A756968009DC4E3 /* LaunchScreen.xib */,
 				3CD38CCD1A756968009DC4E3 /* Images.xcassets */,
 				3C2B0E4E1A853756001CC986 /* Localizable.strings */,
-				3C2B0E481A853529001CC986 /* Localize.swift */,
 				3CD38CC31A756968009DC4E3 /* AppDelegate.swift */,
-				3CD38CE61A756DFE009DC4E3 /* HouseTableViewController.swift */,
-				3CD38CE81A75703C009DC4E3 /* AddEditHouseTableViewController.swift */,
-				3CA82AEC1A79789300AD0716 /* ChannelTableViewController.swift */,
-				3C12EE8C1A7D3EBA007B6AF9 /* ChannelTableViewCell.swift */,
-				3C9E406C1A7CFB39002B45E2 /* AddEditChannelTableViewController.swift */,
-				3CEDEB2B1A83E09A00EEB832 /* Style.swift */,
-				3CEDEB2D1A83E19400EEB832 /* Extensions.swift */,
 				3CD38CC11A756968009DC4E3 /* Supporting Files */,
 			);
 			path = FS20;
@@ -227,26 +106,19 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		3CF69C3F1B669F6C009EB33D /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				3CF69C401B669F6C009EB33D /* FS20.swift */,
+				3CF69C411B669F6C009EB33D /* String+Localization.swift */,
+				3CF69C441B66A412009EB33D /* Dictionary+JSON.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3C1311261A76D0F200B91853 /* FS20-TodayControl */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3C1311351A76D0F300B91853 /* Build configuration list for PBXNativeTarget "FS20-TodayControl" */;
-			buildPhases = (
-				3C1311231A76D0F200B91853 /* Sources */,
-				3C1311241A76D0F200B91853 /* Frameworks */,
-				3C1311251A76D0F200B91853 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "FS20-TodayControl";
-			productName = "FS20-TodayControl";
-			productReference = 3C1311271A76D0F300B91853 /* FS20-TodayControl.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		3CD38CBD1A756968009DC4E3 /* FS20 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3CD38CE01A756968009DC4E3 /* Build configuration list for PBXNativeTarget "FS20" */;
@@ -259,7 +131,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				3C1311331A76D0F300B91853 /* PBXTargetDependency */,
 			);
 			name = FS20;
 			productName = FS20;
@@ -275,15 +146,6 @@
 				LastUpgradeCheck = 0620;
 				ORGANIZATIONNAME = Mani;
 				TargetAttributes = {
-					3C1311261A76D0F200B91853 = {
-						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = PZP46GS9KE;
-						SystemCapabilities = {
-							com.apple.ApplicationGroups.iOS = {
-								enabled = 1;
-							};
-						};
-					};
 					3CD38CBD1A756968009DC4E3 = {
 						CreatedOnToolsVersion = 6.2;
 						DevelopmentTeam = PZP46GS9KE;
@@ -310,27 +172,16 @@
 			projectRoot = "";
 			targets = (
 				3CD38CBD1A756968009DC4E3 /* FS20 */,
-				3C1311261A76D0F200B91853 /* FS20-TodayControl */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		3C1311251A76D0F200B91853 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3C13115A1A76D88F00B91853 /* FS20.xcdatamodeld in Resources */,
-				3C1311311A76D0F300B91853 /* MainInterface.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3CD38CBC1A756968009DC4E3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				3C2B0E4C1A853756001CC986 /* Localizable.strings in Resources */,
-				3C1311591A76D88800B91853 /* FS20.xcdatamodeld in Resources */,
 				3CD38CCC1A756968009DC4E3 /* Main.storyboard in Resources */,
 				3CD38CD11A756968009DC4E3 /* LaunchScreen.xib in Resources */,
 				3CD38CCE1A756968009DC4E3 /* Images.xcassets in Resources */,
@@ -340,50 +191,18 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		3C1311231A76D0F200B91853 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3C13114E1A76D86400B91853 /* CoreData.swift in Sources */,
-				3C1311541A76D86400B91853 /* FS20.xcdatamodeld in Sources */,
-				3C12EE881A7D380A007B6AF9 /* DeviceEntry.m in Sources */,
-				3CCB800B1A80004600C14C51 /* DeviceTableViewCell.swift in Sources */,
-				3C12EE841A7D3809007B6AF9 /* HouseEntry.m in Sources */,
-				3CCB80091A7FE04000C14C51 /* MainTableViewController.swift in Sources */,
-				3C1311581A76D87F00B91853 /* FS20.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3CD38CBA1A756968009DC4E3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C12EE871A7D380A007B6AF9 /* DeviceEntry.m in Sources */,
-				3C12EE831A7D3809007B6AF9 /* HouseEntry.m in Sources */,
-				3CD38CE71A756DFE009DC4E3 /* HouseTableViewController.swift in Sources */,
-				3C1311531A76D86400B91853 /* FS20.xcdatamodeld in Sources */,
-				3C12EE8D1A7D3EBA007B6AF9 /* ChannelTableViewCell.swift in Sources */,
-				3CD38CE91A75703C009DC4E3 /* AddEditHouseTableViewController.swift in Sources */,
-				3C2B0E491A853529001CC986 /* Localize.swift in Sources */,
+				3CF69C431B669F6C009EB33D /* String+Localization.swift in Sources */,
+				3CF69C421B669F6C009EB33D /* FS20.swift in Sources */,
 				3CD38CC41A756968009DC4E3 /* AppDelegate.swift in Sources */,
-				3CEDEB2C1A83E09A00EEB832 /* Style.swift in Sources */,
-				3CEDEB2E1A83E19400EEB832 /* Extensions.swift in Sources */,
-				3C13114D1A76D86400B91853 /* CoreData.swift in Sources */,
-				3C9E406D1A7CFB39002B45E2 /* AddEditChannelTableViewController.swift in Sources */,
-				3C1311571A76D87F00B91853 /* FS20.swift in Sources */,
-				3CA82AED1A79789300AD0716 /* ChannelTableViewController.swift in Sources */,
+				3CF69C451B66A412009EB33D /* Dictionary+JSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		3C1311331A76D0F300B91853 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3C1311261A76D0F200B91853 /* FS20-TodayControl */;
-			targetProxy = 3C1311321A76D0F300B91853 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3C2B0E4E1A853756001CC986 /* Localizable.strings */ = {
@@ -415,45 +234,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		3C1311361A76D0F300B91853 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "FS20-TodayControl/FS20-TodayControl.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "FS20-TodayControl/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "Shared/Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-			};
-			name = Debug;
-		};
-		3C1311371A76D0F300B91853 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "FS20-TodayControl/FS20-TodayControl.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = "FS20-TodayControl/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "Shared/Bridging-Header.h";
-			};
-			name = Release;
-		};
 		3CD38CDE1A756968009DC4E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -545,11 +325,12 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = FS20/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Shared/Bridging-Header.h";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -564,26 +345,18 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = FS20/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Shared/Bridging-Header.h";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3C1311351A76D0F300B91853 /* Build configuration list for PBXNativeTarget "FS20-TodayControl" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3C1311361A76D0F300B91853 /* Debug */,
-				3C1311371A76D0F300B91853 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		3CD38CB91A756967009DC4E3 /* Build configuration list for PBXProject "FS20" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -603,20 +376,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		3C13114B1A76D86400B91853 /* FS20.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				3C13114C1A76D86400B91853 /* FS20.xcdatamodel */,
-			);
-			currentVersion = 3C13114C1A76D86400B91853 /* FS20.xcdatamodel */;
-			name = FS20.xcdatamodeld;
-			path = Shared/FS20.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 3CD38CB61A756967009DC4E3 /* Project object */;
 }
