@@ -173,19 +173,52 @@ app.use(function(req, res, next) {
 });
 
 // Router for the HTTP application
-app.post("/", function(req, res) {
-	res.sendObject({x: req.validJSON({"a": "number", "b": "string"})});
-});
-
-app.get("/house", function(req, res) {
+app.get("/api/house", function(req, res) {
 	mysqlConnection.query("SELECT * FROM house", function(err, rows) {
-		if(err)
-			return res.sendError(ERROR_MYSQL_ERROR, "Database error!");
+		
 		res.sendObject(rows);
 	});
 });
 
-app.post("/house", function(req, res) {
+app.get("/api/", function(req, res) {
+	var queryStr = "SELECT house.id as house_id, house.name as house_name, house.house_code_1 as hc1, house.house_code_2 as hc2, device.id as device_id, device.name as device_name, device.device_code, device.house_id as device_house_id FROM house INNER JOIN device";
+	mysqlConnection.query(queryStr, function(err, rows) {
+		if(err)
+			return res.sendError(ERROR_MYSQL_ERROR, "Database error!");
+
+		var houses = [];
+		rows.forEach(function(device){
+			var houseIndex = -1;
+			var isHouseInArray = houses.some(function(house, index) {
+				if(device.house_id === house.id) {
+					houseIndex = index;
+					return true;
+				}
+				return false;
+			});
+
+			if(!isHouseInArray) {
+				houseIndex = houses.push({ 
+					id: device.house_id,
+					name: device.house_name,
+					code1: device.hc1,
+					code2: device.hc2,
+					devices: []
+				}) - 1;
+			}
+
+			houses[houseIndex].devices.push({ 
+				id: device.device_id,
+				name: device.device_name,
+				code: device.device_code
+			});
+		});
+
+		res.sendObject(houses);
+	});
+});
+
+app.post("/api/house", function(req, res) {
 	if(req.validateJSONAndSendError({ "name": "string", "house_code_1": "number", "house_code_2": "number" }))
 		return;
 
@@ -200,7 +233,7 @@ app.post("/house", function(req, res) {
 	});
 });
 
-app.get("/house/:house_id/device", function(req, res) {
+app.get("/api/house/:house_id/device", function(req, res) {
 	mysqlConnection.query("SELECT * FROM device WHERE house_id = ?", [req.params.house_id], function(err, rows){
 		if(err)
 			return res.sendError(ERROR_MYSQL_ERROR, "Database error!");
@@ -208,7 +241,7 @@ app.get("/house/:house_id/device", function(req, res) {
 	});
 });
 
-app.post("/house/:house_id/device", function(req, res) {
+app.post("/api/house/:house_id/device", function(req, res) {
 	if(req.validateJSONAndSendError({ "name": "string", "device_code": "number" }))
 		return;
 
@@ -231,7 +264,7 @@ app.post("/house/:house_id/device", function(req, res) {
 	});
 });
 
-app.get("/house/:house_id/device/:device_id/:command", function(req, res) {
+app.get("/api/house/:house_id/device/:device_id/:command", function(req, res) {
 	var command = req.params.command;
 
 	// Check, if :command is valid
