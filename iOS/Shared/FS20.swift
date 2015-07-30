@@ -14,13 +14,32 @@ class FS20 {
         var name: String
         var code1: Int
         var code2: Int
+        var devices: [Device]
+        
+        private init(fromJSON: [String: AnyObject]) {
+            self.id = fromJSON.cast("id", def: 0)
+            self.name = fromJSON.cast("name", def: "")
+            self.code1 = fromJSON.cast("code1", def: 1111)
+            self.code2 = fromJSON.cast("code2", def: 1111)
+            
+            self.devices = []
+            for device in fromJSON.cast("devices", def: [[String: AnyObject]]()) {
+                self.devices += [Device(fromJSON: device)]
+            }
+        }
     }
     
     struct Device {
-        var house: House
+        //var house: House
         var id: Int
         var name: String
         var code: Int
+        
+        private init(fromJSON: [String: AnyObject]) {
+            self.id = fromJSON.cast("id", def: 0)
+            self.name = fromJSON.cast("name", def: "")
+            self.code = fromJSON.cast("code", def: 0)
+        }
     }
     
     var host: String
@@ -32,7 +51,7 @@ class FS20 {
     }
     
     func houses(completion: [House]? -> Void) {
-        self.dataTask("/house") { data, response, error in
+        self.dataTask("/api") { data, response, error in
             if data == nil || error != nil {
                 return completion(nil)
             }
@@ -41,42 +60,11 @@ class FS20 {
                 var houses: [House] = []
                 for entry in json {
                     houses += [
-                        House(
-                            id: entry.cast("id", def: 0),
-                            name: entry.cast("name", def: ""),
-                            code1: entry.cast("house_code_1", def: 1111),
-                            code2: entry.cast("house_code_2", def: 1111)
-                        )
+                        House(fromJSON: entry)
                     ]
                 }
                 
                 return completion(houses)
-            }
-            
-            return completion(nil)
-        }
-    }
-    
-    func devicesForHouse(house: House, completion: [Device]? -> Void) {
-        self.dataTask("/house/\(house.id)/device") { data, response, error in
-            if data == nil || error != nil {
-                return completion(nil)
-            }
-            
-            if let json = NSJSONSerialization.JSONObjectWithData(data!, options: .allZeros, error: nil) as? [[String: AnyObject]] {
-                var devices: [Device] = []
-                for entry in json {
-                    devices += [
-                        Device(
-                            house: house,
-                            id: entry.cast("id", def: 0),
-                            name: entry.cast("name", def: ""),
-                            code: entry.cast("code", def: 0)
-                        )
-                    ]
-                }
-                
-                return completion(devices)
             }
             
             return completion(nil)
