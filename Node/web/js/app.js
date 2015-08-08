@@ -3,7 +3,7 @@ var app = angular.module("app", ["ngRoute", "ngResource", "ApplicationController
 app.factory("FS20", ["$http", function($http){
 	return {
 		fetchHouses: function(callback) {
-			$http.get("/house")
+			$http.get("/api/house")
 			.success(function(data) {
 				callback(false, data);
 			})
@@ -13,7 +13,7 @@ app.factory("FS20", ["$http", function($http){
 		},
 
 		fetchDevices: function(house, callback) {
-			$http.get("/house/" + house.id + "/device")
+			$http.get("/api/house/" + house.id + "/device")
 			.success(function(data) {
 				callback(false, data);
 			})
@@ -23,7 +23,7 @@ app.factory("FS20", ["$http", function($http){
 		},
 
 		enable: function(device, callback) {
-			$http.get("/house/" + device.house_id + "/device/" + device.id + "/enable")
+			$http.get("/api/house/" + device.house_id + "/device/" + device.id + "/enable")
 			.success(function(data) {
 				callback(false, data);
 			})
@@ -33,7 +33,7 @@ app.factory("FS20", ["$http", function($http){
 		},
 
 		disable: function(device, callback) {
-			$http.get("/house/" + device.house_id + "/device/" + device.id + "/disable")
+			$http.get("/api/house/" + device.house_id + "/device/" + device.id + "/disable")
 			.success(function(data) {
 				callback(false, data);
 			})
