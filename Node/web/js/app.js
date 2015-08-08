@@ -1,6 +1,6 @@
 var app = angular.module("app", ["ngRoute", "ngResource", "ApplicationControllers"]);
 
-app.factory("FS20", ["$http", function($http){
+app.factory("FS20", function($http){
 	return {
 		fetchHouses: function(callback) {
 			$http.get("/api/house")
@@ -42,7 +42,7 @@ app.factory("FS20", ["$http", function($http){
 			});
 		}
 	};
-}]);
+});
 
 app.factory("SidebarDelegate", [function() {
 	return {

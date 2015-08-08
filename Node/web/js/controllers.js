@@ -1,12 +1,12 @@
 var applicationControllers = angular.module("ApplicationControllers", []);
 
-applicationControllers.controller("MainController", ["$scope", "SidebarDelegate", "HouseViewModel", function($scope, SidebarDelegate, HouseViewModel) {
+applicationControllers.controller("MainController", function($scope, SidebarDelegate, HouseViewModel) {
 	SidebarDelegate.sidebarElementClicked = function(house) {
 		HouseViewModel.changeHouse(house);
 	}
-}]);
+});
 
-applicationControllers.controller("SidebarController", ["$scope", "FS20", "SidebarDelegate", function($scope, FS20, SidebarDelegate){
+applicationControllers.controller("SidebarController", function($scope, FS20, SidebarDelegate){
 	$scope.houses = [];
 	$scope.selectedIndex = -1;
 
@@ -19,9 +19,9 @@ applicationControllers.controller("SidebarController", ["$scope", "FS20", "Sideb
 		if(data != null)
 			$scope.houses = data;
 	});
-}]);
+});
 
-applicationControllers.controller("HouseViewController", ["$scope", "FS20", "HouseViewModel", function($scope, FS20, HouseViewModel) {
+applicationControllers.controller("HouseViewController", function($scope, FS20, HouseViewModel) {
 	$scope.devices = [];
 	$scope.currentHouse = null;
 
@@ -47,4 +47,4 @@ applicationControllers.controller("HouseViewController", ["$scope", "FS20", "Hou
 				$scope.devices = data;
 		});
 	}
-}]);
+});
