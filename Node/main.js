@@ -334,7 +334,8 @@ app.get("/api/house/:house_id/device/:device_id/:command", function(req, res) {
 	});
 });
 
-app.get("/web/*", function(req, res) {
+
+app.get("*", function(req, res) {
 	res.sendFile(__dirname + "/web/" + (req.params["0"] || "index.html"), function(err) {
 		if(err) {
 			res.sendStatus(err.status);
