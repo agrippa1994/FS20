@@ -31,13 +31,21 @@ var FS20_EXIT_CODES_TEXT = [
 	/* 0x08 */ "Too Slow Data Transmission",
 	/* 0x09 */ "Pause was < 10ms"
 ];
+
+//--------------------------------------------------------------------------------------
+// println function for printing to console and to a log file
+function println(text) {
+	console.log(text);
+	fs.appendFileSync("log.txt", text + "\n");
+}
+
 //--------------------------------------------------------------------------------------
 // Read and parse configuration file
 var config = {};
 try {
 	config = JSON.parse(fs.readFileSync("config.json"));
 } catch(e) {
-	console.log("Error while reading configuration file: " + e);
+	println("Error while reading configuration file: " + e);
 	process.exit(1);
 }
 
@@ -47,11 +55,18 @@ var mysqlConnection = mysql.createConnection(config.mysqlData);
 
 mysqlConnection.connect(function(error){
 	if(error) {
-		console.log("Error while connecting to the main database: " + error);
+		println("Error while connecting to the main database: " + error);
 		process.exit(1);
 	}
-	console.log("Connection to the database was successfull!");
+	println("Connection to the database was successfull!");
 });
+
+setInterval(function() {
+	mysqlConnection.ping(function(err) {
+		if(err)
+			println("Error while pinging mysql database: " + err);
+	});
+}, 2000);
 
 //--------------------------------------------------------------------------------------
 // Connection to the FS20 serial interface
@@ -121,11 +136,11 @@ fs20.convertCode = function(code) {
 }
 fs20.device.open(function(error) {
 	if(error) {
-		console.log("Error while opening the serial interface: " + error);
+		println("Error while opening the serial interface: " + error);
 		process.exit(1);
 	}
 
-	console.log("Serial interface opened!");
+	println("Serial interface opened!");
 });
 
 //--------------------------------------------------------------------------------------
@@ -329,9 +344,9 @@ app.get("/web/*", function(req, res) {
 
 try {
 	app.listen(config.web.port);
-	console.log("HTTP server has been successfully started!");
+	println("HTTP server has been successfully started!");
 }
 catch(e) {
-	console.log("Error while starting HTTP server: " + e);
+	println("Error while starting HTTP server: " + e);
 	process.exit(1);
 }
