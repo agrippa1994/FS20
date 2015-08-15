@@ -5,3 +5,6 @@ Error while opening the serial interface: Error: Opening \\.\COM3: File not foun
 HTTP server has been successfully started!
 Serial interface opened!
 Connection to the database was successfull!
+HTTP server has been successfully started!
+Serial interface opened!
+Connection to the database was successfull!
