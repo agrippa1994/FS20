@@ -1,0 +1,7 @@
+HTTP server has been successfully started!
+Error while opening the serial interface: Error: Opening \\.\COM3: File not found
+HTTP server has been successfully started!
+Error while opening the serial interface: Error: Opening \\.\COM3: File not found
+HTTP server has been successfully started!
+Serial interface opened!
+Connection to the database was successfull!

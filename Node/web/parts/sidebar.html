@@ -1,5 +1,0 @@
-<div ng-controller="SidebarController">
-	<ul ng-repeat="house in houses track by $index" class="nav nav-sidebar">
-		<li ng-class="($index==selectedIndex) ? 'active' : ''"><a ng-click="selected(house)">{{ house.name }}</a></li>
-	</ul>
-</div>

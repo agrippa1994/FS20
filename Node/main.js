@@ -136,8 +136,8 @@ fs20.convertCode = function(code) {
 }
 fs20.device.open(function(error) {
 	if(error) {
-		println("Error while opening the serial interface: " + error);
-		process.exit(1);
+		//println("Error while opening the serial interface: " + error);
+		//process.exit(1);
 	}
 
 	println("Serial interface opened!");

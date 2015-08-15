@@ -1,51 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
+    <head>
+        <link href="css/metro.css" rel="stylesheet">
+        <link href="css/metro-icons.css" rel="stylesheet">
+        <link href="css/metro-responsive.css" rel="stylesheet">
+        
+        <script src="js/jquery.js"></script>
+        <script src="js/metro.js"></script>
+        <script src="js/angular.js"></script>
+        <script src="controllers.js"></script>
+    </head>
 
-    <title>FS20 Control</title>
-
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/main.css" rel="stylesheet">
-
-    <script src="js/lib/jquery.min.js"></script>
-	<script src="js/lib/bootstrap.min.js"></script>
-	<script src="js/lib/angular.min.js"></script>
-	<script src="js/lib/angular-route.min.js"></script>
-	<script src="js/lib/angular-resource.min.js"></script>
-	<script src="js/app.js"></script>
-	<script src="js/controllers.js"></script>
-  </head>
-
-  <body ng-app="app" ng-controller="MainController">
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-	        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-        	<a class="navbar-brand" href="#">FS20 Control</a>
-		</div>
-			<div class="visible-xs">
-				<sidebar id="navbar" class="navbar-collapse collapse" />
-			</div>
-		</div>
-    </nav>
-
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-        	<sidebar />
+    <body class="bg-steel" ng-app="app" ng-controller="MainController">
+        <div class="app-bar fixed-top darcula" data-role="appbar">
+            <!-- Branding -->
+            <a class="app-bar-element branding">FS20</a>
+            
+            <!-- Divider between branding and menu elements -->
+            <span class="app-bar-divider"></span>
+            
+            <!-- Menu elements -->
+            <ul class="app-bar-menu">
+                <li>
+                    <a class="dropdown-toggle">Räume</a>
+                    <ul class="d-menu" data-role="dropdown">
+                        <li><a>Raum 1</a></li>
+                        <li><a>Raum 2</a></li>
+                        
+                        <li class="divider"></li>
+                        <li><a>Neuen Raum hinzufügen</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        	<houseview />
-        </div>
-      </div>
-    </div>
-  </body>
+    
+    </body>
 </html>
