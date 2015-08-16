@@ -1,0 +1,23 @@
+<div class="app-bar fixed-top darcula" data-role="appbar" ng-controller="MenubarController">
+    <!-- Branding -->
+    <a class="app-bar-element branding" href="/">FS20</a>
+
+    <!-- Divider between branding and menu elements -->
+    <span class="app-bar-divider"></span>
+
+    <!-- Menu elements -->
+    <ul class="app-bar-menu">
+        <li>
+            <a class="dropdown-toggle">Räume</a>
+            <ul class="d-menu" data-role="dropdown" ng-repeat="room in rooms">
+                <li ng-click="roomClicked(room)"><a>{{ room.name }}</a></li>
+                
+
+                <!--
+                    <li class="divider"></li>
+                    <li><a>Neuen Raum hinzufügen</a></li>
+                -->
+            </ul>
+        </li>
+    </ul>
+</div>

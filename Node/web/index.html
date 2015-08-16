@@ -1,39 +1,27 @@
+<!DOCTYPE HTML>
 <html>
     <head>
         <link href="css/metro.css" rel="stylesheet">
         <link href="css/metro-icons.css" rel="stylesheet">
         <link href="css/metro-responsive.css" rel="stylesheet">
+        <link href="css/main.css" rel="stylesheet">
         
         <script src="js/lib/jquery.js"></script>
         <script src="js/lib/metro.js"></script>
         <script src="js/lib/angular.js"></script>
-        <script src="js/lib/angular-resouce.js"></script>
-        <script src="js/fs20.js"></script>
+        <script src="js/lib/angular-resource.js"></script>
+        <script src="js/lib/angular-route.js"></script>
+        <script src="js/directives.js"></script>
+        <script src="js/services.js"></script>
+        <script src="js/controllers.js"></script>
+        <script src="js/route.js"></script>
         <script src="js/main.js"></script>
     </head>
 
-    <body class="bg-steel" ng-app="app" ng-controller="MainController">
-        <div class="app-bar fixed-top darcula" data-role="appbar">
-            <!-- Branding -->
-            <a class="app-bar-element branding">FS20</a>
-            
-            <!-- Divider between branding and menu elements -->
-            <span class="app-bar-divider"></span>
-            
-            <!-- Menu elements -->
-            <ul class="app-bar-menu">
-                <li>
-                    <a class="dropdown-toggle">Räume</a>
-                    <ul class="d-menu" data-role="dropdown">
-                        <li><a>Raum 1</a></li>
-                        <li><a>Raum 2</a></li>
-                        
-                        <li class="divider"></li>
-                        <li><a>Neuen Raum hinzufügen</a></li>
-                    </ul>
-                </li>
-            </ul>
+    <body ng-controller="MainController" ng-app="app">
+        <menubar></menubar>
+        <div class="page-content">
+            <ng-view></ng-view>
         </div>
-    
     </body>
 </html>

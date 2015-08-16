@@ -1,5 +1,1 @@
-var app = angular.module("app", ["ngResource", "fs20"]);
-
-app.controller("MainController", function($scope, fs20) {
-
-});
+angular.module("app", ["ngResource", "ngRoute", "services", "controllers", "directives", "route"]);

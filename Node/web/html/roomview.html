@@ -1,0 +1,17 @@
+<table class="table striped hovered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Aktion</th>
+        </tr>
+    </thead>
+    <tbody ng-repeat="device in devices">
+        <tr>
+            <td>{{device.name}}</td>
+            <td>
+                <button class="button success block-shadow-success text-shadow" ng-click="onAction(device, 1, $event)">Aktivieren</button>
+                <button class="button danger block-shadow-danger text-shadow" ng-click="onAction(device, 0, $event)">Deaktivieren</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

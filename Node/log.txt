@@ -8,3 +8,9 @@ Connection to the database was successfull!
 HTTP server has been successfully started!
 Serial interface opened!
 Connection to the database was successfull!
+HTTP server has been successfully started!
+Serial interface opened!
+Connection to the database was successfull!
+HTTP server has been successfully started!
+Serial interface opened!
+Connection to the database was successfull!
