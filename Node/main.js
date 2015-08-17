@@ -14,7 +14,7 @@ var express = require("express"),
 var ERROR_CODE_INVALID_JSON = 1000;
 var ERROR_MYSQL_ERROR = 1001;
 var ERROR_BAD_FS20_CODE = 1002;
-var ERROR_NO_HOUSE_FOR_ID = 1003;
+var ERROR_NO_ROOM_FOR_ID = 1003;
 var ERROR_INVALID_DEVICE = 1004;
 var ERROR_BAD_FS20_EXECUTION = 1005;
 var ERROR_INVALID_COMMAND = 1006;
@@ -189,90 +189,90 @@ app.use(function(req, res, next) {
 });
 
 // Router for the HTTP application
-app.get("/api/house", function(req, res) {
-	mysqlConnection.query("SELECT * FROM house", function(err, rows) {
+app.get("/api/room", function(req, res) {
+	mysqlConnection.query("SELECT * FROM room", function(err, rows) {
 		
 		res.sendObject(rows);
 	});
 });
 
 app.get("/api/", function(req, res) {
-	var queryStr = "SELECT house.id as house_id, house.name as house_name, house.house_code_1 as hc1, house.house_code_2 as hc2, device.id as device_id, device.name as device_name, device.device_code, device.house_id as device_house_id FROM house INNER JOIN device";
+	var queryStr = "SELECT room.id as room_id, room.name as room_name, room.room_code_1 as rc1, room.room_code_2 as rc2, device.id as device_id, device.name as device_name, device.device_code, device.room_id as device_room_id FROM room INNER JOIN device";
 	mysqlConnection.query(queryStr, function(err, rows) {
 		if(err)
 			return res.sendError(ERROR_MYSQL_ERROR, "Database error!");
 
-		var houses = [];
+		var rooms = [];
 		rows.forEach(function(device){
-			var houseIndex = -1;
-			var isHouseInArray = houses.some(function(house, index) {
-				if(device.house_id === house.id) {
-					houseIndex = index;
+			var roomIndex = -1;
+			var isRoomInArray = rooms.some(function(room, index) {
+				if(device.room_id === room.id) {
+					roomIndex = index;
 					return true;
 				}
 				return false;
 			});
 
-			if(!isHouseInArray) {
-				houseIndex = houses.push({ 
-					id: device.house_id,
-					name: device.house_name,
-					code1: device.hc1,
-					code2: device.hc2,
+			if(!isRoomInArray) {
+				roomIndex = rooms.push({ 
+					id: device.room_id,
+					name: device.room_name,
+					code1: device.rc1,
+					code2: device.rc2,
 					devices: []
 				}) - 1;
 			}
 
-			houses[houseIndex].devices.push({ 
+			rooms[roomIndex].devices.push({ 
 				id: device.device_id,
 				name: device.device_name,
 				code: device.device_code
 			});
 		});
 
-		res.sendObject(houses);
+		res.sendObject(rooms);
 	});
 });
 
-app.post("/api/house", function(req, res) {
-	if(req.validateJSONAndSendError({ "name": "string", "house_code_1": "number", "house_code_2": "number" }))
+app.post("/api/room", function(req, res) {
+	if(req.validateJSONAndSendError({ "name": "string", "room_code_1": "number", "room_code_2": "number" }))
 		return;
 
-	if(!fs20.isValidCode(req.body.house_code_1) || !fs20.isValidCode(req.body.house_code_2))
+	if(!fs20.isValidCode(req.body.room_code_1) || !fs20.isValidCode(req.body.room_code_2))
 		return res.sendError(ERROR_BAD_FS20_CODE, "Bad FS20 code!");
 
-	var insertValues = [req.body.name, req.body.house_code_1, req.body.house_code_2];
-	mysqlConnection.query("INSERT INTO house (name, house_code_1, house_code_2) VALUES (?, ?, ?)", insertValues, function(err, result) {
+	var insertValues = [req.body.name, req.body.room_code_1, req.body.room_code_2];
+	mysqlConnection.query("INSERT INTO room (name, room_code_1, room_code_2) VALUES (?, ?, ?)", insertValues, function(err, result) {
 		if(err)
 			return res.sendError(ERROR_MYSQL_ERROR, "Database error!");
 		res.sendObject({ id: result.insertId });
 	});
 });
 
-app.get("/api/house/:house_id/device", function(req, res) {
-	mysqlConnection.query("SELECT * FROM device WHERE house_id = ?", [req.params.house_id], function(err, rows){
+app.get("/api/room/:room_id/device", function(req, res) {
+	mysqlConnection.query("SELECT * FROM device WHERE room_id = ?", [req.params.room_id], function(err, rows){
 		if(err)
 			return res.sendError(ERROR_MYSQL_ERROR, "Database error!");
 		res.sendObject(rows);
 	});
 });
 
-app.post("/api/house/:house_id/device", function(req, res) {
+app.post("/api/room/:room_id/device", function(req, res) {
 	if(req.validateJSONAndSendError({ "name": "string", "device_code": "number" }))
 		return;
 
 	if(!fs20.isValidCode(req.body.device_code))
 		return res.sendError(ERROR_BAD_FS20_CODE, "Bad FS20 code!");
 
-	mysqlConnection.query("SELECT * FROM house WHERE id = ?", [req.params.house_id], function(err, rows) {
+	mysqlConnection.query("SELECT * FROM room WHERE id = ?", [req.params.room_id], function(err, rows) {
 		if(err)
 			return res.sendError(ERROR_MYSQL_ERROR, "Database error!");
 
 		if(rows.length === 0)
-			return res.sendError(ERROR_NO_HOUSE_FOR_ID, "No house for the given id!");
+			return res.sendError(ERROR_NO_ROOM_FOR_ID, "No room for the given id!");
 
-		var insertValues = [req.params.house_id, req.body.name, req.body.device_code];
-		mysqlConnection.query("INSERT INTO device (house_id, name, device_code) VALUES (?, ?, ?)", insertValues, function(err, result) {
+		var insertValues = [req.params.room_id, req.body.name, req.body.device_code];
+		mysqlConnection.query("INSERT INTO device (room_id, name, device_code) VALUES (?, ?, ?)", insertValues, function(err, result) {
 			if(err)
 				return res.sendError(ERROR_MYSQL_ERROR, "Database error!");
 			res.sendObject({ id: result.insertId });
@@ -280,15 +280,15 @@ app.post("/api/house/:house_id/device", function(req, res) {
 	});
 });
 
-app.get("/api/house/:house_id/device/:device_id/:command", function(req, res) {
+app.get("/api/room/:room_id/device/:device_id/:command", function(req, res) {
 	var command = req.params.command;
 
 	// Check, if :command is valid
 	if(command != "enable" && command != "disable")
 		return res.sendError(ERROR_INVALID_COMMAND, "Invalid command. Valid commands: enable | disable");
 
-	var sqlArgs = [req.params.house_id, req.params.device_id];
-	mysqlConnection.query("SELECT * FROM house INNER JOIN device WHERE house.id = ? AND device.id = ?", sqlArgs, function(err, rows) {
+	var sqlArgs = [req.params.room_id, req.params.device_id];
+	mysqlConnection.query("SELECT * FROM room INNER JOIN device WHERE room.id = ? AND device.id = ?", sqlArgs, function(err, rows) {
 		if(err)
 			return res.sendError(ERROR_MYSQL_ERROR, "Database error!");
 
@@ -297,8 +297,8 @@ app.get("/api/house/:house_id/device/:device_id/:command", function(req, res) {
 			return res.sendError(ERROR_INVALID_DEVICE, "No device found!");
 
 		// Convert the codes into FS20 codes, e.g. 1111 --> 0x00, 1112 --> 0x01
-		var hc1 = fs20.convertCode(rows[0].house_code_1),
-			hc2 = fs20.convertCode(rows[0].house_code_2),
+		var rc1 = fs20.convertCode(rows[0].room_code_1),
+			rc2 = fs20.convertCode(rows[0].room_code_2),
 			dc = fs20.convertCode(rows[0].device_code)
 		;
 
@@ -309,11 +309,11 @@ app.get("/api/house/:house_id/device/:device_id/:command", function(req, res) {
 		} [command];
 
 		// Check if the codes are valid
-		if(hc1 == -1 || hc2 == -1 || dc == -1)
+		if(rc1 == -1 || rc2 == -1 || dc == -1)
 			return res.sendError(ERROR_BAD_FS20_CODE, "Bad FS20 code!");
 
 		// Execute the command on the FS20 module
-		fs20([0x02, 0x06, 0xF1, hc1, hc2, dc, commandByte, 0x00], function(err, data) {
+		fs20([0x02, 0x06, 0xF1, rc1, rc2, dc, commandByte, 0x00], function(err, data) {
 			/*
 				The FS20's response should be 4 bytes long
 				0: 0x2 (start opcode)
