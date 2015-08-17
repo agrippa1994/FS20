@@ -13,15 +13,15 @@ angular.module("services", [])
     return {
         all: $resource("/api"),
         
-        rooms: $resource("/api/house"),
+        rooms: $resource("/api/room"),
         
         devices: function(roomID) {
-            return $resource("/api/house/:roomID/device", { roomID: roomID });
+            return $resource("/api/room/:roomID/device", { roomID: roomID });
         },
         
         setState: function(device, state) {
-            return $resource("/api/house/:house_id/device/:device_id/:command", null, { getWithTimeout: { method: "GET", timeout: 1000  }}).getWithTimeout({
-                    house_id: device.house_id,
+            return $resource("/api/room/:room_id/device/:device_id/:command", null, { getWithTimeout: { method: "GET", timeout: 1000  }}).getWithTimeout({
+                    room_id: device.room_id,
                     device_id: device.id,
                     command: (state ? "enable" : "disable")
                 }
