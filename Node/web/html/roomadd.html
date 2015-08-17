@@ -1,0 +1,25 @@
+
+<div class="flex-grid" style="margin-top: 1em;">
+    <div class="row flex-just-center">
+        <div class="cell size4">
+            <label>Name des Gerätes</label>
+            <div id="name" class="input-control text full-size">
+                <input ng-model="name" type="text">
+                <span class="input-state-error mif-warning"></span>
+                <span class="input-state-success mif-checkmark"></span>
+            </div>
+        </div>
+        <div class="cell size4">
+            <label>Code des Gerätes</label>
+            <div id="code" class="input-control text full-size">
+                <input ng-model="code" type="text">
+                <span class="input-state-error mif-warning"></span>
+                <span class="input-state-success mif-checkmark"></span>
+            </div>
+        </div>    
+    </div>
+    <div class="row flex-just-center">
+        <button class="button primary" ng-click="onSubmit(name, code)">Übernehmen</button>
+        <button class="button link" ng-click="onCancel()">Abbrechen</button>
+    </div>
+</div>

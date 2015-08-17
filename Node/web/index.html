@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html ng-app="app">
     <head>
         <link href="css/metro.css" rel="stylesheet">
         <link href="css/metro-icons.css" rel="stylesheet">
@@ -16,9 +16,11 @@
         <script src="js/controllers.js"></script>
         <script src="js/route.js"></script>
         <script src="js/main.js"></script>
+        
+        <title>{{ title }}</title>
     </head>
 
-    <body ng-controller="MainController" ng-app="app">
+    <body ng-controller="MainController">
         <menubar></menubar>
         <div class="page-content">
             <ng-view></ng-view>

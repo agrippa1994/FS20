@@ -134,6 +134,7 @@ fs20.convertCode = function(code) {
 
 	return -1;
 }
+
 fs20.device.open(function(error) {
 	if(error) {
 		//println("Error while opening the serial interface: " + error);
@@ -333,7 +334,6 @@ app.get("/api/house/:house_id/device/:device_id/:command", function(req, res) {
 		});
 	});
 });
-
 
 app.get("*", function(req, res) {
 	res.sendFile(__dirname + "/web/" + (req.params["0"] || "index.html"), function(err) {
