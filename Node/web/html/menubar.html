@@ -9,14 +9,25 @@
     <ul class="app-bar-menu">
         <li>
             <a class="dropdown-toggle">Räume</a>
-            <ul class="d-menu" data-role="dropdown" ng-repeat="room in rooms">
-                <li ng-click="roomClicked(room)"><a>{{ room.name }}</a></li>
+            <ul class="d-menu" data-role="dropdown">
+                <div ng-repeat="room in rooms">
+                    <li>
+                        <a ng-click="roomClicked(room)">{{ room.name }}</a>
+                    </li>
+                </div>
                 
-
-                <!--
-                    <li class="divider"></li>
-                    <li><a>Neuen Raum hinzufügen</a></li>
-                -->
+                <li class="divider"></li>
+                <li><a>Neuen Raum hinzufügen</a></li>
+                <li>
+                    <a class="dropdown-toggle">Raum löschen</a>
+                    <ul class="d-menu" data-role="dropdown">
+                        <div ng-repeat="room in rooms">
+                            <li>
+                                <a ng-click="roomDeleteClicked(room)">{{ room.name }}</a>
+                            </li>
+                        </div>
+                    </ul>
+                </li>
             </ul>
         </li>
     </ul>

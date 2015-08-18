@@ -1,5 +1,6 @@
 angular.module("route", [])
 
+// Router for HTML5 hashbang URLs
 .config(function($routeProvider) {
     $routeProvider
         .when("/room/:roomID", { 
@@ -7,12 +8,17 @@ angular.module("route", [])
                 controller: "RoomViewController" 
             }
         )
-    
-        .when("/room/:roomID/add", {
-                templateUrl: "html/roomadd.html",
-                controller: "RoomAddController"
+        .when("/room/:roomID/device/add", {
+                templateUrl: "html/deviceadd.html",
+                controller: "DeviceAddController"
             }
-        );
+        )
+        .when("/room/:roomID/device/:deviceID/edit", {
+            templateUrl: "html/deviceadd.html",
+            controller: "DeviceAddController"
+            }
+        )
+        .otherwise("/");
 })
 
 .run(function($rootScope, $location, Notification) {

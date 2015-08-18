@@ -2,22 +2,33 @@
     <thead>
         <tr>
             <th>Name</th>
+            <th>Code</th>
             <th>Aktion</th>
+            <th></th>
         </tr>
     </thead>
     <tbody ng-repeat="device in devices">
         <tr>
             <td>{{device.name}}</td>
+            <td>{{device.device_code}}</td>
             <td>
-                <button class="button success block-shadow-success text-shadow" ng-click="onAction(device, 1, $event)">Aktivieren</button>
-                <button class="button danger block-shadow-danger text-shadow" ng-click="onAction(device, 0, $event)">Deaktivieren</button>
+                <button class="button success cycle-button" ng-click="onAction(device, 1, $event)">|</button>
+                <button class="button danger cycle-button" ng-click="onAction(device, 0, $event)">O</button>
+            </td>
+            <td>
+                <button class="button cycle-button mif-cogs" ng-click="onEdit(device, $event)"></button>
+                <button class="button cycle-button mif-cross" ng-click="onDeleteDevice(device, $event)"></button>
             </td>
         </tr>
     </tbody>
     <tfoot>
         <tr>
+            <td></td>
+            <td></td>
+            <td></td>
             <td>
-                <button class="button cycle-button" ng-click="onAdd()">+</button>
+                <button class="button cycle-button mif-cogs"></button>
+                <button class="button cycle-button mif-plus" ng-click="onAdd()"></button>
             </td>
         </tr>
     </tfoot>

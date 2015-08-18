@@ -15,8 +15,16 @@ angular.module("services", [])
         
         rooms: $resource("/api/room"),
         
+        room: function(roomID) {
+            return $resource("/api/room/:roomID", { roomID: roomID });   
+        },
+        
         devices: function(roomID) {
             return $resource("/api/room/:roomID/device", { roomID: roomID });
+        },
+        
+        device: function(roomID, deviceID) {
+            return $resource("/api/room/:roomID/device/:deviceID", { roomID: roomID, deviceID: deviceID });   
         },
         
         setState: function(device, state) {
@@ -57,6 +65,18 @@ angular.module("services", [])
                 hex++;
             }
             return -1;
+        },
+        
+        germanErrorDescription: function(code) {
+            return {
+                1000: "Illegaler JSON Code",
+                1001: "Datenbank-Fehler",
+                1002: "Illegaler FS20-Code",
+                1003: "Die angegebene Ressource wurde nicht in der Datenbank gefunden",
+                1004: "Fehlerhafte FS20 Ausführung",
+                1005: "Unbekannter Befehl",
+                1006: "Löschvorgang fehlgeschlagen"
+            } [code] || "";
         }
     };
 })
