@@ -137,8 +137,8 @@ fs20.convertCode = function(code) {
 
 fs20.device.open(function(error) {
 	if(error) {
-		//println("Error while opening the serial interface: " + error);
-		//process.exit(1);
+		println("Error while opening the serial interface: " + error);
+		process.exit(1);
 	}
 
 	println("Serial interface opened!");
@@ -160,7 +160,7 @@ app.use(function(req, res, next) {
 
 	res.sendError = function(code, msg) {
 		res.setHeader("Content-Type", "application/json");
-		this.sendObject({ error: {code: code, msg: msg }});
+        this.status(400).send(JSON.stringify({ error: { code: code, msg: msg }}));
 	};
 
 	req.validJSON = function(members) {
