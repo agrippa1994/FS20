@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3C2B0E4C1A853756001CC986 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3C2B0E4E1A853756001CC986 /* Localizable.strings */; };
+		3C4C36FA1BA75A2700C5D726 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3C4C36F91BA75A2700C5D726 /* Settings.bundle */; settings = {ASSET_TAGS = (); }; };
 		3CA81AD51B6AB834001555AB /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA81AD41B6AB834001555AB /* MainTableViewController.swift */; };
 		3CD38CC41A756968009DC4E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD38CC31A756968009DC4E3 /* AppDelegate.swift */; };
 		3CD38CCC1A756968009DC4E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CD38CCA1A756968009DC4E3 /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 		3C1311391A76D13200B91853 /* FS20.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = FS20.entitlements; sourceTree = "<group>"; };
 		3C2B0E4D1A853756001CC986 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3C2B0E4F1A85375A001CC986 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3C4C36F91BA75A2700C5D726 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		3CA81AD41B6AB834001555AB /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		3CC924131A81713800D70ACB /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		3CD38CBE1A756968009DC4E3 /* FS20.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FS20.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,6 +99,7 @@
 				3CD38CC31A756968009DC4E3 /* AppDelegate.swift */,
 				3CA81AD41B6AB834001555AB /* MainTableViewController.swift */,
 				3CD38CC11A756968009DC4E3 /* Supporting Files */,
+				3C4C36F91BA75A2700C5D726 /* Settings.bundle */,
 			);
 			path = FS20;
 			sourceTree = "<group>";
@@ -146,7 +149,9 @@
 		3CD38CB61A756967009DC4E3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0620;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Mani;
 				TargetAttributes = {
 					3CD38CBD1A756968009DC4E3 = {
@@ -186,6 +191,7 @@
 			files = (
 				3C2B0E4C1A853756001CC986 /* Localizable.strings in Resources */,
 				3CD38CCC1A756968009DC4E3 /* Main.storyboard in Resources */,
+				3C4C36FA1BA75A2700C5D726 /* Settings.bundle in Resources */,
 				3CD38CD11A756968009DC4E3 /* LaunchScreen.xib in Resources */,
 				3CD38CCE1A756968009DC4E3 /* Images.xcassets in Resources */,
 			);
@@ -258,6 +264,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -331,6 +338,7 @@
 				INFOPLIST_FILE = FS20/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "at.mani1337.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_INSTALL_OBJC_HEADER = NO;
@@ -351,6 +359,7 @@
 				INFOPLIST_FILE = FS20/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "at.mani1337.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_INSTALL_OBJC_HEADER = NO;

@@ -56,7 +56,7 @@ class FS20 {
                 return completion(nil)
             }
             
-            if let json = NSJSONSerialization.JSONObjectWithData(data!, options: .allZeros, error: nil) as? [[String: AnyObject]] {
+            if let json = (try? NSJSONSerialization.JSONObjectWithData(data!, options: [])) as? [[String: AnyObject]] {
                 var houses: [House] = []
                 for entry in json {
                     houses += [
