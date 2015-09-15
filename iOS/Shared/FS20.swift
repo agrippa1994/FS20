@@ -8,8 +8,8 @@
 
 import Foundation
 
-class FS20 {
-    struct House {
+public class FS20 {
+    public struct House {
         var id: Int
         var name: String
         var code1: Int
@@ -29,7 +29,7 @@ class FS20 {
         }
     }
     
-    struct Device {
+    public struct Device {
         //var house: House
         var id: Int
         var name: String
@@ -40,13 +40,21 @@ class FS20 {
             self.name = fromJSON.cast("name", def: "")
             self.code = fromJSON.cast("code", def: 0)
         }
+        
+        public func enable() {
+            
+        }
+        
+        public func disable() {
+            
+        }
     }
     
-    var host: String
-    var sharedSession: NSURLSession
+    var url: NSURL
+    private var sharedSession: NSURLSession
     
-    init(host: String) {
-        self.host = host
+    init(url: NSURL) {
+        self.url = url
         self.sharedSession = NSURLSession.sharedSession()
     }
     
@@ -72,6 +80,6 @@ class FS20 {
     }
     
     private func dataTask(path: String, completion: (NSData?, NSURLResponse?, NSError?) -> Void) {
-        self.sharedSession.dataTaskWithURL(NSURL(scheme: "http", host: self.host, path: path)!, completionHandler: completion).resume()
+        self.sharedSession.dataTaskWithURL(self.url, completionHandler: completion).resume()
     }
 }

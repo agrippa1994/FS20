@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C071E1F1BA8ABBE00A4E2FD /* DeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C071E1E1BA8ABBE00A4E2FD /* DeviceTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		3C2B0E4C1A853756001CC986 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3C2B0E4E1A853756001CC986 /* Localizable.strings */; };
 		3C4C36FA1BA75A2700C5D726 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3C4C36F91BA75A2700C5D726 /* Settings.bundle */; settings = {ASSET_TAGS = (); }; };
 		3CA81AD51B6AB834001555AB /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA81AD41B6AB834001555AB /* MainTableViewController.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3C071E1E1BA8ABBE00A4E2FD /* DeviceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceTableViewCell.swift; sourceTree = "<group>"; };
 		3C1311291A76D0F300B91853 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		3C1311391A76D13200B91853 /* FS20.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = FS20.entitlements; sourceTree = "<group>"; };
 		3C2B0E4D1A853756001CC986 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				3CA81AD41B6AB834001555AB /* MainTableViewController.swift */,
 				3CD38CC11A756968009DC4E3 /* Supporting Files */,
 				3C4C36F91BA75A2700C5D726 /* Settings.bundle */,
+				3C071E1E1BA8ABBE00A4E2FD /* DeviceTableViewCell.swift */,
 			);
 			path = FS20;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CF69C431B669F6C009EB33D /* String+Localization.swift in Sources */,
+				3C071E1F1BA8ABBE00A4E2FD /* DeviceTableViewCell.swift in Sources */,
 				3CF69C421B669F6C009EB33D /* FS20.swift in Sources */,
 				3CD38CC41A756968009DC4E3 /* AppDelegate.swift in Sources */,
 				3CA81AD51B6AB834001555AB /* MainTableViewController.swift in Sources */,

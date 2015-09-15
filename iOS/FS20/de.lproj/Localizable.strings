@@ -11,3 +11,7 @@
 "ERROR_EMPTY" = "Eines oder mehrere Felder wurden nicht ausgefüllt!";
 
 "ERROR_NO_HC_OR_ADR" = "Eines oder mehrere der eingegebene Haus- oder Adressencodes ist ungültig. Ein Code besteht aus 4 Zahlen, welche einen nummerischen Wert zwischen 1 und 4 haben!";
+
+"ERROR" = "Fehler";
+
+"MAINTABLEVIEWCONTROLLER_REFRESH_ERROR" = "Es konnten keine Daten vom FS20 Server geladen werden!";
