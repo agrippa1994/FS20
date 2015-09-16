@@ -15,3 +15,5 @@
 "ERROR" = "Fehler";
 
 "MAINTABLEVIEWCONTROLLER_REFRESH_ERROR" = "Es konnten keine Daten vom FS20 Server geladen werden!";
+
+"DELETE" = "Löschen";

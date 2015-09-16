@@ -15,3 +15,5 @@
 "ERROR" = "Error";
 
 "MAINTABLEVIEWCONTROLLER_REFRESH_ERROR" = "Couldn't fetch data from the FS20 server!";
+
+"DELETE" = "Delete";
