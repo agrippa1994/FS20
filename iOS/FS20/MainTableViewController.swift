@@ -8,15 +8,16 @@
 
 import UIKit
 
+
 class MainTableViewController: UITableViewController, DeviceTableViewCellDelegate {
     
     // MARK: - Vars
     private var fs20: FS20?
     private var houses: [FS20.House] = []
-    
+
     // MARK: - Storyboard actions
     @IBAction func onRefresh(sender: UIRefreshControl) {
-        self.refreshWithAlertController()
+        self.refreshWithAlertController(nil)
     }
     
     override func viewDidLoad() {
@@ -30,6 +31,8 @@ class MainTableViewController: UITableViewController, DeviceTableViewCellDelegat
     }
 
     override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        
         // Remove all observers
         let center = NSNotificationCenter.defaultCenter()
         center.removeObserver(self)
@@ -54,7 +57,7 @@ class MainTableViewController: UITableViewController, DeviceTableViewCellDelegat
 
     // MARK: - Table view delegate
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("DeviceCell", forIndexPath: indexPath) as! DeviceTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("EntryCell", forIndexPath: indexPath) as! DeviceTableViewCell
 
         cell.titleLabel.text = self.houses[indexPath.section].devices[indexPath.row].name
         cell.delegate = self
@@ -69,12 +72,24 @@ class MainTableViewController: UITableViewController, DeviceTableViewCellDelegat
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-           
-        }    
+        }
     }
 
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        return [
+            UITableViewRowAction(style: .Destructive, title: "DELETE".localized) { _, _ in
+                
+            },
+            UITableViewRowAction(style: .Normal, title: "Timers") { _, _ in
+                
+            },
+            UITableViewRowAction(style: .Normal, title: "Countdowns") { _, _ in
+                
+            }
+        ]
+    }
     
+ 
     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return false
     }
@@ -82,7 +97,7 @@ class MainTableViewController: UITableViewController, DeviceTableViewCellDelegat
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return self.houses[section].name
     }
-
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
     }
@@ -114,6 +129,9 @@ class MainTableViewController: UITableViewController, DeviceTableViewCellDelegat
                 } else {
                     self.fs20?.url = url
                 }
+                
+                // Refresh data
+                self.refreshWithAlertController(nil)
                 return
             }
         }
@@ -142,19 +160,24 @@ class MainTableViewController: UITableViewController, DeviceTableViewCellDelegat
                 
                 self.houses = houses!
                 self.tableView.reloadData()
-                
                 completion?(true)
             }
         }
     }
     
-    func refreshWithAlertController() {
-        self.refresh {
-            if !$0 {
-                let controller = UIAlertController(title: "ERROR".localized, message: "MAINTABLEVIEWCONTROLLER_REFRESH_ERROR".localized, preferredStyle: .Alert)
-                controller.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                self.presentViewController(controller, animated: true, completion: nil)
+    func refreshWithAlertController(completion: (Bool -> Void)?) {
+        self.refresh { success in
+            defer {
+                completion?(success)
             }
+            
+            if success {
+                return
+            }
+            
+            let controller = UIAlertController(title: "ERROR".localized, message: "MAINTABLEVIEWCONTROLLER_REFRESH_ERROR".localized, preferredStyle: .Alert)
+            controller.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            self.presentViewController(controller, animated: true, completion: nil)
         }
     }
 }
