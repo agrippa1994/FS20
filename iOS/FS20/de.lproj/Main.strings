@@ -1,51 +1,12 @@
 
-/* Class = "UITextField"; placeholder = "Webhost des Hauses"; ObjectID = "4YH-J5-NpQ"; */
-"4YH-J5-NpQ.placeholder" = "Webhost des Hauses";
+/* Class = "UILabel"; text = "Label"; ObjectID = "7w2-zn-4k9"; */
+"7w2-zn-4k9.text" = "Label";
 
-/* Class = "UINavigationItem"; title = "Häuser"; ObjectID = "7Fu-gM-hFH"; */
-"7Fu-gM-hFH.title" = "Häuser";
+/* Class = "UINavigationItem"; title = "Devices"; ObjectID = "FJC-cI-GJ3"; */
+"FJC-cI-GJ3.title" = "Devices";
 
-/* Class = "UILabel"; text = "Title"; ObjectID = "9Kc-En-TJp"; */
-"9Kc-En-TJp.text" = "Title";
+/* Class = "UIButton"; normalTitle = "O"; ObjectID = "He8-0I-Wme"; */
+"He8-0I-Wme.normalTitle" = "O";
 
-/* Class = "UIButton"; normalTitle = "I"; ObjectID = "HH1-kH-909"; */
-"HH1-kH-909.normalTitle" = "I";
-
-/* Class = "UILabel"; text = "Title"; ObjectID = "Hnh-RH-VnU"; */
-"Hnh-RH-VnU.text" = "Title";
-
-/* Class = "UINavigationItem"; title = "Kanaldaten"; ObjectID = "K3c-IM-ULK"; */
-"K3c-IM-ULK.title" = "Kanaldaten";
-
-/* Class = "UILabel"; text = "Zeige in Notification Center"; ObjectID = "NoS-u7-0DB"; */
-"NoS-u7-0DB.text" = "Zeige in Notification Center";
-
-/* Class = "UIButton"; normalTitle = "~"; ObjectID = "Nr6-VZ-fOO"; */
-"Nr6-VZ-fOO.normalTitle" = "~";
-
-/* Class = "UIButton"; normalTitle = "O"; ObjectID = "NsJ-DK-HUq"; */
-"NsJ-DK-HUq.normalTitle" = "O";
-
-/* Class = "UITextField"; placeholder = "Hauscode 2 (1111-4444)"; ObjectID = "ODP-aB-Wgm"; */
-"ODP-aB-Wgm.placeholder" = "Hauscode 2 (1111-4444)";
-
-/* Class = "UITextField"; placeholder = "Kanalname"; ObjectID = "aw9-b8-J54"; */
-"aw9-b8-J54.placeholder" = "Kanalname";
-
-/* Class = "UITextField"; placeholder = "Kanalcode (1111-4444)"; ObjectID = "hSs-A7-A5q"; */
-"hSs-A7-A5q.placeholder" = "Kanalcode (1111-4444)";
-
-/* Class = "UINavigationItem"; title = "Hausdaten"; ObjectID = "mbO-sf-WQ9"; */
-"mbO-sf-WQ9.title" = "Hausdaten";
-
-/* Class = "UILabel"; text = "Subtitle"; ObjectID = "qGH-i8-GpW"; */
-"qGH-i8-GpW.text" = "Subtitle";
-
-/* Class = "UITextField"; placeholder = "Hauscode 1 (1111-4444)"; ObjectID = "rai-u9-dP2"; */
-"rai-u9-dP2.placeholder" = "Hauscode 1 (1111-4444)";
-
-/* Class = "UITextField"; placeholder = "Name des Hauses"; ObjectID = "vUV-Nv-hBH"; */
-"vUV-Nv-hBH.placeholder" = "Name des Hauses";
-
-/* Class = "UILabel"; text = "Subtitle"; ObjectID = "xdJ-Nc-Gf5"; */
-"xdJ-Nc-Gf5.text" = "Subtitle";
+/* Class = "UIButton"; normalTitle = "I"; ObjectID = "k1m-CP-gCC"; */
+"k1m-CP-gCC.normalTitle" = "I";
