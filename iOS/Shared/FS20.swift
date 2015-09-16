@@ -80,6 +80,6 @@ public class FS20 {
     }
     
     private func dataTask(path: String, completion: (NSData?, NSURLResponse?, NSError?) -> Void) {
-        self.sharedSession.dataTaskWithURL(self.url, completionHandler: completion).resume()
+        self.sharedSession.dataTaskWithURL(NSURL(string: path, relativeToURL: self.url)!, completionHandler: completion).resume()
     }
 }
