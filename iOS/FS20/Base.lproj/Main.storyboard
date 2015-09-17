@@ -11,11 +11,12 @@
         <scene sceneID="eBA-k1-BuU">
             <objects>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="N6s-IK-OiH" customClass="MainTableViewController" customModule="FS20" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="50" sectionHeaderHeight="18" sectionFooterHeight="18" id="TUS-Ka-Rv2">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="TUS-Ka-Rv2">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.15868747234344482" green="0.21822044253349304" blue="0.30320093035697937" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="separatorColor" red="0.1707773507" green="0.30895513299999999" blue="0.37797331810000001" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EntryCell" rowHeight="50" id="lwK-vN-Qza" customClass="DeviceTableViewCell" customModule="FS20" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="114" width="600" height="50"/>
@@ -28,7 +29,7 @@
                                             <rect key="frame" x="8" y="14" width="484" height="21"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="He8-0I-Wme">
@@ -38,7 +39,7 @@
                                                 <constraint firstAttribute="height" constant="50" id="EdR-Ld-Alc"/>
                                             </constraints>
                                             <state key="normal" title="O">
-                                                <color key="titleColor" red="0.85043728351593018" green="0.21816034615039825" blue="0.15920260548591614" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="titleColor" red="1" green="0.055564177692276173" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                             <connections>
                                                 <action selector="onButton:" destination="lwK-vN-Qza" eventType="touchUpInside" id="C63-uH-O1v"/>
@@ -52,7 +53,7 @@
                                                 <constraint firstAttribute="height" constant="50" id="Jjb-3n-DK1"/>
                                             </constraints>
                                             <state key="normal" title="I">
-                                                <color key="titleColor" red="0.1911550909280777" green="0.6378670334815979" blue="0.26147949695587158" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="titleColor" red="0.028320737233226589" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                             <connections>
                                                 <action selector="onButton:" destination="lwK-vN-Qza" eventType="touchUpInside" id="zSm-P3-5wG"/>
@@ -80,6 +81,7 @@
                                     </variation>
                                 </tableViewCellContentView>
                                 <animations/>
+                                <color key="backgroundColor" red="0.18998533487319946" green="0.35768887400627136" blue="0.43821841478347778" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="disableButton" destination="He8-0I-Wme" id="Diz-Cf-z8a"/>
                                     <outlet property="enableButton" destination="k1m-CP-gCC" id="m6c-te-Ybw"/>
@@ -114,6 +116,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
+                        <color key="barTintColor" red="0.17077735066413879" green="0.30895513296127319" blue="0.37797331809997559" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="N6s-IK-OiH" kind="relationship" relationship="rootViewController" id="5Yf-P9-Nva"/>
@@ -136,4 +142,5 @@
             <point key="canvasLocation" x="-78" y="307"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="0.23018704354763031" green="0.77713233232498169" blue="0.3158949613571167" alpha="1" colorSpace="calibratedRGB"/>
 </document>

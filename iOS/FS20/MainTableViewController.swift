@@ -98,6 +98,10 @@ class MainTableViewController: UITableViewController, DeviceTableViewCellDelegat
         return self.houses[section].name
     }
     
+    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        (view as! UITableViewHeaderFooterView).textLabel?.textColor = UIColor.whiteColor()
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
     }
