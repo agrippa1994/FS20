@@ -1,3 +1,8 @@
+/* global __dirname */
+/* global util */
+/* global bodyParser */
+/* global process */
+/* global fs */
 //--------------------------------------------------------------------------------------
 // These libraries can be downloaded via npm ("npm install express mysql rwlock serialport body-parser")
 var express = require("express"),
@@ -137,8 +142,8 @@ fs20.convertCode = function(code) {
 
 fs20.device.open(function(error) {
 	if(error) {
-		println("Error while opening the serial interface: " + error);
-		process.exit(1);
+		//println("Error while opening the serial interface: " + error);
+		//process.exit(1);
 	}
 
 	println("Serial interface opened!");
@@ -191,7 +196,6 @@ app.use(function(req, res, next) {
 // Router for the HTTP application
 app.get("/api/room", function(req, res) {
 	mysqlConnection.query("SELECT * FROM room", function(err, rows) {
-		
 		res.sendObject(rows);
 	});
 });
