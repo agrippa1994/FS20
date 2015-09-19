@@ -54,6 +54,9 @@ try {
 	process.exit(1);
 }
 
+// Adjust config
+config.serialInterface.simulate = config.serialInterface.simulate || false;
+
 //--------------------------------------------------------------------------------------
 // Create MySQL connection
 var mysqlConnection = mysql.createConnection(config.mysqlData);
@@ -76,6 +79,10 @@ setInterval(function() {
 //--------------------------------------------------------------------------------------
 // Connection to the FS20 serial interface
 function fs20(data, callback) {
+	if(config.serialInterface.simulate == true) {
+		return callback(null, [0x02, 0x02, Math.floor(Math.random() * 10), 0x04]);
+	}
+	
 	if(typeof fs20.device === "undefined")
 		return false;
 
@@ -142,8 +149,10 @@ fs20.convertCode = function(code) {
 
 fs20.device.open(function(error) {
 	if(error) {
-		//println("Error while opening the serial interface: " + error);
-		//process.exit(1);
+		if(config.serialInterface.simulate == false) {
+			println("Error while opening the serial interface: " + error);
+			process.exit(1);
+		}
 	}
 
 	println("Serial interface opened!");
