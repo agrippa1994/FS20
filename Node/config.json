@@ -9,7 +9,8 @@
 
 	"serialInterface" :  {
 		"dev" : "COM3",
-		"baud": 38400
+		"baud": 38400,
+		"simulate": true
 	},
 
 	"web": {
