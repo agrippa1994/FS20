@@ -1,20 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.14
+-- version 4.4.9
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Erstellungszeit: 17. Aug 2015 um 15:52
--- Server Version: 5.6.17
--- PHP-Version: 5.5.12
+-- Host: localhost:3306
+-- Erstellungszeit: 22. Sep 2015 um 19:27
+-- Server-Version: 5.5.42
+-- PHP-Version: 5.6.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 
 --
 -- Datenbank: `fs20`
@@ -26,14 +20,12 @@ SET time_zone = "+00:00";
 -- Tabellenstruktur für Tabelle `device`
 --
 
-CREATE TABLE IF NOT EXISTS `device` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `device` (
+  `id` int(11) NOT NULL,
   `room_id` int(11) NOT NULL,
   `name` text NOT NULL,
-  `device_code` smallint(6) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+  `device_code` smallint(6) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Daten für Tabelle `device`
@@ -41,7 +33,8 @@ CREATE TABLE IF NOT EXISTS `device` (
 
 INSERT INTO `device` (`id`, `room_id`, `name`, `device_code`) VALUES
 (1, 1, 'Licht', 1121),
-(2, 1, 'Ventilator', 1122);
+(2, 1, 'Ventilator', 1122),
+(5, 1, '<dlfasld', 1111);
 
 -- --------------------------------------------------------
 
@@ -49,22 +42,76 @@ INSERT INTO `device` (`id`, `room_id`, `name`, `device_code`) VALUES
 -- Tabellenstruktur für Tabelle `room`
 --
 
-CREATE TABLE IF NOT EXISTS `room` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `room` (
+  `id` int(11) NOT NULL,
   `name` text NOT NULL,
   `room_code_1` smallint(6) NOT NULL,
-  `room_code_2` smallint(6) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+  `room_code_2` smallint(6) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Daten für Tabelle `room`
 --
 
 INSERT INTO `room` (`id`, `name`, `room_code_1`, `room_code_2`) VALUES
-(1, 'Zuhause', 1111, 1111);
+(1, 'Zuhause', 1111, 1111),
+(2, 'Test', 1111, 1111);
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `timer`
+--
+
+CREATE TABLE `timer` (
+  `id` int(11) NOT NULL,
+  `room_id` int(11) NOT NULL,
+  `device_id` int(11) NOT NULL,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `operation` tinyint(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indizes der exportierten Tabellen
+--
+
+--
+-- Indizes für die Tabelle `device`
+--
+ALTER TABLE `device`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_UNIQUE` (`id`);
+
+--
+-- Indizes für die Tabelle `room`
+--
+ALTER TABLE `room`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`);
+
+--
+-- Indizes für die Tabelle `timer`
+--
+ALTER TABLE `timer`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`);
+
+--
+-- AUTO_INCREMENT für exportierte Tabellen
+--
+
+--
+-- AUTO_INCREMENT für Tabelle `device`
+--
+ALTER TABLE `device`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT für Tabelle `room`
+--
+ALTER TABLE `room`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT für Tabelle `timer`
+--
+ALTER TABLE `timer`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
