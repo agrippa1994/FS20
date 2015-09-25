@@ -158,6 +158,87 @@ fs20.device.open(function(error) {
 	println("Serial interface opened!");
 });
 
+function setDeviceStateInRoom(roomID, deviceID, state, callback) {
+	var sqlArgs = [roomID, deviceID];
+	mysqlConnection.query("SELECT * FROM room INNER JOIN device WHERE room.id = ? AND device.id = ?", sqlArgs, function(err, rows) {
+		if(err)
+			return callback("Database error!");
+		
+		// Check if the requested device exists
+		if(rows.length === 0)
+			return callback("No device found!");
+
+		// Convert the codes into FS20 codes, e.g. 1111 --> 0x00, 1112 --> 0x01
+		var rc1 = fs20.convertCode(rows[0].room_code_1),
+			rc2 = fs20.convertCode(rows[0].room_code_2),
+			dc = fs20.convertCode(rows[0].device_code);
+			
+		// Map the command to the fs20 appropriate BEF byte
+		var commandByte = {
+			true: 0x11,
+			false: 0x00
+		} [state];
+
+		// Check if the codes are valid
+		if(rc1 == -1 || rc2 == -1 || dc == -1)
+			return callback("Bad FS20 code!");
+
+		// Execute the command on the FS20 module
+		fs20([0x02, 0x06, 0xF1, rc1, rc2, dc, commandByte, 0x00], function(err, data) {
+			/*
+				The FS20's response should be 4 bytes long
+				0: 0x2 (start opcode)
+				1: 0x2 (length)
+				2: exitcode (should be between 0x00 and 0x09)
+				3: baudrate (should be between 0x00 and 0x04)
+			*/
+			// Check if an error occured and the response's length
+			if(err || data.length != 4)
+				return callback("Bad FS20 command execution!");
+
+			// Check if the exitcode is valid
+			if(data[2] < 0x00 || data[2] > 0x09)
+				return callback("Bad FS20 command execution!");
+			
+			// Send the exitcode and its appropriate exitcode text
+			callback(null, data[2]);
+		});
+	});
+}
+
+//--------------------------------------------------------------------------------------
+// Process timeout-timer
+setInterval(function(){
+	mysqlConnection.query("SELECT * FROM device", function(error, devices) {
+		if(error) {
+			println("An error occured while fetching devices from the database!");
+			process.exit(1);
+		}
+		
+		devices.forEach(function(device) {
+			if(device.timeout_in_use) {
+				var currentTime = new Date().getTime() / 1000;
+				if(device.timeout_time <= currentTime) {
+					setDeviceStateInRoom(device.room_id, device.id, device.timeout_operation >= 1, function(error, fs20RetVal) {
+						if(error)
+							return println("Error while processing FS20 request, " + error);
+							
+						println("FS20 execution on device '" + device.name + "' finished with return value '" + fs20RetVal + "' (" + FS20_EXIT_CODES_TEXT[fs20RetVal] + ")");
+					});
+					// Update MySQL
+					var updateValues = [{timeout_in_use: 0, timeout_time: 0.0, timeout_operation: 0}];
+					mysqlConnection.query("UPDATE device SET ?", updateValues, function(error) {
+						if(error) {
+							println("Error while updating mysql data base " + error);
+							process.exit(1);
+						}
+					});
+				}
+			}
+		});
+	});
+}, 1000);
+
 //--------------------------------------------------------------------------------------
 // Create express server
 var app = express();
@@ -201,6 +282,7 @@ app.use(function(req, res, next) {
 
 	next();
 });
+
 
 // Router for the HTTP application
 app.get("/api/room", function(req, res) {
@@ -392,6 +474,62 @@ app.delete("/api/room/:room_id/device/:device_id", function(req, res) {
     });
 });
 
+app.get("/api/room/:room_id/device/:device_id/timeout", function(req, res) {
+	mysqlConnection.query("SELECT * FROM device WHERE room_id = ? AND id = ?", [req.params.room_id, req.params.device_id], function(err, rows) {
+        if(err)
+			return res.sendError(ERROR_MYSQL_ERROR, "Database error!");
+        
+        if(rows.length === 0)
+            return res.sendError(ERROR_MYSQL_DELETION_FAILED, "Device not found!");
+        
+		var sendee = {};
+		if(!rows[0].timeout_in_use) 
+			sendee = { hasTimeout: false };
+		else
+			sendee = { hasTimeout: true, timeoutIn: rows[0].timeout_time - (new Date().getTime() / 1000.0) };
+			
+        return res.sendObject(sendee);
+    });
+});
+
+app.post("/api/room/:room_id/device/:device_id/timeout", function(req, res) {
+	if(req.validateJSONAndSendError({ "seconds": "number", "operation": "boolean" }))
+		return;
+		
+	mysqlConnection.query(
+		"UPDATE device SET ? WHERE device.room_id = ? AND device.id = ?", [{
+			timeout_in_use: 1, 
+			timeout_time: (new Date().getTime() / 1000.0) + req.body.seconds
+		}, req.params.room_id, req.params.device_id], function(err, result) {
+			if(err)
+				return res.sendError(ERROR_MYSQL_ERROR, "Database error!");
+			
+			if(result.affectedRows === 0)
+				return res.sendError(ERROR_NO_MYSQL_RESOURCE, "Nothing has been updated!");
+			
+			res.sendObject({ id: req.params.device_id });
+		}
+	);
+});
+
+app.delete("/api/room/:room_id/device/:device_id/timeout", function(req, res) {
+	mysqlConnection.query(
+		"UPDATE device SET ? WHERE device.room_id = ? AND device.id = ?", [{
+			timeout_in_use: 0,
+			timeout_time: 0.0,
+			timeout_operation: 0	
+		}, req.params.room_id, req.params.device_id], function(err, result) {
+			if(err)
+				return res.sendError(ERROR_MYSQL_ERROR, "Database error!");
+			
+			if(result.affectedRows === 0)
+				return res.sendError(ERROR_NO_MYSQL_RESOURCE, "Nothing has been updated!");
+			
+			res.sendObject({ id: req.params.device_id });
+		}
+	);
+});
+
 app.get("/api/room/:room_id/device/:device_id/:command", function(req, res) {
 	var command = req.params.command;
 
@@ -399,51 +537,19 @@ app.get("/api/room/:room_id/device/:device_id/:command", function(req, res) {
 	if(command != "enable" && command != "disable")
 		return res.sendError(ERROR_INVALID_COMMAND, "Invalid command. Valid commands: enable | disable");
 
-	var sqlArgs = [req.params.room_id, req.params.device_id];
-	mysqlConnection.query("SELECT * FROM room INNER JOIN device WHERE room.id = ? AND device.id = ?", sqlArgs, function(err, rows) {
-		if(err)
-			return res.sendError(ERROR_MYSQL_ERROR, "Database error!");
-
-		// Check if the requested device exists
-		if(rows.length === 0)
-			return res.sendError(ERROR_NO_MYSQL_RESOURCE, "No device found!");
-
-		// Convert the codes into FS20 codes, e.g. 1111 --> 0x00, 1112 --> 0x01
-		var rc1 = fs20.convertCode(rows[0].room_code_1),
-			rc2 = fs20.convertCode(rows[0].room_code_2),
-			dc = fs20.convertCode(rows[0].device_code)
-		;
-
-		// Map the command to the fs20 appropriate BEF byte
-		var commandByte = {
-			"enable": 0x11,
-			"disable": 0x00
-		} [command];
-
-		// Check if the codes are valid
-		if(rc1 == -1 || rc2 == -1 || dc == -1)
-			return res.sendError(ERROR_BAD_FS20_CODE, "Bad FS20 code!");
-
-		// Execute the command on the FS20 module
-		fs20([0x02, 0x06, 0xF1, rc1, rc2, dc, commandByte, 0x00], function(err, data) {
-			/*
-				The FS20's response should be 4 bytes long
-				0: 0x2 (start opcode)
-				1: 0x2 (length)
-				2: exitcode (should be between 0x00 and 0x09)
-				3: baudrate (should be between 0x00 and 0x04)
-			*/
-			// Check if an error occured and the response's length
-			if(err || data.length != 4)
-				return res.sendError(ERROR_BAD_FS20_EXECUTION, "Bad FS20 command execution!");
-
-			// Check if the exitcode is valid
-			if(data[2] < 0x00 || data[2] > 0x09)
-				return res.sendError(ERROR_BAD_FS20_EXECUTION, "Bad FS20 command execution!");
+	var state = {
+		"enable": true,
+		"disable": false
+	} [command] || true;
+	
+	setDeviceStateInRoom(req.params.room_id, req.params.device_id, state, function(error, fs20RetVal) {
+		if(error)
+			return res.sendError(ERROR_BAD_FS20_EXECUTION, error);
 			
-			// Send the exitcode and its appropriate exitcode text
-			res.sendObject({ exitCode: data[2], exitText: FS20_EXIT_CODES_TEXT[data[2]] });
-		});
+		if(fs20RetVal < 0x00 || fs20RetVal > 0x09)
+			return res.sendError(ERROR_BAD_FS20_EXECUTION, "Bad FS20 command execution!");
+				
+		res.sendObject({ exitCode: fs20RetVal, exitText: FS20_EXIT_CODES_TEXT[fs20RetVal] });
 	});
 });
 
