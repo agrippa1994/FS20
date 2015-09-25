@@ -7,15 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3C071E1F1BA8ABBE00A4E2FD /* DeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C071E1E1BA8ABBE00A4E2FD /* DeviceTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		3C07741C1BB463E800314EC7 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C1311291A76D0F300B91853 /* NotificationCenter.framework */; settings = {ASSET_TAGS = (); }; };
 		3C07741F1BB463E800314EC7 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C07741E1BB463E800314EC7 /* TodayViewController.swift */; };
 		3C0774221BB463E800314EC7 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C0774201BB463E800314EC7 /* MainInterface.storyboard */; };
 		3C0774261BB463E800314EC7 /* Today-Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3C07741B1BB463E800314EC7 /* Today-Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		3C07742A1BB4640200314EC7 /* FS20.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF69C401B669F6C009EB33D /* FS20.swift */; settings = {ASSET_TAGS = (); }; };
-		3C07742B1BB4640200314EC7 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF69C411B669F6C009EB33D /* String+Localization.swift */; settings = {ASSET_TAGS = (); }; };
-		3C07742C1BB4640200314EC7 /* Dictionary+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF69C441B66A412009EB33D /* Dictionary+JSON.swift */; settings = {ASSET_TAGS = (); }; };
 		3C07742D1BB466C700314EC7 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3C4C36F91BA75A2700C5D726 /* Settings.bundle */; settings = {ASSET_TAGS = (); }; };
+		3C0774381BB47E6300314EC7 /* Dictionary+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0774341BB47E6300314EC7 /* Dictionary+JSON.swift */; settings = {ASSET_TAGS = (); }; };
+		3C0774391BB47E6300314EC7 /* Dictionary+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0774341BB47E6300314EC7 /* Dictionary+JSON.swift */; settings = {ASSET_TAGS = (); }; };
+		3C07743A1BB47E6300314EC7 /* FS20.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0774351BB47E6300314EC7 /* FS20.swift */; settings = {ASSET_TAGS = (); }; };
+		3C07743B1BB47E6300314EC7 /* FS20.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0774351BB47E6300314EC7 /* FS20.swift */; settings = {ASSET_TAGS = (); }; };
+		3C07743C1BB47E6300314EC7 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0774361BB47E6300314EC7 /* Settings.swift */; settings = {ASSET_TAGS = (); }; };
+		3C07743D1BB47E6300314EC7 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0774361BB47E6300314EC7 /* Settings.swift */; settings = {ASSET_TAGS = (); }; };
+		3C07743E1BB47E6300314EC7 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0774371BB47E6300314EC7 /* String+Localization.swift */; settings = {ASSET_TAGS = (); }; };
+		3C07743F1BB47E6300314EC7 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0774371BB47E6300314EC7 /* String+Localization.swift */; settings = {ASSET_TAGS = (); }; };
+		3C0774421BB47EDE00314EC7 /* DeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0774411BB47EDE00314EC7 /* DeviceTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		3C0774431BB47EDE00314EC7 /* DeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0774411BB47EDE00314EC7 /* DeviceTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		3C0774461BB47F2600314EC7 /* BaseFS20TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0774451BB47F2600314EC7 /* BaseFS20TableViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		3C0774471BB47F2600314EC7 /* BaseFS20TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0774451BB47F2600314EC7 /* BaseFS20TableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		3C2B0E4C1A853756001CC986 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3C2B0E4E1A853756001CC986 /* Localizable.strings */; };
 		3C4C36FA1BA75A2700C5D726 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3C4C36F91BA75A2700C5D726 /* Settings.bundle */; settings = {ASSET_TAGS = (); }; };
 		3CA81AD51B6AB834001555AB /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA81AD41B6AB834001555AB /* MainTableViewController.swift */; };
@@ -23,9 +31,6 @@
 		3CD38CCC1A756968009DC4E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CD38CCA1A756968009DC4E3 /* Main.storyboard */; };
 		3CD38CCE1A756968009DC4E3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CD38CCD1A756968009DC4E3 /* Images.xcassets */; };
 		3CD38CD11A756968009DC4E3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CD38CCF1A756968009DC4E3 /* LaunchScreen.xib */; };
-		3CF69C421B669F6C009EB33D /* FS20.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF69C401B669F6C009EB33D /* FS20.swift */; };
-		3CF69C431B669F6C009EB33D /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF69C411B669F6C009EB33D /* String+Localization.swift */; };
-		3CF69C451B66A412009EB33D /* Dictionary+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF69C441B66A412009EB33D /* Dictionary+JSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,11 +58,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3C071E1E1BA8ABBE00A4E2FD /* DeviceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceTableViewCell.swift; sourceTree = "<group>"; };
 		3C07741B1BB463E800314EC7 /* Today-Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Today-Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C07741E1BB463E800314EC7 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		3C0774211BB463E800314EC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		3C0774231BB463E800314EC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3C07742E1BB477AD00314EC7 /* Today-Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Today-Extension.entitlements"; sourceTree = "<group>"; };
+		3C0774341BB47E6300314EC7 /* Dictionary+JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+JSON.swift"; sourceTree = "<group>"; };
+		3C0774351BB47E6300314EC7 /* FS20.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FS20.swift; sourceTree = "<group>"; };
+		3C0774361BB47E6300314EC7 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		3C0774371BB47E6300314EC7 /* String+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
+		3C0774411BB47EDE00314EC7 /* DeviceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceTableViewCell.swift; sourceTree = "<group>"; };
+		3C0774451BB47F2600314EC7 /* BaseFS20TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseFS20TableViewController.swift; sourceTree = "<group>"; };
 		3C1311291A76D0F300B91853 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		3C1311391A76D13200B91853 /* FS20.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = FS20.entitlements; sourceTree = "<group>"; };
 		3C2B0E4D1A853756001CC986 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -71,9 +82,6 @@
 		3CD38CCD1A756968009DC4E3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3CD38CD01A756968009DC4E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		3CDDDDC81BA9D8700022AF58 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
-		3CF69C401B669F6C009EB33D /* FS20.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FS20.swift; sourceTree = "<group>"; };
-		3CF69C411B669F6C009EB33D /* String+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
-		3CF69C441B66A412009EB33D /* Dictionary+JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+JSON.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,11 +106,39 @@
 		3C07741D1BB463E800314EC7 /* Today-Extension */ = {
 			isa = PBXGroup;
 			children = (
+				3C07742E1BB477AD00314EC7 /* Today-Extension.entitlements */,
 				3C07741E1BB463E800314EC7 /* TodayViewController.swift */,
 				3C0774201BB463E800314EC7 /* MainInterface.storyboard */,
 				3C0774231BB463E800314EC7 /* Info.plist */,
 			);
 			path = "Today-Extension";
+			sourceTree = "<group>";
+		};
+		3C0774331BB47E6300314EC7 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				3C0774341BB47E6300314EC7 /* Dictionary+JSON.swift */,
+				3C0774351BB47E6300314EC7 /* FS20.swift */,
+				3C0774361BB47E6300314EC7 /* Settings.swift */,
+				3C0774371BB47E6300314EC7 /* String+Localization.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		3C0774401BB47EDE00314EC7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3C0774411BB47EDE00314EC7 /* DeviceTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3C0774441BB47F2600314EC7 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3C0774451BB47F2600314EC7 /* BaseFS20TableViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		3C1311281A76D0F300B91853 /* Frameworks */ = {
@@ -145,7 +181,6 @@
 				3CA81AD41B6AB834001555AB /* MainTableViewController.swift */,
 				3CD38CC11A756968009DC4E3 /* Supporting Files */,
 				3C4C36F91BA75A2700C5D726 /* Settings.bundle */,
-				3C071E1E1BA8ABBE00A4E2FD /* DeviceTableViewCell.swift */,
 			);
 			path = FS20;
 			sourceTree = "<group>";
@@ -161,9 +196,9 @@
 		3CF69C3F1B669F6C009EB33D /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				3CF69C401B669F6C009EB33D /* FS20.swift */,
-				3CF69C411B669F6C009EB33D /* String+Localization.swift */,
-				3CF69C441B66A412009EB33D /* Dictionary+JSON.swift */,
+				3C0774331BB47E6300314EC7 /* Core */,
+				3C0774441BB47F2600314EC7 /* ViewControllers */,
+				3C0774401BB47EDE00314EC7 /* Views */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -221,6 +256,11 @@
 					3C07741A1BB463E800314EC7 = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = PZP46GS9KE;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					3CD38CBD1A756968009DC4E3 = {
 						CreatedOnToolsVersion = 6.2;
@@ -282,10 +322,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C07742B1BB4640200314EC7 /* String+Localization.swift in Sources */,
-				3C07742A1BB4640200314EC7 /* FS20.swift in Sources */,
 				3C07741F1BB463E800314EC7 /* TodayViewController.swift in Sources */,
-				3C07742C1BB4640200314EC7 /* Dictionary+JSON.swift in Sources */,
+				3C0774431BB47EDE00314EC7 /* DeviceTableViewCell.swift in Sources */,
+				3C0774391BB47E6300314EC7 /* Dictionary+JSON.swift in Sources */,
+				3C07743D1BB47E6300314EC7 /* Settings.swift in Sources */,
+				3C07743B1BB47E6300314EC7 /* FS20.swift in Sources */,
+				3C07743F1BB47E6300314EC7 /* String+Localization.swift in Sources */,
+				3C0774471BB47F2600314EC7 /* BaseFS20TableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,12 +336,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3CF69C431B669F6C009EB33D /* String+Localization.swift in Sources */,
-				3C071E1F1BA8ABBE00A4E2FD /* DeviceTableViewCell.swift in Sources */,
-				3CF69C421B669F6C009EB33D /* FS20.swift in Sources */,
+				3C07743C1BB47E6300314EC7 /* Settings.swift in Sources */,
 				3CD38CC41A756968009DC4E3 /* AppDelegate.swift in Sources */,
 				3CA81AD51B6AB834001555AB /* MainTableViewController.swift in Sources */,
-				3CF69C451B66A412009EB33D /* Dictionary+JSON.swift in Sources */,
+				3C0774381BB47E6300314EC7 /* Dictionary+JSON.swift in Sources */,
+				3C0774461BB47F2600314EC7 /* BaseFS20TableViewController.swift in Sources */,
+				3C07743E1BB47E6300314EC7 /* String+Localization.swift in Sources */,
+				3C07743A1BB47E6300314EC7 /* FS20.swift in Sources */,
+				3C0774421BB47EDE00314EC7 /* DeviceTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,6 +398,7 @@
 		3C0774271BB463E900314EC7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Today-Extension/Today-Extension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -362,6 +408,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "at.mani1337.FS20.Today-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -371,6 +418,7 @@
 		3C0774281BB463E900314EC7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Today-Extension/Today-Extension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -380,6 +428,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "at.mani1337.FS20.Today-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "";

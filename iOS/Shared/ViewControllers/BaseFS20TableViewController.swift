@@ -9,35 +9,19 @@
 import UIKit
 
 
-class MainTableViewController: UITableViewController, DeviceTableViewCellDelegate {
+class BaseFS20TableViewController: UITableViewController, DeviceTableViewCellDelegate {
     
     // MARK: - Vars
     private var fs20: FS20?
     private var houses: [FS20.House] = []
 
-    // MARK: - Storyboard actions
-    @IBAction func onRefresh(sender: UIRefreshControl) {
-        self.refreshWithAlertController(nil)
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // Validate settings otherwise show iOS Settings application
+        self.validateAndApplySettings()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
-        // Add observers
-        let center = NSNotificationCenter.defaultCenter()
-        center.addObserver(self, selector: Selector("appDidBecomeActive"), name: UIApplicationDidBecomeActiveNotification, object: nil)
-    }
-
-    override func viewDidDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-        // Remove all observers
-        let center = NSNotificationCenter.defaultCenter()
-        center.removeObserver(self)
-    }
-        
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return self.houses.count
@@ -58,25 +42,15 @@ class MainTableViewController: UITableViewController, DeviceTableViewCellDelegat
     }
 
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
+        return false
     }
-
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        }
-    }
-
+ 
     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return false
     }
 
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return self.houses[section].name
-    }
-    
-    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        (view as! UITableViewHeaderFooterView).textLabel?.textColor = UIColor.whiteColor()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -94,15 +68,10 @@ class MainTableViewController: UITableViewController, DeviceTableViewCellDelegat
         self.houses[path.section].devices[path.row].disable()
     }
     
-    // MARK: - Selectors
-    func appDidBecomeActive() {
-        self.validateAndApplySettings()
-    }
-    
     // MARK: - Methods
     func validateAndApplySettings() {
         // Read server host from iOS Settings application
-        if let url = NSURL(string: Settings.host) where url.host != nil {
+        if let url = NSURL(string: Settings.host) {
             // Create FS20 object if it's not initialized otherwise set the url
             if self.fs20 == nil {
                 self.fs20 = FS20(url: url)
@@ -111,12 +80,19 @@ class MainTableViewController: UITableViewController, DeviceTableViewCellDelegat
             }
             
             // Refresh data
-            self.refreshWithAlertController(nil)
+            self.refresh {
+                if $0 {
+                    self.refreshSucceeded()
+                } else {
+                    self.refreshFailed()
+                }
+            }
+            
             return
         }
         
         // Open Settings
-        UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+        //UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
     }
     
     func refresh(completion: (Bool -> Void)?) {
@@ -144,19 +120,11 @@ class MainTableViewController: UITableViewController, DeviceTableViewCellDelegat
         }
     }
     
-    func refreshWithAlertController(completion: (Bool -> Void)?) {
-        self.refresh { success in
-            defer {
-                completion?(success)
-            }
-            
-            if success {
-                return
-            }
-            
-            let controller = UIAlertController(title: "ERROR".localized, message: "MAINTABLEVIEWCONTROLLER_REFRESH_ERROR".localized, preferredStyle: .Alert)
-            controller.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-            self.presentViewController(controller, animated: true, completion: nil)
-        }
+    func refreshFailed() {
+        
+    }
+    
+    func refreshSucceeded() {
+        
     }
 }
