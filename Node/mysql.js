@@ -61,6 +61,7 @@ module.exports = function(config, connectHandler, automaticallyPing, pingHandler
 	this.connection = mysql.createConnection(config);
 	this.connection.connect(connectHandler);
 	this.rooms = new MySQLEntity(this.connection, "room", "id");
+	this.devices = new MySQLEntity(this.connection, "device", "id");
 	
 	var that = this;
 	
