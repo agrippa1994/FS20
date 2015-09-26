@@ -1,9 +1,67 @@
 var mysql = require("mysql");
 
+function MySQLEntity(connection, tableName, id) {
+	this.query = function(handler) {
+		connection.query(
+			"SELECT * FROM ??", 
+			[tableName],
+			function(error, rows) {
+				console.log("Error: " + error);
+				handler(error == null, rows);
+			}
+		);
+	}
+	
+	this.insert = function(values, handler) {
+		connection.query(
+			"INSERT INTO ?? SET ?", 
+			[tableName, values],
+			function(error, result) {
+				if(error)
+					return handler(false, -1);
+				handler(true, result.insertId);
+			}
+		);
+	}
+	
+	this.update = function(at, newValues, handler) {
+		connection.query(
+			"UPDATE ?? SET ? WHERE ?? = ?",
+			[tableName, newValues, id, at],
+			function(error, result) {				
+				if(error)
+					return handler(false);
+
+				if(result.affectedRows === 0)
+					return handler(false);
+					
+				handler(true);
+			}	
+		);
+	}
+	
+	this.delete = function(at, handler) {
+		connection.query(
+			"DELETE FROM ?? WHERE ?? = ?",
+			[tableName, id, at],
+			function(error, result) {
+				if(error)
+					return handler(false);
+				if(result.affectedRows === 0)
+					return handler(false);
+					
+				handler(true);
+			}	
+		);
+	}
+}
+
 module.exports = function(config, connectHandler, automaticallyPing, pingHandler) {
 	// Create MySQL connection
 	this.connection = mysql.createConnection(config);
 	this.connection.connect(connectHandler);
+	this.rooms = new MySQLEntity(this.connection, "room", "id");
+	
 	var that = this;
 	
 	// Create ping timer
@@ -49,61 +107,5 @@ module.exports = function(config, connectHandler, automaticallyPing, pingHandler
 
 			handler(true, rooms);
 		});
-	}
-	
-	this.queryRooms = function(handler) {
-		this.connection.query("SELECT * FROM room", function(err, rows) {
-			handler(err == null, rows);
-		});
-	}
-	
-	this.insertRoom = function(name, code1, code2, handler) {
-		this.connection.query("INSERT INTO room (name, room_code_1, room_code_2) VALUES (?, ?, ?)",
-			[name, code1, code2], 
-			function(error, result) {
-				handler(error == null, result.insertId);
-			}
-		);
-	}
-	
-	this.queryRoom = function(roomID, handler) {
-		this.queryAll(function(success, rooms) {
-			if(!success)
-				return handler(false, {});
-				
-			for(var i = 0; i < rooms.length; i++)
-				if(rooms[i].id == roomID)
-					return handler(true, rooms[i]);
-			
-			handler(false, {});
-		});
-	}
-	
-	this.updateRoom = function(roomID, newValues, handler) {
-		this.connection.query("UPDATE room SET ? WHERE id = ?", [newValues, roomID], 
-			function(err, result) {
-				if(err)
-					return handler(false);
-			
-				if(result.affectedRows === 0)
-					return handler(false);
-			
-				handler(true);
-    		}
-		);
-	}
-	
-	this.deleteRoom = function(roomID, handler) {
-		this.connection.query("DELETE FROM room WHERE id = ?", [roomID],
-			function(error, result) {
-				if(error)
-					return handler(false);
-			
-				if(result.affectedRows === 0)
-					return handler(false);
-			
-				handler(true);		
-			}
-		);
 	}
 };
