@@ -177,7 +177,7 @@ function setDeviceStateInRoom(roomID, deviceID, state, callback) {
 		var commandByte = {
 			true: 0x11,
 			false: 0x00
-		} [state];
+		} [state] || true;
 
 		// Check if the codes are valid
 		if(rc1 == -1 || rc2 == -1 || dc == -1)
