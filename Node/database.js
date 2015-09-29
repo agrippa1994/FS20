@@ -22,8 +22,23 @@
 */
 
 var fs = require("fs");
+var errorCodes = require("./errorCodes.js");
 
 var data =[];
+
+// ============================================================================
+// Utils
+function checkRequiredValue(val, type) {
+	if(typeof val != type)
+		throw "Type of '" + val + "' must be " + type;	
+}
+
+function checkOptionalValue(val, type) {
+	if(typeof val === "undefined")
+		return;
+	
+	checkRequiredValue(val, type);
+}
 
 // ============================================================================
 // Rooms
@@ -44,6 +59,10 @@ function checkCode(code) {
 }
 
 function createRoom(name, code1, code2) {
+	checkRequiredValue(name, "string");
+	checkRequiredValue(code1, "number");
+	checkRequiredValue(code2, "number");
+	
 	checkRoomName(name);
 	checkCode(code1);
 	checkCode(code2);
@@ -63,12 +82,14 @@ function getRoom(index) {
 }
 
 function updateRoomAt(index, name, code1, code2) {
+	checkOptionalValue(index, "number");
+	checkOptionalValue(name, "string");
+	checkOptionalValue(code1, "number");
+	checkOptionalValue(code2, "number");
+	
 	checkRoom(index);
-		
-	for(var i = 0; i < data[index].devices.length; i++)
-		if(data[index].devices.name == name)
-			throw "Room with this name already exists";	
-			
+	checkRoomName(name);
+	
 	data[index].name = name || data[index].name;
 	data[index].code1 = code1 || data[index].code1;
 	data[index].code2 = code2 || data[index].code2;
@@ -76,6 +97,8 @@ function updateRoomAt(index, name, code1, code2) {
 }
 
 function deleteRoomAt(index) {
+	checkRequiredValue(index, "number");
+	
 	checkRoom(index);
 	
 	data.splice(index, 1);
@@ -86,7 +109,7 @@ function deleteRoomAt(index) {
 // Devices
 function checkDeviceName(index, name) {
 	for(var i = 0; i < data[index].devices.length; i++)
-		if(data[index].devices.name == name)
+		if(data[index].devices[i].name == name)
 			throw "Device already exists";
 }
 
@@ -98,8 +121,12 @@ function checkDevice(roomIndex, deviceIndex) {
 }
 
 function createDeviceAt(index, name, code) {
+	checkRequiredValue(index, "number");
+	checkRequiredValue(name, "string");
+	checkRequiredValue(code, "number");
+	
 	checkRoom(index);
-	checkDeviceName(name);
+	checkDeviceName(index, name);
 	checkCode(code);
 	
 	data[index].devices.push({name: name, code: code, timeout: {}, timers: [] });
@@ -109,7 +136,7 @@ function createDeviceAt(index, name, code) {
 function getDevices(roomIndex) {
 	checkRoom(roomIndex);
 	
-	return copy(data[roomIndex].device);
+	return copy(data[roomIndex].devices);
 }
 
 function getDevice(roomIndex, deviceIndex) {
@@ -119,6 +146,11 @@ function getDevice(roomIndex, deviceIndex) {
 }
 
 function updateDeviceAt(roomIndex, deviceIndex, name, code) {
+	checkOptionalValue(roomIndex, "number");
+	checkOptionalValue(deviceIndex, "number");
+	checkOptionalValue(name, "string");
+	checkOptionalValue(code, "number");
+	
 	checkDevice(roomIndex, deviceIndex);
 	checkDeviceName(roomIndex, name);
 	checkCode(code);
@@ -129,6 +161,9 @@ function updateDeviceAt(roomIndex, deviceIndex, name, code) {
 }
 
 function deleteDeviceAt(roomIndex, deviceIndex) {
+	checkRequiredValue(roomIndex, "number");
+	checkRequiredValue(deviceIndex, "number");
+	
 	checkDevice(roomIndex, deviceIndex);
 	
 	data[roomIndex].device.splice(deviceIndex, 1);
@@ -138,6 +173,11 @@ function deleteDeviceAt(roomIndex, deviceIndex) {
 // ============================================================================
 // Timeouts
 function setDeviceTimeoutAt(roomIndex, deviceIndex, timeoutIn, operation) {
+	checkRequiredValue(roomIndex, "number");
+	checkRequiredValue(deviceIndex, "number");
+	checkRequiredValue(timeoutIn, "string");
+	checkRequiredValue(operation, "number");
+	
 	checkDevice(roomIndex, deviceIndex);
 	
 	data[roomIndex].device[deviceIndex].timeout = { time: timeoutIn, operation: operation };
@@ -155,6 +195,9 @@ function getDeviceTimeoutAt(roomIndex, deviceIndex) {
 }
 
 function clearDeviceTimeoutAt(roomIndex, deviceIndex) {
+	checkRequiredValue(roomIndex, "number");
+	checkRequiredValue(deviceIndex, "number");
+	
 	checkDevice(roomIndex, deviceIndex);
 	
 	data[roomIndex].device[deviceIndex].timeout = {};
@@ -167,7 +210,7 @@ function copy(obj) {
 
 function load() {
 	try {
-		JSON.parse(fs.readFileSync("database.json"));
+		data = JSON.parse(fs.readFileSync("database.json"));
 	} catch(e) {
 		data = [];
 		
@@ -180,7 +223,7 @@ function load() {
 }
 
 function save() {
-	fs.writeFileSync("database.json", data);
+	fs.writeFileSync("database.json", JSON.stringify(data, null, 4));
 }
 
 load();
