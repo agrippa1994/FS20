@@ -4,12 +4,16 @@
 /* global process */
 /* global fs */
 //--------------------------------------------------------------------------------------
-// These libraries can be downloaded via npm ("npm install express mysql rwlock serialport body-parser")
+// These libraries can be downloaded via npm ("npm install express mysql rwlock serialport body-parser async")
+
 var express = require("express"),
-	mysql = require("mysql"),
+	mysql = require("./mysql.js"),
+	database = require("./database.js"),
+	errorCodes = require("./errorCodes.js"),
 	rwlock = require("rwlock"),
 	serialPort = require("serialport")
 	bodyParser = require("body-parser"),
+	async = require("async"),
 	fs = require("fs"),
 	util = require("util")
 ;
@@ -56,25 +60,6 @@ try {
 
 // Adjust config
 config.serialInterface.simulate = config.serialInterface.simulate || false;
-
-//--------------------------------------------------------------------------------------
-// Create MySQL connection
-var mysqlConnection = mysql.createConnection(config.mysqlData);
-
-mysqlConnection.connect(function(error){
-	if(error) {
-		println("Error while connecting to the main database: " + error);
-		process.exit(1);
-	}
-	println("Connection to the database was successfull!");
-});
-
-setInterval(function() {
-	mysqlConnection.ping(function(err) {
-		if(err)
-			println("Error while pinging mysql database: " + err);
-	});
-}, 2000);
 
 //--------------------------------------------------------------------------------------
 // Connection to the FS20 serial interface
@@ -208,6 +193,7 @@ function setDeviceStateInRoom(roomID, deviceID, state, callback) {
 
 //--------------------------------------------------------------------------------------
 // Process timeout-timer
+/*
 setInterval(function(){
 	mysqlConnection.query("SELECT * FROM device", function(error, devices) {
 		if(error) {
@@ -238,7 +224,7 @@ setInterval(function(){
 		});
 	});
 }, 1000);
-
+*/
 //--------------------------------------------------------------------------------------
 // Create express server
 var app = express();
@@ -284,275 +270,103 @@ app.use(function(req, res, next) {
 });
 
 
-// Router for the HTTP application
-app.get("/api/room", function(req, res) {
-	mysqlConnection.query("SELECT * FROM room", function(err, rows) {
-		res.sendObject(rows);
-	});
+// ============================================================================
+// /api/rooms
+app.get("/api/rooms", function(req, res) {
+	try {
+		res.sendObject(database.getRooms());
+	} catch(e) {
+		res.sendError(0, e);
+	}
 });
-
-app.get("/api/", function(req, res) {
-	var queryStr = "SELECT room.id as room_id, room.name as room_name, room.room_code_1 as rc1, room.room_code_2 as rc2, device.id as device_id, device.name as device_name, device.device_code, device.room_id as device_room_id FROM room INNER JOIN device";
-	mysqlConnection.query(queryStr, function(err, rows) {
-		if(err)
-			return res.sendError(ERROR_MYSQL_ERROR, "Database error!");
-
-		var rooms = [];
-		rows.forEach(function(device){
-			var roomIndex = -1;
-			var isRoomInArray = rooms.some(function(room, index) {
-				if(device.room_id === room.id) {
-					roomIndex = index;
-					return true;
-				}
-				return false;
-			});
-
-			if(!isRoomInArray) {
-				roomIndex = rooms.push({ 
-					id: device.room_id,
-					name: device.room_name,
-					code1: device.rc1,
-					code2: device.rc2,
-					devices: []
-				}) - 1;
-			}
-
-			rooms[roomIndex].devices.push({ 
-				id: device.device_id,
-				name: device.device_name,
-				code: device.device_code
-			});
-		});
-
-		res.sendObject(rooms);
-	});
-});
-
-app.get("/api/room", function(req, res) {
-    mysqlConnection.query("SELECT * FROM room", function(err, rows){
-		if(err)
-			return res.sendError(ERROR_MYSQL_ERROR, "Database error!");
-		res.sendObject(rows);
-	});
-});
-
-app.post("/api/room", function(req, res) {
-	if(req.validateJSONAndSendError({ "name": "string", "room_code_1": "number", "room_code_2": "number" }))
-		return;
-
-	if(!fs20.isValidCode(req.body.room_code_1) || !fs20.isValidCode(req.body.room_code_2))
-		return res.sendError(ERROR_BAD_FS20_CODE, "Bad FS20 code!");
-
-	var insertValues = [req.body.name, req.body.room_code_1, req.body.room_code_2];
-	mysqlConnection.query("INSERT INTO room (name, room_code_1, room_code_2) VALUES (?, ?, ?)", insertValues, function(err, result) {
-		if(err)
-			return res.sendError(ERROR_MYSQL_ERROR, "Database error!");
-		res.sendObject({ id: result.insertId });
-	});
-});
-
-app.get("/api/room/:room_id", function(req, res) {
-    mysqlConnection.query("SELECT * FROM room WHERE id = ?", [req.params.room_id], function(err, rows){
-		if(err)
-			return res.sendError(ERROR_MYSQL_ERROR, "Database error!");
-        
-        if(rows.length === 0)
-			return res.sendError(ERROR_NO_MYSQL_RESOURCE, "No room for the given id!");
-        
-		res.sendObject(rows[0]);
-	});
-});
-
-app.post("/api/room/:room_id", function(req, res) {
-    if(req.validateJSONAndSendError({ "name": "string", "room_code_1": "number", "room_code_2": "number" }))
-		return;
-    
-    if(!fs20.isValidCode(req.body.room_code_1) || !fs20.isValidCode(req.body.room_code_2))
-		return res.sendError(ERROR_BAD_FS20_CODE, "Bad FS20 code!");
-    
-    var updateValues = [req.body.name, req.body.room_code_1, req.body.room_code_2, req.params.room_id];
-    mysqlConnection.query("UPDATE room SET name = ?, room_code_1 = ?, room_code_2 = ? WHERE id = ?", updateValues, function(err, result) {
-        if(err)
-            return res.sendError(ERROR_MYSQL_ERROR, "Database error!");
-        
-        if(result.affectedRows === 0)
-            return res.sendError(ERROR_NO_MYSQL_RESOURCE, "Nothing has been updated!");
-        
-        res.sendObject({ id: req.params.room_id });
-    });
-});
-
-app.delete("/api/room/:room_id", function(req, res) {
-    mysqlConnection.query("DELETE FROM room WHERE id = ?", [req.params.room_id], function(err, result) {
-        if(err)
-            return res.sendError(ERROR_MYSQL_ERROR, "Database error!");
-        
-        if(result.affectedRows === 0)
-            return res.sendError(ERROR_NO_MYSQL_RESOURCE, "Nothing has been deleted!");
-            
-        mysqlConnection.query("DELETE FROM device WHERE room_id = ?", [req.params.room_id], function(err, result) {
-            if(err)
-                return res.sendError(ERROR_MYSQL_ERROR, "Database error!");
-            
-            return res.sendObject({ id: req.params.room_id });
-        });
-    });
-});
-
-app.get("/api/room/:room_id/device", function(req, res) {
-	mysqlConnection.query("SELECT * FROM device WHERE room_id = ?", [req.params.room_id], function(err, rows){
-		if(err)
-			return res.sendError(ERROR_MYSQL_ERROR, "Database error!");
-		res.sendObject(rows);
-	});
-});
-
-app.post("/api/room/:room_id/device", function(req, res) {
-	if(req.validateJSONAndSendError({ "name": "string", "device_code": "number" }))
-		return;
-
-	if(!fs20.isValidCode(req.body.device_code))
-		return res.sendError(ERROR_BAD_FS20_CODE, "Bad FS20 code!");
-
-	mysqlConnection.query("SELECT * FROM room WHERE id = ?", [req.params.room_id], function(err, rows) {
-		if(err)
-			return res.sendError(ERROR_MYSQL_ERROR, "Database error!");
-
-		if(rows.length === 0)
-			return res.sendError(ERROR_NO_MYSQL_RESOURCE, "No room for the given id!");
-
-        var insertValues = [req.params.room_id, req.body.name, req.body.device_code];
-        mysqlConnection.query("INSERT INTO device (room_id, name, device_code) VALUES (?, ?, ?)", insertValues, function(err, result) {
-            if(err)
-                return res.sendError(ERROR_MYSQL_ERROR, "Database error!");
-            res.sendObject({ id: result.insertId });
-        });
-	});
-});
-
-app.get("/api/room/:room_id/device/:device_id", function(req, res) {
-    mysqlConnection.query("SELECT * FROM device WHERE room_id = ? AND id = ?", [req.params.room_id, req.params.device_id], function(err, rows){
-		if(err)
-			return res.sendError(ERROR_MYSQL_ERROR, "Database error!");
-        
-        if(rows.length === 0)
-			return res.sendError(ERROR_NO_MYSQL_RESOURCE, "No room for the given id!");
-        
-		res.sendObject(rows[0]);
-	});
-});
-
-app.post("/api/room/:room_id/device/:device_id", function(req, res) {
-    if(req.validateJSONAndSendError({ "name": "string", "device_code": "number" }))
-		return;
-
-	if(!fs20.isValidCode(req.body.device_code))
-		return res.sendError(ERROR_BAD_FS20_CODE, "Bad FS20 code!");
-
-    var updateValues = [req.body.name, req.body.device_code, req.params.room_id, req.params.device_id];
-    mysqlConnection.query("UPDATE device SET name = ?, device_code = ? WHERE room_id = ? AND id = ?", updateValues, function(err, result) {
-        if(err)
-            return res.sendError(ERROR_MYSQL_ERROR, "Database error!");
-
-        if(result.affectedRows === 0)
-            return res.sendError(ERROR_NO_MYSQL_RESOURCE, "Nothing has been updated!");
-
-        res.sendObject({ id: req.params.device_id });
-    });   
-});
-
-app.delete("/api/room/:room_id/device/:device_id", function(req, res) {
-    mysqlConnection.query("DELETE FROM device WHERE room_id = ? AND id = ?", [req.params.room_id, req.params.device_id], function(err, rows) {
-        if(err)
-			return res.sendError(ERROR_MYSQL_ERROR, "Database error!");
-        
-        if(rows.length === 0)
-            return res.sendError(ERROR_MYSQL_DELETION_FAILED, "Device not found!");
-        
-        return res.sendObject({ deleteCount: rows.length });
-    });
-});
-
-app.get("/api/room/:room_id/device/:device_id/timeout", function(req, res) {
-	mysqlConnection.query("SELECT * FROM device WHERE room_id = ? AND id = ?", [req.params.room_id, req.params.device_id], function(err, rows) {
-        if(err)
-			return res.sendError(ERROR_MYSQL_ERROR, "Database error!");
-        
-        if(rows.length === 0)
-            return res.sendError(ERROR_MYSQL_DELETION_FAILED, "Device not found!");
-        
-		var sendee = {};
-		if(!rows[0].timeout_in_use) 
-			sendee = { hasTimeout: false };
-		else
-			sendee = { hasTimeout: true, timeoutIn: rows[0].timeout_time - (new Date().getTime() / 1000.0) };
-			
-        return res.sendObject(sendee);
-    });
-});
-
-app.post("/api/room/:room_id/device/:device_id/timeout", function(req, res) {
-	if(req.validateJSONAndSendError({ "seconds": "number", "operation": "boolean" }))
-		return;
-		
-	mysqlConnection.query(
-		"UPDATE device SET ? WHERE device.room_id = ? AND device.id = ?", [{
-			timeout_in_use: 1, 
-			timeout_time: (new Date().getTime() / 1000.0) + req.body.seconds
-		}, req.params.room_id, req.params.device_id], function(err, result) {
-			if(err)
-				return res.sendError(ERROR_MYSQL_ERROR, "Database error!");
-			
-			if(result.affectedRows === 0)
-				return res.sendError(ERROR_NO_MYSQL_RESOURCE, "Nothing has been updated!");
-			
-			res.sendObject({ id: req.params.device_id });
-		}
-	);
-});
-
-app.delete("/api/room/:room_id/device/:device_id/timeout", function(req, res) {
-	mysqlConnection.query(
-		"UPDATE device SET ? WHERE device.room_id = ? AND device.id = ?", [{
-			timeout_in_use: 0,
-			timeout_time: 0.0,
-			timeout_operation: 0	
-		}, req.params.room_id, req.params.device_id], function(err, result) {
-			if(err)
-				return res.sendError(ERROR_MYSQL_ERROR, "Database error!");
-			
-			if(result.affectedRows === 0)
-				return res.sendError(ERROR_NO_MYSQL_RESOURCE, "Nothing has been updated!");
-			
-			res.sendObject({ id: req.params.device_id });
-		}
-	);
-});
-
-app.get("/api/room/:room_id/device/:device_id/:command", function(req, res) {
-	var command = req.params.command;
-
-	// Check, if :command is valid
-	if(command != "enable" && command != "disable")
-		return res.sendError(ERROR_INVALID_COMMAND, "Invalid command. Valid commands: enable | disable");
-
-	var state = {
-		"enable": true,
-		"disable": false
-	} [command] || true;
 	
-	setDeviceStateInRoom(req.params.room_id, req.params.device_id, state, function(error, fs20RetVal) {
-		if(error)
-			return res.sendError(ERROR_BAD_FS20_EXECUTION, error);
-			
-		if(fs20RetVal < 0x00 || fs20RetVal > 0x09)
-			return res.sendError(ERROR_BAD_FS20_EXECUTION, "Bad FS20 command execution!");
-				
-		res.sendObject({ exitCode: fs20RetVal, exitText: FS20_EXIT_CODES_TEXT[fs20RetVal] });
-	});
+app.post("/api/rooms", function(req, res) {
+	try {
+		database.createRoom(req.body.name, req.body.code1, req.body.code2);
+		res.sendObject({success: true});
+	} catch(e) {
+		res.sendError(0, e);
+	}
 });
 
+
+// ============================================================================
+// /api/room/:roomID(\\d+)
+app.get("/api/room/:roomID(\\d+)", function(req, res) {
+	try {
+		res.sendObject(database.getRoom(parseInt(req.params.roomID)));
+	} catch(e) {
+		res.sendError(0, e);
+	}
+});
+
+app.post("/api/room/:roomID(\\d+)", function(req, res) {
+	try {
+		database.updateRoomAt(parseInt(req.params.roomID), req.body.name, req.body.code1, req.body.code2);
+		res.sendObject({success: true});
+	} catch(e) {
+		res.sendError(0, e);
+	}
+});
+
+app.delete("/api/room/:roomID(\\d+)", function(req, res) {
+	try {
+		database.deleteRoomAt(parseInt(req.params.roomID));
+		res.sendObject({success: true});
+	} catch(e) {
+		res.sendError(0, e);
+	}
+});
+
+// ============================================================================
+// /api/room/:roomID/devices
+app.get("/api/room/:roomID(\\d+)/devices", function(req, res) {
+	try {
+		res.sendObject(database.getDevices(parseInt(req.params.roomID)));
+	} catch(e) {
+		res.sendError(0, e);
+	}
+});
+
+app.post("/api/room/:roomID(\\d+)/devices", function(req, res) {
+	try {
+		database.createDeviceAt(parseInt(req.params.roomID), req.body.name, req.body.code);
+		res.sendObject({success: true});
+	} catch(e) {
+		res.sendError(0, e);
+	}
+});
+
+// ============================================================================
+// /api/room/:roomID/device/:deviceID
+app.post("/api/room/:roomID(\\d+)/device/:deviceID(\\d+)", function(req, res) {
+	try {
+		res.sendObject(database.getDevice(parseInt(req.params.roomID), parseInt(req.params.deviceID)));
+	} catch(e) {
+		res.sendError(0, e);
+	}
+});
+
+app.post("/api/room/:roomID(\\d+)/device/:deviceID(\\d+)", function(req, res) {
+	try {
+		database.updateDeviceAt(parseInt(req.params.roomID), parseInt(req.params.deviceID), req.body.name, req.body.code);
+		res.sendObject({success: true});
+	} catch(e) {
+		res.sendError(0, e);
+	}
+});
+
+app.delete("/api/room/:roomID(\\d+)/device/:deviceID(\\d+)", function(req, res) {
+	try {
+		database.deleteDeviceAt(parseInt(req.params.roomID), parseInt(req.params.deviceID));
+		res.sendObject({success: true});
+	} catch(e) {
+		res.sendError(0, e);
+	}
+});
+
+// ============================================================================
+// *
 app.get("*", function(req, res) {
 	res.sendFile(__dirname + "/web/" + (req.params["0"] || "index.html"), function(err) {
 		if(err) {
