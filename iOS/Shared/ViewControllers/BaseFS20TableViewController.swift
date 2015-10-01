@@ -53,6 +53,10 @@ class BaseFS20TableViewController: UITableViewController, DeviceTableViewCellDel
         return self.houses[section].name
     }
     
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 75.0
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
     }
@@ -91,8 +95,7 @@ class BaseFS20TableViewController: UITableViewController, DeviceTableViewCellDel
             return
         }
         
-        // Open Settings
-        //UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+        self.invalidUrl()
     }
     
     func refresh(completion: (Bool -> Void)?) {
@@ -118,6 +121,10 @@ class BaseFS20TableViewController: UITableViewController, DeviceTableViewCellDel
                 completion?(true)
             }
         }
+    }
+    
+    func invalidUrl() {
+        
     }
     
     func refreshFailed() {
