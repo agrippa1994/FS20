@@ -10,35 +10,32 @@ import Foundation
 
 public class FS20 {
     public struct House {
-        var id: Int
         var name: String
         var code1: Int
         var code2: Int
         var devices: [Device]
         
         private init(fromJSON: [String: AnyObject]) {
-            self.id = fromJSON.cast("id", def: 0)
             self.name = fromJSON.cast("name", def: "")
-            self.code1 = fromJSON.cast("code1", def: 1111)
-            self.code2 = fromJSON.cast("code2", def: 1111)
+            self.code1 = fromJSON.cast("code1", def: 0x00)
+            self.code2 = fromJSON.cast("code2", def: 0x00)
             
             self.devices = []
             for device in fromJSON.cast("devices", def: [[String: AnyObject]]()) {
-                self.devices += [Device(fromJSON: device)]
+                self.devices += [Device(house: self, fromJSON: device)]
             }
         }
     }
     
     public struct Device {
-        //var house: House
-        var id: Int
+        var house: House?
         var name: String
         var code: Int
         
-        private init(fromJSON: [String: AnyObject]) {
-            self.id = fromJSON.cast("id", def: 0)
+        private init(house: House, fromJSON: [String: AnyObject]) {
+            self.house = house
             self.name = fromJSON.cast("name", def: "")
-            self.code = fromJSON.cast("code", def: 0)
+            self.code = fromJSON.cast("code", def: 0x00)
         }
         
         public func enable() {
@@ -64,17 +61,22 @@ public class FS20 {
                 return completion(nil)
             }
             
-            if let json = (try? NSJSONSerialization.JSONObjectWithData(data!, options: [])) as? [[String: AnyObject]] {
-                var houses: [House] = []
-                for entry in json {
-                    houses += [
-                        House(fromJSON: entry)
-                    ]
+            do {
+                if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? [[String: AnyObject]] {
+                    var houses: [House] = []
+                    for entry in json {
+                        houses += [
+                            House(fromJSON: entry)
+                        ]
+                    }
+                    
+                    return completion(houses)
                 }
-                
-                return completion(houses)
             }
-            
+            catch {
+                NSLog("Deserialization error \(error)")
+            }
+        
             return completion(nil)
         }
     }
