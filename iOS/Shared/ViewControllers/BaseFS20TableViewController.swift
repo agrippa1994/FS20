@@ -13,7 +13,7 @@ class BaseFS20TableViewController: UITableViewController, DeviceTableViewCellDel
     
     // MARK: - Vars
     private var fs20: FS20?
-    private var houses: [FS20.House] = []
+    private var rooms: [FS20.Room] = []
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -24,18 +24,18 @@ class BaseFS20TableViewController: UITableViewController, DeviceTableViewCellDel
     
     // MARK: - Table view data source
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return self.houses.count
+        return self.rooms.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.houses[section].devices.count
+        return self.rooms[section].devices.count
     }
 
     // MARK: - Table view delegate
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("EntryCell", forIndexPath: indexPath) as! DeviceTableViewCell
 
-        cell.titleLabel.text = self.houses[indexPath.section].devices[indexPath.row].name
+        cell.titleLabel.text = self.rooms[indexPath.section].devices[indexPath.row].name
         cell.delegate = self
         
         return cell
@@ -50,7 +50,7 @@ class BaseFS20TableViewController: UITableViewController, DeviceTableViewCellDel
     }
 
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return self.houses[section].name
+        return self.rooms[section].name
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -64,12 +64,12 @@ class BaseFS20TableViewController: UITableViewController, DeviceTableViewCellDel
     // MARK: - Device table view cell delegate
     func deviceTableViewCellEnable(cell: DeviceTableViewCell) {
         let path = self.tableView.indexPathForCell(cell)!
-        self.houses[path.section].devices[path.row].enable()
+        self.rooms[path.section].devices[path.row].enable()
     }
     
     func deviceTableViewCellDisable(cell: DeviceTableViewCell) {
         let path = self.tableView.indexPathForCell(cell)!
-        self.houses[path.section].devices[path.row].disable()
+        self.rooms[path.section].devices[path.row].disable()
     }
     
     // MARK: - Methods
@@ -105,18 +105,18 @@ class BaseFS20TableViewController: UITableViewController, DeviceTableViewCellDel
         }
         
         self.refreshControl?.beginRefreshing()
-        self.fs20?.houses { houses in
+        self.fs20?.rooms { rooms in
             dispatch_async(dispatch_get_main_queue()) {
                 defer {
                     self.refreshControl?.endRefreshing()
                 }
                 
-                if houses == nil {
+                if rooms == nil {
                     completion?(false)
                     return
                 }
                 
-                self.houses = houses!
+                self.rooms = rooms!
                 self.tableView.reloadData()
                 completion?(true)
             }

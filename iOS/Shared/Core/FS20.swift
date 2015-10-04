@@ -9,33 +9,38 @@
 import Foundation
 
 public class FS20 {
-    public struct House {
+    public struct Room {
+        var id: Int
         var name: String
         var code1: Int
         var code2: Int
         var devices: [Device]
         
-        private init(fromJSON: [String: AnyObject]) {
-            self.name = fromJSON.cast("name", def: "")
-            self.code1 = fromJSON.cast("code1", def: 0x00)
-            self.code2 = fromJSON.cast("code2", def: 0x00)
-            
+        private init(fromJSON: [String: AnyObject], withID id: Int) throws {
+            self.id = id
+            self.name = try fromJSON.cast("name")
+            self.code1 = try fromJSON.cast("code1")
+            self.code2 = try fromJSON.cast("code2")
+         
             self.devices = []
-            for device in fromJSON.cast("devices", def: [[String: AnyObject]]()) {
-                self.devices += [Device(house: self, fromJSON: device)]
+            let jsonDevices: [[String: AnyObject]] = try fromJSON.cast("devices")
+            for (id, device) in jsonDevices.enumerate() {
+                self.devices += [try Device(room: self, fromJSON: device, withID:id)]
             }
         }
     }
     
     public struct Device {
-        var house: House?
+        var id: Int
+        var room: Room?
         var name: String
         var code: Int
         
-        private init(house: House, fromJSON: [String: AnyObject]) {
-            self.house = house
-            self.name = fromJSON.cast("name", def: "")
-            self.code = fromJSON.cast("code", def: 0x00)
+        private init(room: Room, fromJSON: [String: AnyObject], withID id: Int) throws {
+            self.id = id
+            self.room = room
+            self.name = try fromJSON.cast("name")
+            self.code = try fromJSON.cast("code")
         }
         
         public func enable() {
@@ -55,23 +60,26 @@ public class FS20 {
         self.sharedSession = NSURLSession.sharedSession()
     }
     
-    func houses(completion: [House]? -> Void) {
-        self.dataTask("/api") { data, response, error in
+    func rooms(completion: [Room]? -> Void) {
+        self.dataTask("/api/rooms") { data, response, error in
             if data == nil || error != nil {
                 return completion(nil)
             }
             
             do {
                 if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? [[String: AnyObject]] {
-                    var houses: [House] = []
-                    for entry in json {
-                        houses += [
-                            House(fromJSON: entry)
+                    var rooms: [Room] = []
+                    for (id, entry) in json.enumerate() {
+                        rooms += [
+                            try Room(fromJSON: entry, withID:id)
                         ]
                     }
                     
-                    return completion(houses)
+                    return completion(rooms)
                 }
+            }
+            catch DictionaryCastError.TypeError(let message) {
+                NSLog("JSON cast error: \(message)")
             }
             catch {
                 NSLog("Deserialization error \(error)")

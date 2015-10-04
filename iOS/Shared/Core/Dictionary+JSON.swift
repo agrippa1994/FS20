@@ -8,12 +8,16 @@
 
 import Foundation
 
+enum DictionaryCastError: ErrorType {
+    case TypeError(message: String)
+}
+
 extension Dictionary {
-    func cast<T>(key: Key, def: T) -> T {
+    func cast<T>(key: Key) throws -> T {
         if let val = self[key] as? T {
             return val
         }
         
-        return def
+        throw DictionaryCastError.TypeError(message: "Key \(key) doesn't conform to type \(T.self)")
     }
 }
