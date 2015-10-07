@@ -1,12 +1,4 @@
 {
-	"mysqlData" : {
-		"host"     : "localhost",
-		"user"     : "fs20",
-		"password" : "fs20",
-		"database" : "fs20",
-		"port": 3306
-	},
-
 	"serialInterface" :  {
 		"dev" : "COM3",
 		"baud": 38400,
