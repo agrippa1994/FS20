@@ -1,12 +1,12 @@
 var winston = require("winston");
 
-var logger = new (winston.Logger)({
+var logger = new winston.Logger({
 	transports: [
-		new (winston.transports.Console)({ 
+		new winston.transports.Console({ 
 			timestamp:true,
 			colorize: true
 		}),
-		new (winston.transports.File)({ 
+		new winston.transports.File({ 
 			timestamp: true, 
 			filename: "log.txt" 
 		})
