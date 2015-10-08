@@ -28,13 +28,9 @@ var data =[];
 
 // ============================================================================
 // Utils
-function throwError(code) {
-	throw { code: code, message: errorCodes.messages[code] || "" };	
-}
-
 function checkRequiredValue(val, type) {
 	if(typeof val != type)
-		throw "Type of '" + val + "' must be " + type;	
+		errorCodes.throwError(errorCodes.codes.DATABASE_TYPE_ERROR);
 }
 
 function checkOptionalValue(val, type) {
@@ -48,18 +44,18 @@ function checkOptionalValue(val, type) {
 // Rooms
 function checkRoom(index) {
 	if(index >= data.length)
-		throwError(errorCodes.codes.DATABASE_TYPE_ERROR);
+		errorCodes.throwError(errorCodes.codes.DATABASE_NO_ROOM_AT_INDEX);
 }
 
 function checkRoomName(name) {
 	for(var i = 0; i < data.length; i++)
 		if(data[i].name == name)
-			throwError(errorCodes.codes.DATABASE_ROOM_EXISTS);
+			errorCodes.throwError(errorCodes.codes.DATABASE_ROOM_EXISTS);
 }
 
 function checkCode(code) {
 	if(code < 0x00 || code > 0xFF)
-		throwError(errorCodes.codes.DATABASE_INVALID_FS20_CODE);
+		errorCodes.throwError(errorCodes.codes.INVALID_FS20_CODE);
 }
 
 function createRoom(name, code1, code2) {
@@ -114,14 +110,14 @@ function deleteRoomAt(index) {
 function checkDeviceName(index, name) {
 	for(var i = 0; i < data[index].devices.length; i++)
 		if(data[index].devices[i].name == name)
-			throwError(errorCodes.codes.DATABASE_DEVICE_EXISTS);
+			errorCodes.throwError(errorCodes.codes.DATABASE_DEVICE_EXISTS);
 }
 
-function checkDevice(roomIndex, deviceIndex) {
+ function checkDevice(roomIndex, deviceIndex) {
 	checkRoom(roomIndex);
 	
 	if(deviceIndex >= data[roomIndex].devices.length)
-		throwError(errorCodes.codes.DATABASE_NO_DEVICE_AT_INDEX);
+		errorCodes.throwError(errorCodes.codes.DATABASE_NO_DEVICE_AT_INDEX);
 }
 
 function createDeviceAt(index, name, code) {
@@ -146,7 +142,7 @@ function getDevices(roomIndex) {
 function getDevice(roomIndex, deviceIndex) {
 	checkDevice(roomIndex, deviceIndex);
 	
-	return copy(data[roomIndex].device[deviceIndex]);
+	return copy(data[roomIndex].devices[deviceIndex]);
 }
 
 function updateDeviceAt(roomIndex, deviceIndex, name, code) {
@@ -159,8 +155,8 @@ function updateDeviceAt(roomIndex, deviceIndex, name, code) {
 	checkDeviceName(roomIndex, name);
 	checkCode(code);
 			
-	data[roomIndex].device[deviceIndex].name = name || data[roomIndex].device[deviceIndex].name;
-	data[roomIndex].device[deviceIndex].code = code || data[roomIndex].device[deviceIndex].code;
+	data[roomIndex].devices[deviceIndex].name = name || data[roomIndex].devices[deviceIndex].name;
+	data[roomIndex].devices[deviceIndex].code = code || data[roomIndex].devices[deviceIndex].code;
 	save();
 }
 
@@ -170,7 +166,7 @@ function deleteDeviceAt(roomIndex, deviceIndex) {
 	
 	checkDevice(roomIndex, deviceIndex);
 	
-	data[roomIndex].device.splice(deviceIndex, 1);
+	data[roomIndex].devices.splice(deviceIndex, 1);
 	save();
 }
 
@@ -193,7 +189,7 @@ function getDeviceTimeoutAt(roomIndex, deviceIndex) {
 	
 	var timeout = data[roomIndex].device[deviceIndex].timeout;
 	if(!("time" in timeout && "operation" in timeout))
-		throwError(errorCodes.codes.DATABASE_NO_TIMEOUT_SET);
+		errorCodes.throwError(errorCodes.codes.DATABASE_NO_TIMEOUT_SET);
 		
 	return copy(timeout);
 }
