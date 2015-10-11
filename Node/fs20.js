@@ -1,4 +1,4 @@
-var rwlock = require("rwlock"),
+var ReadWriteLock = require("rwlock"),
 	SerialPort = require("serialport"),
 	errorCodes = require("./errorCodes.js");
 	
@@ -38,7 +38,7 @@ function FS20(deviceName, baudrate, isSimulating, connectHandler, disconnectHand
 		if(isNaN(code))
 			errorCodes.throwError(errorCodes.codes.INVALID_FS20_CODE);
 			
-		if(code <= 0x00 || code > 0xFF)
+		if(code < 0x00 || code > 0xFF)
 			errorCodes.throwError(errorCodes.codes.INVALID_FS20_CODE);
 	}
 	
@@ -70,19 +70,20 @@ function FS20(deviceName, baudrate, isSimulating, connectHandler, disconnectHand
 				
 				that.device.on("data", function(recvData) {
 					release();
+					
 					var exitCode = recvData[2];
 					callback(null, {code: exitCode, text: FS20_EXIT_CODES_TEXT[exitCode] || "Invalid Exit Code" });
 					that.device.removeAllListeners("data");
 				});
 			});
+			
 		});
 	}
 	
 	this.simulating = isSimulating || false;
 	this.device = new SerialPort.SerialPort(deviceName, serialSettings, false);
-	this.mutex = new rwlock();
+	this.mutex = new ReadWriteLock ();
 	this.setDeviceState = setDeviceState;
-
 	this.device.open(internalConnectHandler);
 }
 
