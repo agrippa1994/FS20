@@ -11,26 +11,25 @@ angular.module("services", [])
 
 .factory("FS20", function($resource) {
     return {
-        all: $resource("/api"),
-        
-        rooms: $resource("/api/room"),
+        rooms: $resource("/api/rooms"),
         
         room: function(roomID) {
-            return $resource("/api/room/:roomID", { roomID: roomID });   
+            return $resource("/api/rooms/:roomID", { roomID: roomID });   
         },
         
-        devices: function(roomID) {
-            return $resource("/api/room/:roomID/device", { roomID: roomID });
+        devices: function() {
+            return $resource("/api/devices");
         },
         
-        device: function(roomID, deviceID) {
-            return $resource("/api/room/:roomID/device/:deviceID", { roomID: roomID, deviceID: deviceID });   
+        device: function(deviceID) {
+            return $resource("/api/devices/:deviceID", { deviceID: deviceID }, {
+                "update": { method: "PUT" }
+            });   
         },
         
-        setState: function(device, state) {
-            return $resource("/api/room/:room_id/device/:device_id/:command", null, { getWithTimeout: { method: "GET", timeout: 1000  }}).getWithTimeout({
-                    room_id: device.room_id,
-                    device_id: device.id,
+        setState: function(roomID, deviceID, state) {
+            return $resource("/api/device/:device_id/:command", null, { getWithTimeout: { method: "GET", timeout: 1000  }}).getWithTimeout({
+                    device_id: deviceID,
                     command: (state ? "enable" : "disable")
                 }
             );
@@ -40,31 +39,8 @@ angular.module("services", [])
             var c = parseInt(code);
             if(isNaN(c))
                 return false;
-
-            if(c < 1111 || c > 4444)
-                return false;
-
-            for(var i = 1; i <= 4; i++, c = Math.floor(c / 10))
-                if(c % 10 < 1 || c % 10 > 4)
-                    return false;
-
-            return true;
-        },
-        
-        convertFS20Code: function(code) {
-            if(!fs20.isValidCode(code))
-                return -1;
-
-            for(var i = 1111, hex = 0x00; i<=4444; i++) {
-                if(!fs20.isValidCode(i))
-                    continue;
-
-                if(code == i)
-                    return hex;
-
-                hex++;
-            }
-            return -1;
+                
+            return c >= 0x00 && c <= 0xFF;
         },
         
         germanErrorDescription: function(code) {

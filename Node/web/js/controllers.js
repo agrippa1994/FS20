@@ -20,11 +20,8 @@ angular.module("controllers", [])
         FS20.room(room.id).delete().$promise.then(function() {
             Notification("Info", "Der Raum " + room.name + " wurde gelöscht", "info");
             loadRooms();
-        }, function(response) {
-            if("error" in response.data)
-                Notification("Fehler", FS20.germanErrorDescription(response.data.error), "alert");
-            else
-                Notification("Fehler", "Ein unbekannter Fehler ist aufgetreten!", "alert");
+        }, function() {
+               Notification("Fehler", "Der Raum konnte nicht gelöscht werden", "alert");
         });
     };
     
@@ -36,8 +33,11 @@ angular.module("controllers", [])
 
 .controller("RoomViewController", function($rootScope, $scope, $route, $location, FS20, Notification) {
     // Load the devices
+    var roomID = $route.current.params.roomID;
     function loadDevices() {
-        $scope.devices = FS20.devices($route.current.params.roomID).query();
+        var room = FS20.room(roomID).get(function() {
+            $scope.devices = room.devices;
+        });
     }
     
     loadDevices();
@@ -48,7 +48,7 @@ angular.module("controllers", [])
         $($event.target).addClass("mif-spinner2 mif-ani-spin");
         $($event.target).html("");
         
-        FS20.setState(device, state).$promise.then(function() {
+        FS20.setState(roomID, device.id, state).$promise.then(function() {
             Notification("Erfolg", device.name + " wurde " + stateText);
             $($event.target).removeClass("mif-spinner2 mif-ani-spin");
             
@@ -70,14 +70,11 @@ angular.module("controllers", [])
     
     // The user wants to delete the device
     $scope.onDeleteDevice = function(device, $event) {
-        FS20.device(device.room_id, device.id).delete().$promise.then(function() {
+        FS20.device(device.id).delete().$promise.then(function() {
             Notification("Info", "Gerät " + device.name + " wurde gelöscht", "info");
             loadDevices();
         }, function(response) {
-            if("error" in response.data)
-                Notification("Fehler", FS20.germanErrorDescription(response.data.error), "alert");
-            else
-                Notification("Fehler", "Ein unbekannter Fehler ist aufgetreten!", "alert");
+               Notification("Fehler", "Gerät " + device.name + " konnte nicht gelöscht werden", "alert");
         });
     };
     
@@ -97,12 +94,15 @@ angular.module("controllers", [])
     $scope.name = "";
     $scope.code = "";
 
+    var roomID = $route.current.params.roomID;
+    var deviceID = $route.current.params.deviceID;
+    
     // Whenever a device id is set, a device is edited by the user
     if(typeof $route.current.params.deviceID !== "undefined") {
-        var device = FS20.device($route.current.params.roomID, $route.current.params.deviceID).get(function() {
-            $scope.id = device.id;
+        var device = FS20.device($route.current.params.deviceID).get(function() {
+            $scope.id = $route.current.params.deviceID;
             $scope.name = device.name;
-            $scope.code = device.device_code;
+            $scope.code = device.code;
         });
         
     }
@@ -147,24 +147,18 @@ angular.module("controllers", [])
         if(success) {
             // Insert a new device if the given id is -1 otherwise edit the device
             if($scope.id === -1) {
-                    FS20.devices($route.current.params.roomID).save({ name: $scope.name, device_code: parseInt($scope.code) }).$promise.then(function(data){
+                    FS20.devices().save({ name: $scope.name, code: $scope.code, roomId: roomID }).$promise.then(function(data){
                     Notification("Information", "Gerät " + $scope.name + " wurde hinzugefügt", "info");
-                    $location.path("/room/" + $route.current.params.roomID);
-                }, function(response) {
-                    if("error" in response.data)
-                        Notification("Fehler", FS20.germanErrorDescription(response.data.error.code), "alert");
-                    else
-                        Notification("Fehler", "Ein unbekannter Fehler ist aufgetreten", "alert");
+                    $location.path("/room/" + roomID);
+                }, function() {
+                    Notification("Fehler", "Beim Hinzufügen ist ein Fehler aufgetreten", "alert");
                 }); 
             } else {
-                FS20.device($route.current.params.roomID, $route.current.params.deviceID).save({ name: $scope.name, device_code: parseInt($scope.code) }).$promise.then(function(data) {
+                FS20.device(deviceID).update({ name: $scope.name, code: $scope.code }).$promise.then(function(data) {
                     Notification("Information", "Gerät " + $scope.name + " wurde geändert", "info");
                     $location.path("/room/" + $route.current.params.roomID);
                 }, function(response) {
-                    if("error" in response.data)
-                        Notification("Fehler", FS20.germanErrorDescription(response.data.error.code), "alert");
-                    else
-                        Notification("Fehler", "Ein unbekannter Fehler ist aufgetreten", "alert");
+                    Notification("Fehler", "Beim Speichern ist ein Fehler aufgetreten!", "alert");
                 });
             }
         }

@@ -10,7 +10,7 @@
     <tbody ng-repeat="device in devices">
         <tr>
             <td>{{device.name}}</td>
-            <td>{{device.device_code}}</td>
+            <td>{{device.code}}</td>
             <td>
                 <button class="button success cycle-button" ng-click="onAction(device, 1, $event)">|</button>
                 <button class="button danger cycle-button" ng-click="onAction(device, 0, $event)">O</button>
