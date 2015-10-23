@@ -16,39 +16,33 @@ public class FS20 {
         var code2: Int
         var devices: [Device]
         
-        private init(fromJSON: [String: AnyObject], withID id: Int) throws {
-            self.id = id
+        private init(fromJSON: [String: AnyObject]) throws {
+            self.id = try fromJSON.cast("id")
             self.name = try fromJSON.cast("name")
             self.code1 = try fromJSON.cast("code1")
             self.code2 = try fromJSON.cast("code2")
          
             self.devices = []
             let jsonDevices: [[String: AnyObject]] = try fromJSON.cast("devices")
-            for (id, device) in jsonDevices.enumerate() {
-                self.devices += [try Device(room: self, fromJSON: device, withID:id)]
+            for device in jsonDevices {
+                self.devices += [try Device(room: self, fromJSON: device)]
             }
         }
     }
     
     public struct Device {
         var id: Int
-        var room: Room?
+        var room: Room
         var name: String
         var code: Int
+        var roomId: Int
         
-        private init(room: Room, fromJSON: [String: AnyObject], withID id: Int) throws {
-            self.id = id
+        private init(room: Room, fromJSON: [String: AnyObject]) throws {
             self.room = room
+            self.id = try fromJSON.cast("id")
             self.name = try fromJSON.cast("name")
             self.code = try fromJSON.cast("code")
-        }
-        
-        public func enable() {
-            
-        }
-        
-        public func disable() {
-            
+            self.roomId = try fromJSON.cast("roomId")
         }
     }
     
@@ -69,9 +63,9 @@ public class FS20 {
             do {
                 if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? [[String: AnyObject]] {
                     var rooms: [Room] = []
-                    for (id, entry) in json.enumerate() {
+                    for entry in json {
                         rooms += [
-                            try Room(fromJSON: entry, withID:id)
+                            try Room(fromJSON: entry)
                         ]
                     }
                     
@@ -86,6 +80,31 @@ public class FS20 {
             }
         
             return completion(nil)
+        }
+    }
+    
+    func setDeviceState(device: Device, state: Bool, completion: Int? -> Void) {
+        let stateText = state ? "enable" : "disable"
+        let relPath = "/api/device/\(device.id)/\(stateText)"
+        
+        self.dataTask(relPath) { data, response, error in
+            if(error != nil) {
+                NSLog("DataTask-Error: \(error)")
+                return completion(nil)
+            }
+            
+            if(data == nil) {
+                NSLog("Unknown error (data is nil, but no error occured)")
+                return completion(nil)
+            }
+            
+          
+            guard let decoder = try? NSJSONSerialization.JSONObjectWithData(data!, options: []) as? [String: AnyObject] else {
+                NSLog("Deserialization error @ data (\(data))")
+                return completion(nil)
+            }
+            
+            return completion(decoder?["code"] as? Int)
         }
     }
     

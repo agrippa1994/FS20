@@ -64,12 +64,12 @@ class BaseFS20TableViewController: UITableViewController, DeviceTableViewCellDel
     // MARK: - Device table view cell delegate
     func deviceTableViewCellEnable(cell: DeviceTableViewCell) {
         let path = self.tableView.indexPathForCell(cell)!
-        self.rooms[path.section].devices[path.row].enable()
+        //self.rooms[path.section].devices[path.row].enable()
     }
     
     func deviceTableViewCellDisable(cell: DeviceTableViewCell) {
         let path = self.tableView.indexPathForCell(cell)!
-        self.rooms[path.section].devices[path.row].disable()
+        //self.rooms[path.section].devices[path.row].disable()
     }
     
     // MARK: - Methods
