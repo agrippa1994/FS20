@@ -9,6 +9,7 @@
 var express = require("express"),
 	bodyParser = require("body-parser"),
 	fs = require("fs"),
+    bonjour = require("bonjour")(),
 	database = require("./database.js"),
 	rest = require("./rest.js"),
 	errorCodes = require("./errorCodes.js"),
@@ -129,7 +130,14 @@ app.get("*", function(req, res) {
 
 // ============================================================================
 // Start server
+bonjour.unpublishAll();
 try {
+    bonjour.publish({
+        name: "Zuhause",
+        type: "fs20", 
+        port: config.web.port,
+        protocol: "tcp"
+    });
 	app.listen(config.web.port);
 	logger.info("HTTP server has been successfully started!");
 }

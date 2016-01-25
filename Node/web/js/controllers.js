@@ -147,14 +147,14 @@ angular.module("controllers", [])
         if(success) {
             // Insert a new device if the given id is -1 otherwise edit the device
             if($scope.id === -1) {
-                    FS20.devices().save({ name: $scope.name, code: $scope.code, roomId: roomID }).$promise.then(function(data){
+                    FS20.devices().save({ name: $scope.name, code: parseInt($scope.code), roomId: roomID }).$promise.then(function(data){
                     Notification("Information", "Gerät " + $scope.name + " wurde hinzugefügt", "info");
                     $location.path("/room/" + roomID);
                 }, function() {
                     Notification("Fehler", "Beim Hinzufügen ist ein Fehler aufgetreten", "alert");
                 }); 
             } else {
-                FS20.device(deviceID).update({ name: $scope.name, code: $scope.code }).$promise.then(function(data) {
+                FS20.device(deviceID).update({ name: $scope.name, code: parseInt($scope.code) }).$promise.then(function(data) {
                     Notification("Information", "Gerät " + $scope.name + " wurde geändert", "info");
                     $location.path("/room/" + $route.current.params.roomID);
                 }, function(response) {
