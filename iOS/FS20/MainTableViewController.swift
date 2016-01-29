@@ -65,9 +65,7 @@ class MainTableViewController: BaseFS20TableViewController {
     
     func refreshWithAlertController(completion: (Bool -> Void)?) {
         self.refresh { success in
-            defer {
-                completion?(success)
-            }
+            defer { completion?(success) }
             
             if success {
                 return

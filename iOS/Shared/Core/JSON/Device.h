@@ -15,10 +15,10 @@
 
 @interface Device : JSONModel
 
-@property (assign, nonatomic) int id;
-@property (assign, nonatomic) NSString * _Nonnull name;
-@property (assign, nonatomic) int code;
-@property (assign, nonatomic) int roomId;
+@property (nonatomic) int id;
+@property (nonatomic) NSString * _Nonnull name;
+@property (nonatomic) int code;
+@property (nonatomic) int roomId;
 
 - (void)setDeviceState:(BOOL) state atHost: (NSString * _Nonnull) host withCompletion: (void (^ _Nullable)(JSONModelError * _Nullable, SwitchResult * _Nullable))completion;
 

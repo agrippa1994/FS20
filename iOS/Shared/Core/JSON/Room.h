@@ -18,11 +18,11 @@
 
 @interface Room : JSONModel
 
-@property (assign, nonatomic) int id;
-@property (assign, nonatomic) NSString * _Nonnull name ;
-@property (assign, nonatomic) int code1;
-@property (assign, nonatomic) int code2;
-@property (assign, nonatomic) NSArray<Device> * _Nonnull devices;
+@property (nonatomic) int id;
+@property (nonatomic) NSString * _Nonnull name ;
+@property (nonatomic) int code1;
+@property (nonatomic) int code2;
+@property (nonatomic) NSArray<Device> * _Nonnull devices;
 
 + (void)fetchDataFromHost:(NSString * _Nonnull)host withCompletion: (void (^ _Nonnull)(JSONModelError * _Nullable, NSArray<Room * > * _Nullable))block;
 

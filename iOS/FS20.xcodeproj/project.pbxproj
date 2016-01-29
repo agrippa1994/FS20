@@ -14,8 +14,6 @@
 		3C07742D1BB466C700314EC7 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3C4C36F91BA75A2700C5D726 /* Settings.bundle */; };
 		3C0774381BB47E6300314EC7 /* Dictionary+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0774341BB47E6300314EC7 /* Dictionary+JSON.swift */; };
 		3C0774391BB47E6300314EC7 /* Dictionary+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0774341BB47E6300314EC7 /* Dictionary+JSON.swift */; };
-		3C07743A1BB47E6300314EC7 /* FS20.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0774351BB47E6300314EC7 /* FS20.swift */; };
-		3C07743B1BB47E6300314EC7 /* FS20.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0774351BB47E6300314EC7 /* FS20.swift */; };
 		3C07743C1BB47E6300314EC7 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0774361BB47E6300314EC7 /* Settings.swift */; };
 		3C07743D1BB47E6300314EC7 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0774361BB47E6300314EC7 /* Settings.swift */; };
 		3C07743E1BB47E6300314EC7 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0774371BB47E6300314EC7 /* String+Localization.swift */; };
@@ -73,7 +71,6 @@
 		3C0774231BB463E800314EC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C07742E1BB477AD00314EC7 /* Today-Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Today-Extension.entitlements"; sourceTree = "<group>"; };
 		3C0774341BB47E6300314EC7 /* Dictionary+JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+JSON.swift"; sourceTree = "<group>"; };
-		3C0774351BB47E6300314EC7 /* FS20.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FS20.swift; sourceTree = "<group>"; };
 		3C0774361BB47E6300314EC7 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		3C0774371BB47E6300314EC7 /* String+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
 		3C0774411BB47EDE00314EC7 /* DeviceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceTableViewCell.swift; sourceTree = "<group>"; };
@@ -150,7 +147,6 @@
 			children = (
 				3C42C2631C5C1E00005C2C75 /* JSON */,
 				3C0774341BB47E6300314EC7 /* Dictionary+JSON.swift */,
-				3C0774351BB47E6300314EC7 /* FS20.swift */,
 				3C0774361BB47E6300314EC7 /* Settings.swift */,
 				3C0774371BB47E6300314EC7 /* String+Localization.swift */,
 				3C42C25B1C5C1C82005C2C75 /* FS20-Bridging-Header.h */,
@@ -430,7 +426,6 @@
 				3C42C26F1C5C297D005C2C75 /* SwitchResult.m in Sources */,
 				3C42C26A1C5C1E21005C2C75 /* Device.m in Sources */,
 				3C07743D1BB47E6300314EC7 /* Settings.swift in Sources */,
-				3C07743B1BB47E6300314EC7 /* FS20.swift in Sources */,
 				3C07743F1BB47E6300314EC7 /* String+Localization.swift in Sources */,
 				3C0774471BB47F2600314EC7 /* BaseFS20TableViewController.swift in Sources */,
 			);
@@ -449,7 +444,6 @@
 				3C0774381BB47E6300314EC7 /* Dictionary+JSON.swift in Sources */,
 				3C0774461BB47F2600314EC7 /* BaseFS20TableViewController.swift in Sources */,
 				3C07743E1BB47E6300314EC7 /* String+Localization.swift in Sources */,
-				3C07743A1BB47E6300314EC7 /* FS20.swift in Sources */,
 				3C0774421BB47EDE00314EC7 /* DeviceTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

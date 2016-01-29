@@ -3,3 +3,4 @@
 //
 
 #import "JSON/Room.h"
+#import "JSON/SwitchResult.h"

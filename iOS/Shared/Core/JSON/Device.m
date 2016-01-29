@@ -12,7 +12,7 @@
 
 - (void)setDeviceState:(BOOL) state atHost: (NSString * _Nonnull) host withCompletion: (void (^ _Nullable)(JSONModelError * _Nullable, SwitchResult * _Nullable))completion; {
     NSString *textState = state == YES ? @"enable" : @"disable";
-    [JSONHTTPClient getJSONFromURLWithString:[NSString stringWithFormat:@"http://%@/api/device/%d/%@", host, self.roomId, textState]
+    [JSONHTTPClient getJSONFromURLWithString:[NSString stringWithFormat:@"http://%@/api/device/%d/%@", host, self.id, textState]
                                   completion:^(id json, JSONModelError *err) {
                                       if(err) {
                                           if(completion != nil)

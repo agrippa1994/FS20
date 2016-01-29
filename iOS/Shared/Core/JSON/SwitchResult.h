@@ -11,7 +11,7 @@
 
 @interface SwitchResult : JSONModel
 
-@property (assign, nonatomic) int code;
-@property (assign, nonatomic) NSString * _Nonnull text;
+@property (nonatomic) int code;
+@property (nonatomic) NSString * _Nonnull text;
 
 @end

@@ -22,6 +22,7 @@ class DeviceTableViewCell: UITableViewCell {
     
     // MARK: - Vars
     weak var delegate: DeviceTableViewCellDelegate?
+    weak var device: Device?
     
     // MARK: - Storyboard actions
     @IBAction private func onButton(sender: UIButton) {
