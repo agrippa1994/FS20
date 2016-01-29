@@ -16,6 +16,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         application.statusBarStyle = .LightContent
+        
+        
+        Room.fetchDataFromHost("10.0.0.50:8888") { error, rooms in
+            NSLog("hi, room: \(rooms)")
+            if rooms != nil {
+                rooms![0].devices[0].setDeviceState(true, atHost: "10.0.0.50:8888", withCompletion: { (err, result) -> Void in
+                    NSLog("err \(err), res \(result)")
+                })
+            }
+        }
+        
         return true
     }
 

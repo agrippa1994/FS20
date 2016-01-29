@@ -53,9 +53,11 @@ code_sign_if_enabled() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods/FontAwesome_swift.framework'
+  install_framework 'Pods/JSONModel.framework'
   install_framework 'Pods/MBProgressHUD.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods/FontAwesome_swift.framework'
+  install_framework 'Pods/JSONModel.framework'
   install_framework 'Pods/MBProgressHUD.framework'
 fi
