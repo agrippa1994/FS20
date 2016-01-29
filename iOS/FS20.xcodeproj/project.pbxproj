@@ -31,6 +31,7 @@
 		3CD38CCC1A756968009DC4E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CD38CCA1A756968009DC4E3 /* Main.storyboard */; };
 		3CD38CCE1A756968009DC4E3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CD38CCD1A756968009DC4E3 /* Images.xcassets */; };
 		3CD38CD11A756968009DC4E3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CD38CCF1A756968009DC4E3 /* LaunchScreen.xib */; };
+		892D035043A2B1045E8F3294 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C65AFC36E795CC83C46BF81F /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		293125EC8DB47139D4D3050C /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		3C07741B1BB463E800314EC7 /* Today-Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Today-Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C07741E1BB463E800314EC7 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		3C0774211BB463E800314EC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -82,6 +84,8 @@
 		3CD38CCD1A756968009DC4E3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3CD38CD01A756968009DC4E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		3CDDDDC81BA9D8700022AF58 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		552EDA5B1162FBDA289E7AD2 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		C65AFC36E795CC83C46BF81F /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,12 +101,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				892D035043A2B1045E8F3294 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A36F21C032DC7E08983DE08 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				552EDA5B1162FBDA289E7AD2 /* Pods.debug.xcconfig */,
+				293125EC8DB47139D4D3050C /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		3C07741D1BB463E800314EC7 /* Today-Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				3C1311291A76D0F300B91853 /* NotificationCenter.framework */,
+				C65AFC36E795CC83C46BF81F /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -157,6 +172,7 @@
 				3C07741D1BB463E800314EC7 /* Today-Extension */,
 				3C1311281A76D0F300B91853 /* Frameworks */,
 				3CD38CBF1A756968009DC4E3 /* Products */,
+				2A36F21C032DC7E08983DE08 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -227,10 +243,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3CD38CE01A756968009DC4E3 /* Build configuration list for PBXNativeTarget "FS20" */;
 			buildPhases = (
+				0DA3EB393C91CE3DFBF7DF2C /* Check Pods Manifest.lock */,
 				3CD38CBA1A756968009DC4E3 /* Sources */,
 				3CD38CBB1A756968009DC4E3 /* Frameworks */,
 				3CD38CBC1A756968009DC4E3 /* Resources */,
 				3C1311381A76D0F300B91853 /* Embed App Extensions */,
+				02427A1E1FF707F77B0A2984 /* Copy Pods Resources */,
+				D0C758E862A4D82233B26761 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -316,6 +335,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		02427A1E1FF707F77B0A2984 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0DA3EB393C91CE3DFBF7DF2C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D0C758E862A4D82233B26761 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3C0774171BB463E800314EC7 /* Sources */ = {
@@ -519,6 +586,7 @@
 		};
 		3CD38CE11A756968009DC4E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 552EDA5B1162FBDA289E7AD2 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -541,6 +609,7 @@
 		};
 		3CD38CE21A756968009DC4E3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 293125EC8DB47139D4D3050C /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -570,6 +639,7 @@
 				3C0774281BB463E900314EC7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3CD38CB91A756967009DC4E3 /* Build configuration list for PBXProject "FS20" */ = {
 			isa = XCConfigurationList;
