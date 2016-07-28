@@ -1,0 +1,27 @@
+{
+  "name": "fs20",
+  "version": "1.0.0",
+  "description": "Home control software for FS20",
+  "main": "main.js",
+  "dependencies": {
+    "bonjour": "^3.0.0",
+    "body-parser": "^1.14.0",
+    "async": "^1.4.2",
+    "epilogue": "^0.6.1",
+    "express": "^4.13.3",
+    "mysql": "^2.9.0",
+    "lokijs": "^1.3.10",
+    "rwlock": "^5.0.0",
+    "sequelize-restful": "^0.4.3",
+    "sequelize": "^3.11.0",
+    "serialport": "^1.7.4",
+    "sqlite3": "^3.1.0",
+    "winston": "^1.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Manuel Leitold",
+  "license": "MIT"
+}
