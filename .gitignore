@@ -4,6 +4,9 @@
 # Logs
 logs
 *.log
+log.txt
+
+hap-db
 
 # Runtime data
 pids
