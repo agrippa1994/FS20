@@ -3,9 +3,5 @@
 		"dev" : "COM3",
 		"baud": 38400,
 		"simulate": true
-	},
-
-	"web": {
-		"port": 3000
 	}
 }

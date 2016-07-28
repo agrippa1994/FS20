@@ -8,7 +8,7 @@ var logger = new winston.Logger({
 		}),
 		new winston.transports.File({ 
 			timestamp: true, 
-			filename: "log.txt" 
+			filename: __dirname + "/log.txt" 
 		})
 	]
 });

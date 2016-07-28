@@ -43,21 +43,19 @@ function FS20(deviceName, baudrate, isSimulating, connectHandler, disconnectHand
 			errorCodes.throwError(errorCodes.codes.INVALID_FS20_CODE);
 	}
 	
-	function setDeviceState(roomCode1, roomCode2, deviceCode, enable, callback) {
-		[roomCode1, roomCode2, deviceCode].forEach(isValidCode);
-		
+	function setDeviceState(code, enable, callback) {
 		if(that.simulating) {
 			var exitCode = Math.floor(Math.random() * 10);
-			return callback(null, {code: exitCode, text: FS20_EXIT_CODES_TEXT[exitCode] || "" });
+			return callback(null, { code: exitCode, text: FS20_EXIT_CODES_TEXT[exitCode] || ""  });
 		}
 		
 		var binaryData = [
 			0x02, // Start Opcode 
 			0x06, // Command length
 			0xF1, // Enable / Disable device
-			roomCode1, // Room code 1
-			roomCode2, // Room code 2
-			deviceCode, // Device code
+			code >> 16 & 0xFF, // Room code 1
+			code >> 8 & 0xFF, // Room code 2
+			code & 0xFF, // Device code
 			enable ? 0x11 : 0x00, // Enable / Disable
 			0x00 // Additional parameter
 		];
