@@ -12,8 +12,7 @@ import UIKit
 class BaseFS20TableViewController: UITableViewController, DeviceTableViewCellDelegate {
     
     // MARK: - Vars
-    private var fs20: FS20?
-    private var rooms: [FS20.Room] = []
+    private var rooms: [Room] = []
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -63,25 +62,22 @@ class BaseFS20TableViewController: UITableViewController, DeviceTableViewCellDel
 
     // MARK: - Device table view cell delegate
     func deviceTableViewCellEnable(cell: DeviceTableViewCell) {
-        let path = self.tableView.indexPathForCell(cell)!
+        let indexPath = self.tableView.indexPathForCell(cell)!
+        let device = self.rooms[indexPath.section].devices[indexPath.row]
+        device.setDeviceState(true, atHost: "10.0.0.50:8888", withCompletion: nil)
         //self.rooms[path.section].devices[path.row].enable()
     }
     
     func deviceTableViewCellDisable(cell: DeviceTableViewCell) {
-        let path = self.tableView.indexPathForCell(cell)!
-        //self.rooms[path.section].devices[path.row].disable()
+        let indexPath = self.tableView.indexPathForCell(cell)!
+        let device = self.rooms[indexPath.section].devices[indexPath.row]
+        device.setDeviceState(false, atHost: "10.0.0.50:8888", withCompletion: nil)
     }
     
     // MARK: - Methods
     func validateAndApplySettings() {
         // Read server host from iOS Settings application
-        if let url = NSURL(string: Settings.host) {
-            // Create FS20 object if it's not initialized otherwise set the url
-            if self.fs20 == nil {
-                self.fs20 = FS20(url: url)
-            } else {
-                self.fs20?.url = url
-            }
+
             
             // Refresh data
             self.refresh {
@@ -92,26 +88,18 @@ class BaseFS20TableViewController: UITableViewController, DeviceTableViewCellDel
                 }
             }
             
-            return
-        }
-        
-        self.invalidUrl()
+    
     }
     
     func refresh(completion: (Bool -> Void)?) {
-        if self.fs20 == nil {
-            completion?(false)
-            return
-        }
-        
         self.refreshControl?.beginRefreshing()
-        self.fs20?.rooms { rooms in
+        Room.fetchDataFromHost("10.0.0.50:8888") { error, rooms in
             dispatch_async(dispatch_get_main_queue()) {
                 defer {
                     self.refreshControl?.endRefreshing()
                 }
                 
-                if rooms == nil {
+                if rooms == nil || error != nil {
                     completion?(false)
                     return
                 }
