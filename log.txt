@@ -1,0 +1,24 @@
+{"level":"info","message":"Connection to device 'COM3' with the baudrate '38400' is built ...","timestamp":"2016-07-28T14:11:24.409Z"}
+{"level":"info","message":"Using serial connection simulation mode true","timestamp":"2016-07-28T14:11:24.412Z"}
+{"level":"info","message":"Connection to the serial interface has been established","timestamp":"2016-07-28T14:11:24.423Z"}
+{"level":"info","message":"Connection to device 'COM3' with the baudrate '38400' is built ...","timestamp":"2016-07-28T14:11:55.787Z"}
+{"level":"info","message":"Using serial connection simulation mode true","timestamp":"2016-07-28T14:11:55.790Z"}
+{"level":"info","message":"Connection to the serial interface has been established","timestamp":"2016-07-28T14:11:55.796Z"}
+{"level":"info","message":"Connection to device 'COM3' with the baudrate '38400' is built ...","timestamp":"2016-07-28T14:12:32.882Z"}
+{"level":"info","message":"Using serial connection simulation mode true","timestamp":"2016-07-28T14:12:32.886Z"}
+{"level":"info","message":"Connection to the serial interface has been established","timestamp":"2016-07-28T14:12:32.895Z"}
+{"level":"info","message":"Connection to device 'COM3' with the baudrate '38400' is built ...","timestamp":"2016-07-28T14:14:23.345Z"}
+{"level":"info","message":"Using serial connection simulation mode true","timestamp":"2016-07-28T14:14:23.347Z"}
+{"level":"info","message":"Connection to the serial interface has been established","timestamp":"2016-07-28T14:14:23.354Z"}
+{"level":"info","message":"Connection to device 'COM3' with the baudrate '38400' is built ...","timestamp":"2016-07-28T14:17:47.703Z"}
+{"level":"info","message":"Using serial connection simulation mode true","timestamp":"2016-07-28T14:17:47.705Z"}
+{"level":"info","message":"Connection to the serial interface has been established","timestamp":"2016-07-28T14:17:47.718Z"}
+{"level":"info","message":"Connection to device 'COM3' with the baudrate '38400' is built ...","timestamp":"2016-07-28T14:18:55.020Z"}
+{"level":"info","message":"Using serial connection simulation mode true","timestamp":"2016-07-28T14:18:55.022Z"}
+{"level":"info","message":"Connection to the serial interface has been established","timestamp":"2016-07-28T14:18:55.062Z"}
+{"level":"info","message":"Connection to device 'COM3' with the baudrate '38400' is built ...","timestamp":"2016-07-28T14:20:51.856Z"}
+{"level":"info","message":"Using serial connection simulation mode true","timestamp":"2016-07-28T14:20:51.863Z"}
+{"level":"info","message":"Connection to the serial interface has been established","timestamp":"2016-07-28T14:20:51.920Z"}
+{"level":"info","message":"Connection to device 'COM3' with the baudrate '38400' is built ...","timestamp":"2016-07-28T14:23:19.066Z"}
+{"level":"info","message":"Using serial connection simulation mode true","timestamp":"2016-07-28T14:23:19.068Z"}
+{"level":"info","message":"Connection to the serial interface has been established","timestamp":"2016-07-28T14:23:19.098Z"}

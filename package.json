@@ -1,0 +1,18 @@
+{
+  "name": "fs20",
+  "version": "1.0.0",
+  "description": "Home control software for FS20",
+  "main": "main.js",
+  "dependencies": {
+    "hap-nodejs": "^0.3.2",
+    "rwlock": "^5.0.0",
+    "serialport": "^4.0.1",
+    "winston": "^1.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Manuel Leitold",
+  "license": "MIT"
+}
