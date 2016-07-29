@@ -1,4 +1,5 @@
-var winston = require("winston");
+const winston = require("winston");
+const path = require("path");
 
 var logger = new winston.Logger({
 	transports: [
@@ -8,7 +9,7 @@ var logger = new winston.Logger({
 		}),
 		new winston.transports.File({ 
 			timestamp: true, 
-			filename: __dirname + "/log.txt" 
+			filename: path.join(__dirname, "log.txt") 
 		})
 	]
 });

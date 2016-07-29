@@ -1,8 +1,7 @@
-var ReadWriteLock = require("rwlock"),
-	SerialPort = require("serialport"),
-	errorCodes = require("./errorCodes.js");
+const ReadWriteLock = require("rwlock");
+const SerialPort = require("serialport");
 	
-var FS20_EXIT_CODES_TEXT = [
+const FS20_EXIT_CODES_TEXT = [
 	/* 0x00 */ "Standby",
 	/* 0x01 */ "Send Active",
 	/* 0x02 */ "Invalid Command ID",
@@ -18,7 +17,7 @@ var FS20_EXIT_CODES_TEXT = [
 function FS20(deviceName, baudrate, isSimulating, connectHandler, disconnectHandler) {
 	var that = this;
 	
-	var serialSettings = {
+	const serialSettings = {
 		baudrate: baudrate,
 		parser: SerialPort.parsers.byteLength(4),
 		disconnectedCallback: disconnectHandler,
@@ -32,24 +31,13 @@ function FS20(deviceName, baudrate, isSimulating, connectHandler, disconnectHand
 		connectHandler(error);
 	}
 	
-	function isValidCode(code) {
-		if(typeof code !== "number")
-			errorCodes.throwError(errorCodes.codes.INVALID_FS20_CODE);
-			
-		if(isNaN(code))
-			errorCodes.throwError(errorCodes.codes.INVALID_FS20_CODE);
-			
-		if(code < 0x00 || code > 0xFF)
-			errorCodes.throwError(errorCodes.codes.INVALID_FS20_CODE);
-	}
-	
 	function setDeviceState(code, enable, callback) {
 		if(that.simulating) {
-			var exitCode = Math.floor(Math.random() * 10);
+			const exitCode = Math.floor(Math.random() * 10);
 			return callback(null, { code: exitCode, text: FS20_EXIT_CODES_TEXT[exitCode] || ""  });
 		}
 		
-		var binaryData = [
+		const binaryData = [
 			0x02, // Start Opcode 
 			0x06, // Command length
 			0xF1, // Enable / Disable device
