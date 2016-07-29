@@ -59,7 +59,7 @@ devices.forEach(device => {
       else
         logger.info(`Changed state of device ${device.username} to ${value}, code: ${received.code}, text: ${received.text}`);
 
-      if (error || received.code != 0)
+      if (error)
         callback("Error");
       else
         callback();

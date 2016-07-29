@@ -13,7 +13,7 @@ device.on('identify', function (paired, callback) {
 });
 
 device
-  .addService(hap.Service.Fan, "Steckdose")
+  .addService(hap.Service.Switch, "Steckdose")
   .getCharacteristic(hap.Characteristic.On)
   .on('set', function (value, callback) {
     device.stateChange(value, callback);
