@@ -1,4 +1,3 @@
-const errorCodes = require("./errorCodes.js");
 const FS20 = require("./fs20.js");
 const logger = require("./logger.js");
 const fs = require("fs");
